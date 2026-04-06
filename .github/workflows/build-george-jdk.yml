@@ -31,9 +31,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y \
             autoconf make cmake file zip unzip pkg-config gawk \
-            build-essential \
-            libcups2-dev libfontconfig1-dev libasound2-dev libfreetype6-dev \
-            libx11-dev libxext-dev libxrender-dev libxrandr-dev libxtst-dev libxt-dev
+            build-essential libcups2-dev libfontconfig1-dev \
+            libasound2-dev libfreetype6-dev libx11-dev \
+            libxext-dev libxrender-dev libxtst-dev libxrandr-dev libxt-dev
 
       - name: Verify X11 headers
         run: |
