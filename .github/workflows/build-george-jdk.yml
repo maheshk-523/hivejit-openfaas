@@ -47,12 +47,12 @@ jobs:
       - name: Configure build
         working-directory: work/jdk25u
         run: |
-	 bash configure \
- 	 --with-boot-jdk="$JAVA_HOME" \
-  	 --enable-headless-only=no \
-  	 --with-x \
-  	 --with-jvm-variants=server \
-  	 --with-debug-level=release
+          bash configure \
+            --with-boot-jdk="$JAVA_HOME" \
+            --enable-headless-only=no \
+            --with-x \
+            --with-jvm-variants=server \
+            --with-debug-level=release
 
       - name: Build JDK
         working-directory: work/jdk25u
