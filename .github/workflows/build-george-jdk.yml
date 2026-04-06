@@ -52,7 +52,8 @@ jobs:
             --enable-headless-only=no \
             --with-x \
             --with-jvm-variants=server \
-            --with-debug-level=release
+            --with-debug-level=release \
+            --disable-warnings-as-errors
 
       - name: Build JDK
         working-directory: work/jdk25u
