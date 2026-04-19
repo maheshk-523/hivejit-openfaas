@@ -1,2 +1,10 @@
 .env
-work/
+.colima/
+work/jdk25u/
+work/george-jdk/
+generated/fn/george-jdk/
+generated/fn/lib/dacapo/
+build/
+*.class
+*.log
+*.iso
