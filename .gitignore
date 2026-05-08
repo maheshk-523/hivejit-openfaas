@@ -8,3 +8,6 @@ build/
 *.class
 *.log
 *.iso
+prototypes/**/artifacts/
+prototypes/**/build/
+prototypes/**/results/
