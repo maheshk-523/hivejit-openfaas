@@ -94,11 +94,26 @@ shape and reject stale or mismatched profiles.
 
 ### Next Slice
 
-1. Install or provide Go if we want the recommended second-domain prototype:
-   `pprof -> go build -pgo -> benchmark`.
-2. Install or provide .NET if we want the recommended third-domain prototype:
-   `trace -> MIBC -> ReadyToRunOptimizationData -> benchmark`.
+1. Install or provide Go to run the implemented second-domain prototype:
+   `prototypes/go-pgo-serverless`.
+2. Install or provide .NET to run the implemented third-domain prototype:
+   `prototypes/dotnet-readytorun-pgo`.
 3. For HiveJIT/JVM, instrument export overhead first:
    `safepoint_entry_ms`, `enumerate_methods_ms`, `find_method_data_ms`,
    `serialize_counters_ms`, `symbolize_type_profiles_ms`, `compress_ms`,
    `write_ms`, and `total_export_ms`.
+
+## 2026-05-08 Follow-Up Implementation
+
+Added:
+
+```text
+prototypes/go-pgo-serverless
+prototypes/dotnet-readytorun-pgo
+scripts/run_profile_cache_matrix.py
+docs/serverless-profile-cache-design.md
+```
+
+The Go and C# prototypes are source-complete but cannot be executed on this
+machine until the corresponding SDKs are installed. The matrix runner skips
+missing SDKs and still runs the locally available Node/V8 and LLVM/Clang loops.
