@@ -1,0 +1,167 @@
+[
+  {
+    "label": "Java/OpenFaaS George JVM",
+    "source": "/Users/maheshk/Documents/New project 5/openfaas_lusearch.csv",
+    "kind": "http",
+    "mean_ms": 39.55505839549005,
+    "p50_ms": 39.49358296813443,
+    "p95_ms": 52.74020798970014,
+    "max_ms": 52.74020798970014,
+    "statuses": {
+      "500": 15
+    },
+    "times_ms": [
+      47.808874980546534,
+      52.74020798970014,
+      41.280708042904735,
+      40.00608396017924,
+      36.96970798773691,
+      39.88679201574996,
+      34.393667010590434,
+      38.57958398293704,
+      41.25016700709239,
+      36.06116696028039,
+      35.336416971404105,
+      39.49358296813443,
+      35.08554201107472,
+      41.3869580370374,
+      33.04641600698233
+    ]
+  },
+  {
+    "label": "Go baseline hot",
+    "source": "/Users/maheshk/Documents/New project 5/prototypes/go-pgo-serverless/results/baseline-hot.json",
+    "kind": "local-prototype",
+    "mean_ms": 26.076833500000003,
+    "p50_ms": 28.088542,
+    "p95_ms": 36.419834,
+    "max_ms": 36.419834,
+    "times_ms": [
+      28.536417,
+      36.419834,
+      22.254375,
+      20.499333,
+      28.088542,
+      20.6625
+    ]
+  },
+  {
+    "label": "Go PGO hot",
+    "source": "/Users/maheshk/Documents/New project 5/prototypes/go-pgo-serverless/results/pgo-hot.json",
+    "kind": "local-prototype",
+    "mean_ms": 23.77532633333333,
+    "p50_ms": 22.889542,
+    "p95_ms": 34.925458,
+    "max_ms": 34.925458,
+    "times_ms": [
+      24.986167,
+      21.000625,
+      22.028291,
+      34.925458,
+      22.889542,
+      16.821875
+    ]
+  },
+  {
+    "label": ".NET IL hot",
+    "source": "/Users/maheshk/Documents/New project 5/prototypes/dotnet-readytorun-pgo/results/il-hot.json",
+    "kind": "local-prototype",
+    "mean_ms": 40.37505,
+    "p50_ms": 38.7561,
+    "p95_ms": 57.2991,
+    "max_ms": 57.2991,
+    "times_ms": [
+      32.2714,
+      35.0362,
+      35.53,
+      38.7561,
+      43.3575,
+      57.2991
+    ]
+  },
+  {
+    "label": ".NET ReadyToRun hot",
+    "source": "/Users/maheshk/Documents/New project 5/prototypes/dotnet-readytorun-pgo/results/r2r-hot.json",
+    "kind": "local-prototype",
+    "mean_ms": 51.932700000000004,
+    "p50_ms": 51.3445,
+    "p95_ms": 109.0837,
+    "max_ms": 109.0837,
+    "times_ms": [
+      24.4426,
+      27.501,
+      44.0802,
+      51.3445,
+      55.1442,
+      109.0837
+    ]
+  },
+  {
+    "label": "Go baseline mixed",
+    "source": "/Users/maheshk/Documents/New project 5/prototypes/go-pgo-serverless/results/baseline-mixed.json",
+    "kind": "local-prototype",
+    "mean_ms": 44.4341945,
+    "p50_ms": 32.272541,
+    "p95_ms": 108.316542,
+    "max_ms": 108.316542,
+    "times_ms": [
+      108.316542,
+      43.098042,
+      32.272541,
+      27.373625,
+      27.37125,
+      28.173167
+    ]
+  },
+  {
+    "label": "Go PGO mixed",
+    "source": "/Users/maheshk/Documents/New project 5/prototypes/go-pgo-serverless/results/pgo-mixed.json",
+    "kind": "local-prototype",
+    "mean_ms": 42.866235999999994,
+    "p50_ms": 47.089583,
+    "p95_ms": 59.208958,
+    "max_ms": 59.208958,
+    "times_ms": [
+      34.840125,
+      38.733708,
+      47.089583,
+      48.835084,
+      59.208958,
+      28.489958
+    ]
+  },
+  {
+    "label": ".NET IL mixed",
+    "source": "/Users/maheshk/Documents/New project 5/prototypes/dotnet-readytorun-pgo/results/il-mixed.json",
+    "kind": "local-prototype",
+    "mean_ms": 172.32018333333335,
+    "p50_ms": 139.6908,
+    "p95_ms": 325.8047,
+    "max_ms": 325.8047,
+    "times_ms": [
+      73.1116,
+      73.6539,
+      124.8056,
+      139.6908,
+      296.8545,
+      325.8047
+    ]
+  },
+  {
+    "label": ".NET ReadyToRun mixed",
+    "source": "/Users/maheshk/Documents/New project 5/prototypes/dotnet-readytorun-pgo/results/r2r-mixed.json",
+    "kind": "local-prototype",
+    "mean_ms": 118.44093333333332,
+    "p50_ms": 114.3355,
+    "p95_ms": 228.6333,
+    "max_ms": 228.6333,
+    "times_ms": [
+      66.3111,
+      82.3885,
+      90.2111,
+      114.3355,
+      128.7661,
+      228.6333
+    ]
+  }
+]
