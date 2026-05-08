@@ -8,6 +8,8 @@ build/
 *.class
 *.log
 *.iso
+__pycache__/
 prototypes/**/artifacts/
 prototypes/**/build/
 prototypes/**/results/
+generated/profile-cache-matrix/
