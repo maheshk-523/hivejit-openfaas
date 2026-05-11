@@ -12,6 +12,8 @@ RUN_ID="${RUN_ID:-$(date +%Y%m%d-%H%M%S)}"
 BUILD_DIR="build"
 PROFILE_ROOT="profiles/$RUN_ID"
 RESULT_DIR="results/$RUN_ID"
+FIGURE_DIR="${FIGURE_DIR:-../../docs/figures}"
+PLOT_RESULTS="${PLOT_RESULTS:-1}"
 
 export GOCACHE="${GOCACHE:-$PWD/.cache/go-build}"
 
@@ -64,7 +66,18 @@ done
 echo "== Summary =="
 "$BUILD_DIR/summarize" -out "$RESULT_DIR/summary.csv" "$RESULT_DIR"/*.csv
 
+if [[ "$PLOT_RESULTS" == "1" ]]; then
+  echo "== Render figures =="
+  python3 plot_results.py \
+    --results "$RESULT_DIR" \
+    --out-dir "$FIGURE_DIR" \
+    --prefix "go-pgo-profile-cache"
+fi
+
 echo
 echo "Artifacts:"
 echo "  profiles: $profile_dir"
 echo "  results:  $RESULT_DIR"
+if [[ "$PLOT_RESULTS" == "1" ]]; then
+  echo "  figures:  $FIGURE_DIR/go-pgo-profile-cache-*.svg"
+fi
