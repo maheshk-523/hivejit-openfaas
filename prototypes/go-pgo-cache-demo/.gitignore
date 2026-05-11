@@ -1,0 +1,5 @@
+/.cache/
+/build/
+/profiles/
+/results/
+/go-pgo-cache-demo
