@@ -54,29 +54,29 @@ The DaCapo-shaped workloads use the same profile-cache loop with different CPU-b
 families, giving Go PGO concrete hot-path information it can use for inlining and
 devirtualization decisions.
 
-A quick multi-benchmark run on this machine used:
+The latest multi-benchmark validation run on this machine used:
 
 ```bash
-RUN_ID=go-dacapo-quick-20260511 \
+RUN_ID=codex-dacapo-fixed-20260512 \
 BENCHMARKS="dacapo-lusearch dacapo-eclipse dacapo-h2" \
-INVOKES=8 REQUESTS=120000 PROFILE_REQUESTS=300000 PROFILE_ITERS="3 5" \
+INVOKES=16 REQUESTS=150000 PROFILE_REQUESTS=400000 PROFILE_ITERS="3 5" \
 ./run_profile_cache.sh
 ```
 
-The p50 result improved for each workload, while the short 8-invocation run still showed
-first-process outliers in the p95/mean columns:
+The p50 result improved for each workload, while the short 16-invocation run
+still showed first-process outliers in the p95/mean columns:
 
 | benchmark | build | n | mean wall ms | p50 wall ms | p95 wall ms |
 |---|---|---:|---:|---:|---:|
-| dacapo-lusearch | No PGO | 8 | 59.071 | 53.492 | 82.605 |
-| dacapo-lusearch | PGO, 3 profiles | 8 | 68.801 | 50.632 | 145.617 |
-| dacapo-lusearch | PGO, 5 profiles | 8 | 70.734 | 50.731 | 155.230 |
-| dacapo-eclipse | No PGO | 8 | 64.703 | 61.212 | 79.914 |
-| dacapo-eclipse | PGO, 3 profiles | 8 | 78.600 | 59.576 | 158.738 |
-| dacapo-eclipse | PGO, 5 profiles | 8 | 78.775 | 60.180 | 156.868 |
-| dacapo-h2 | No PGO | 8 | 46.965 | 46.881 | 47.457 |
-| dacapo-h2 | PGO, 3 profiles | 8 | 63.353 | 45.301 | 139.471 |
-| dacapo-h2 | PGO, 5 profiles | 8 | 64.959 | 45.084 | 148.303 |
+| dacapo-lusearch | No PGO | 16 | 72.045 | 68.967 | 84.866 |
+| dacapo-lusearch | PGO, 3 profiles | 16 | 74.803 | 63.710 | 114.567 |
+| dacapo-lusearch | PGO, 5 profiles | 16 | 72.611 | 63.058 | 101.761 |
+| dacapo-eclipse | No PGO | 16 | 78.171 | 76.301 | 84.932 |
+| dacapo-eclipse | PGO, 3 profiles | 16 | 91.222 | 74.729 | 148.503 |
+| dacapo-eclipse | PGO, 5 profiles | 16 | 84.210 | 74.437 | 114.005 |
+| dacapo-h2 | No PGO | 16 | 58.682 | 58.302 | 59.970 |
+| dacapo-h2 | PGO, 3 profiles | 16 | 66.063 | 55.794 | 98.508 |
+| dacapo-h2 | PGO, 5 profiles | 16 | 68.135 | 57.928 | 109.333 |
 
 On this machine, the graph run `go-pgo-graphs-20260511` produced:
 

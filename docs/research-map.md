@@ -24,8 +24,8 @@ and fragility of whole-process snapshots.
 | Domain | Export | Import | Compile mode | Prototype status |
 | --- | --- | --- | --- | --- |
 | JVM / HiveJIT | HotSpot MethodData, invocation/backedge counters, type profiles, inline-cache-like feedback | Load profile into a clean JVM, then trigger eager JIT for hot methods | JIT | Main research direction; not implemented in this empty workspace. |
-| Go | CPU `pprof` profile | `go build -pgo=profile.pprof` | AOT | Implemented in `prototypes/go-pgo-serverless`; Go is not installed locally. |
-| .NET | `dotnet-trace` data converted to MIBC profile data | `ReadyToRunOptimizationData` during publish | AOT plus tiered JIT | Implemented in `prototypes/dotnet-readytorun-pgo`; `dotnet` is not installed locally. |
+| Go | CPU `pprof` profile | `go build -pgo=profile.pprof` | AOT | Implemented and locally verified in `prototypes/go-pgo-cache-demo`; Go 1.26.3 is available. |
+| .NET | `dotnet-trace` data converted to MIBC profile data | `ReadyToRunOptimizationData` during publish | AOT plus tiered JIT | SDK-only ReadyToRun locally verified in `prototypes/dotnet-readytorun-pgo`; full static PGO still needs `dotnet-pgo`. |
 | Node/V8 | V8 code cache via `vm.Script.createCachedData()` or Node module compile cache | `cachedData` in a fresh `vm.Script`, or `NODE_COMPILE_CACHE` | Parse/compile cache, not full JIT profile | Implemented in `prototypes/node-v8-artifact-cache`. |
 | LLVM/Clang native | Instrumented `.profraw` profile | `llvm-profdata merge`, then compile with `-fprofile-instr-use` | AOT | Implemented in `prototypes/llvm-aot-pgo`. |
 | Wasmtime | Serialized/precompiled module (`.cwasm`) | `Module::deserialize_file` | AOT-style Wasm precompile | Good future serverless edge/runtime domain. |
@@ -176,12 +176,12 @@ Version records by class name, method signature, bytecode hash, JVM build, and f
 
 ## Next Implementation Steps
 
-1. Run the matrix runner to record available baseline numbers:
-   `python3 scripts/run_profile_cache_matrix.py`.
-2. Install Go and run `ProfileCache-Go`:
-   `bash prototypes/go-pgo-serverless/run_pgo.sh`.
-3. Install .NET SDK, `dotnet-trace`, and `dotnet-pgo`, then run
+1. Run the Go DaCapo-shaped profile-cache benchmark for reproducible graphs:
+   `BENCHMARKS="dacapo-lusearch dacapo-eclipse dacapo-h2" PROFILE_ITERS="3 5" bash prototypes/go-pgo-cache-demo/run_profile_cache.sh`.
+2. Run the .NET SDK-only ReadyToRun comparison:
+   `DOTNET_BIN=/private/tmp/dotnet-sdk/dotnet bash prototypes/dotnet-readytorun-pgo/run_readytorun.sh`.
+3. Install or build `dotnet-pgo`, then run
    `ProfileCache-DotNet`:
-   `bash prototypes/dotnet-readytorun-pgo/run_static_pgo.sh`.
+   `DOTNET_ROOT=/private/tmp/dotnet-sdk DOTNET_BIN=/private/tmp/dotnet-sdk/dotnet DOTNET_TRACE_BIN=/Users/maheshk/.dotnet/tools/dotnet-trace bash prototypes/dotnet-readytorun-pgo/run_static_pgo.sh`.
 4. For JVM/HiveJIT, add export-path timers before changing algorithms so the
    heap traversal bottleneck is measured, not guessed.

@@ -14,5 +14,8 @@ prototypes/**/artifacts/
 prototypes/**/bin/
 prototypes/**/build/
 prototypes/**/obj/
+prototypes/**/.cache/
+prototypes/**/.runs/
+prototypes/**/profiles/
 prototypes/**/results/
 generated/profile-cache-matrix/

@@ -25,8 +25,10 @@ Run the local matrix with:
 python3 scripts/run_profile_cache_matrix.py
 ```
 
-The runner skips domains whose SDKs are not installed, which matters on this
-machine because Go and .NET are not currently available.
+The runner skips domains whose SDKs are not installed. On this machine, Go
+1.26.3 and a .NET 8 SDK are available; the full .NET static-PGO path still
+needs `dotnet-pgo`. `dotnet-trace` is present as a global tool when
+`DOTNET_ROOT=/private/tmp/dotnet-sdk` is set.
 
 ## Cache Key
 

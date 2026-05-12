@@ -72,11 +72,24 @@ for benchmark in "${BENCHMARK_LIST[@]}"; do
     done
 
     echo "== Merge profile cache for $iter_count invocations ($benchmark) =="
-    go tool pprof -proto "$profile_dir"/*.pprof > "$profile_dir/merged.pprof"
+    merged_profile="$profile_dir/merged.pprof"
+    merged_tmp="$profile_dir/merged.pprof.tmp"
+    rm -f "$merged_profile" "$merged_tmp"
+    profile_inputs=("$profile_dir"/invoke-*.pprof)
+    if [[ ! -e "${profile_inputs[0]}" ]]; then
+      echo "No raw profiles found in $profile_dir" >&2
+      exit 1
+    fi
+    go tool pprof -proto "${profile_inputs[@]}" > "$merged_tmp"
+    if [[ ! -s "$merged_tmp" ]]; then
+      echo "Merged profile is empty: $merged_tmp" >&2
+      exit 1
+    fi
+    mv "$merged_tmp" "$merged_profile"
 
     echo "== Build AOT Go binary with imported profile cache ($benchmark) =="
     pgo_bin="$BUILD_DIR/handler.pgo.${benchmark_slug}.${iter_count}"
-    go build -buildvcs=false -trimpath -pgo="$profile_dir/merged.pprof" -o "$pgo_bin" .
+    go build -buildvcs=false -trimpath -pgo="$merged_profile" -o "$pgo_bin" .
     go version -m "$pgo_bin" > "$RESULT_DIR/buildinfo-pgo-${iter_count}.txt"
 
     echo "== Measure PGO cold invocations for $iter_count-profile build ($benchmark) =="

@@ -32,7 +32,44 @@ In this run, both profile-guided builds improve median and tail latency versus t
 
 ## DaCapo-Shaped Go Workloads
 
-Run id: `go-dacapo-quick-20260511`
+Latest validation run: `codex-dacapo-fixed-20260512`
+
+Command:
+
+```bash
+BENCHMARKS="dacapo-lusearch dacapo-eclipse dacapo-h2" \
+INVOKES=16 REQUESTS=150000 PROFILE_REQUESTS=400000 PROFILE_ITERS="3 5" \
+./run_profile_cache.sh
+```
+
+The runner now merges only `invoke-*.pprof` inputs and writes `merged.pprof`
+through a temporary file. That avoids feeding the output profile back into
+`go tool pprof` when rerunning a profile directory.
+
+| benchmark | build | n | mean wall ms | p50 wall ms | p95 wall ms |
+|---|---|---:|---:|---:|---:|
+| dacapo-lusearch | No PGO | 16 | 72.045 | 68.967 | 84.866 |
+| dacapo-lusearch | PGO, 3 profiles | 16 | 74.803 | 63.710 | 114.567 |
+| dacapo-lusearch | PGO, 5 profiles | 16 | 72.611 | 63.058 | 101.761 |
+| dacapo-eclipse | No PGO | 16 | 78.171 | 76.301 | 84.932 |
+| dacapo-eclipse | PGO, 3 profiles | 16 | 91.222 | 74.729 | 148.503 |
+| dacapo-eclipse | PGO, 5 profiles | 16 | 84.210 | 74.437 | 114.005 |
+| dacapo-h2 | No PGO | 16 | 58.682 | 58.302 | 59.970 |
+| dacapo-h2 | PGO, 3 profiles | 16 | 66.063 | 55.794 | 98.508 |
+| dacapo-h2 | PGO, 5 profiles | 16 | 68.135 | 57.928 | 109.333 |
+
+The two clearest working benchmark shapes from this run are `dacapo-lusearch`
+and `dacapo-h2`: both complete the full export -> merge -> AOT import -> fresh
+execution loop and show lower p50 latency after importing profile data.
+`dacapo-eclipse` also completes the loop and improves p50, but less strongly.
+
+Do not use the short-run p95 columns as a success claim. The PGO binaries show
+large first-process outliers in these 16-invocation local runs, so the current
+defensible graph claim is median/time-series improvement plus complete artifact
+reuse. A stronger tail-latency claim needs a longer, interleaved run under a
+stable CPU governor or the OpenFaaS/Redis path with fixed pod placement.
+
+Previous quick run: `go-dacapo-quick-20260511`
 
 Command:
 
