@@ -33,6 +33,7 @@ var sink uint64
 func main() {
 	requests := flag.Int("requests", 350000, "number of synthetic requests handled by this one-shot serverless invocation")
 	seed := flag.Uint64("seed", 1, "deterministic workload seed")
+	benchmark := flag.String("benchmark", "router", "benchmark workload: router, dacapo-lusearch, dacapo-eclipse, dacapo-h2")
 	profileOut := flag.String("profile-out", "", "write a Go CPU pprof profile for this invocation")
 	jsonOut := flag.Bool("json", false, "print result as JSON")
 	flag.Parse()
@@ -43,7 +44,10 @@ func main() {
 	}
 
 	start := time.Now()
-	checksum := runInvocation(*requests, *seed)
+	checksum, normalizedBenchmark, err := runBenchmarkInvocation(*requests, *seed, *benchmark)
+	if err != nil {
+		fatalf("%v", err)
+	}
 	workDuration := time.Since(start)
 
 	stopProfile()
@@ -52,6 +56,7 @@ func main() {
 	result := map[string]any{
 		"requests":        *requests,
 		"seed":            *seed,
+		"benchmark":       normalizedBenchmark,
 		"checksum":        fmt.Sprintf("%016x", checksum),
 		"work_ms":         float64(workDuration.Microseconds()) / 1000.0,
 		"go_version":      runtime.Version(),
@@ -65,7 +70,7 @@ func main() {
 		return
 	}
 
-	fmt.Printf("requests=%d seed=%d work_ms=%.3f checksum=%016x\n", *requests, *seed, float64(workDuration.Microseconds())/1000.0, checksum)
+	fmt.Printf("benchmark=%s requests=%d seed=%d work_ms=%.3f checksum=%016x\n", normalizedBenchmark, *requests, *seed, float64(workDuration.Microseconds())/1000.0, checksum)
 }
 
 func startCPUProfile(path string) (func(), error) {
@@ -89,7 +94,7 @@ func startCPUProfile(path string) (func(), error) {
 	}, nil
 }
 
-func runInvocation(requests int, seed uint64) uint64 {
+func runRouterInvocation(requests int, seed uint64) uint64 {
 	ops := []operation{
 		hashRoute{},
 		hashRoute{},

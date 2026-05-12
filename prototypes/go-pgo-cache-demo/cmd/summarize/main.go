@@ -62,28 +62,44 @@ func readCSV(path string, groups map[string][]sample) {
 	defer f.Close()
 
 	r := csv.NewReader(f)
+	header, err := r.Read()
+	if err != nil {
+		fatalf("read %s: %v", path, err)
+	}
+	labelIdx := requiredColumn(path, header, "label")
+	wallIdx := requiredColumn(path, header, "wall_ms")
+	workIdx := requiredColumn(path, header, "work_ms")
+	maxIdx := max(labelIdx, wallIdx, workIdx)
+
 	rows, err := r.ReadAll()
 	if err != nil {
 		fatalf("read %s: %v", path, err)
 	}
 	for i, row := range rows {
-		if i == 0 {
-			continue
+		if len(row) <= maxIdx {
+			fatalf("%s row %d: expected at least %d columns", path, i+2, maxIdx+1)
 		}
-		if len(row) < 4 {
-			fatalf("%s row %d: expected at least 4 columns", path, i+1)
-		}
-		wall, err := strconv.ParseFloat(row[2], 64)
+		wall, err := strconv.ParseFloat(row[wallIdx], 64)
 		if err != nil {
-			fatalf("%s row %d wall_ms: %v", path, i+1, err)
+			fatalf("%s row %d wall_ms: %v", path, i+2, err)
 		}
-		work, err := strconv.ParseFloat(row[3], 64)
+		work, err := strconv.ParseFloat(row[workIdx], 64)
 		if err != nil {
-			fatalf("%s row %d work_ms: %v", path, i+1, err)
+			fatalf("%s row %d work_ms: %v", path, i+2, err)
 		}
-		label := row[0]
+		label := row[labelIdx]
 		groups[label] = append(groups[label], sample{label: label, wall: wall, work: work})
 	}
+}
+
+func requiredColumn(path string, header []string, name string) int {
+	for i, column := range header {
+		if column == name {
+			return i
+		}
+	}
+	fatalf("%s: missing required column %q", path, name)
+	return -1
 }
 
 func summarize(label string, samples []sample) stats {

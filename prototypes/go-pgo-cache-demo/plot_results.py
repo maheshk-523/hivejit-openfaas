@@ -8,6 +8,7 @@ import csv
 import html
 import json
 import math
+import re
 from pathlib import Path
 
 
@@ -16,6 +17,8 @@ COLORS = {
     "go-pgo-5": "#0f766e",
     "go-pgo-10": "#b45309",
 }
+
+PGO_COLORS = ["#0f766e", "#b45309", "#7c3aed", "#dc2626", "#2563eb", "#0891b2"]
 
 DISPLAY = {
     "go-nopgo": "No PGO",
@@ -105,7 +108,7 @@ def render_invocation_curve(series: dict[str, list[dict[str, float]]]) -> str:
 
     for label in label_order(series):
         rows = series[label]
-        color = COLORS.get(label, "#475569")
+        color = color_for(label)
         points = []
         for row in rows:
             x = left + ((row["iteration"] - 1) / max(max_iter - 1, 1)) * chart_w
@@ -236,18 +239,39 @@ def legend(labels, x: float, y: float) -> list[str]:
     parts = []
     for idx, label in enumerate(label_order({label: [] for label in labels})):
         row_y = y + idx * 24
-        parts.append(line(x, row_y, x + 30, row_y, COLORS.get(label, "#475569"), 3))
-        parts.append(circle(x + 15, row_y, 4, COLORS.get(label, "#475569")))
+        color = color_for(label)
+        parts.append(line(x, row_y, x + 30, row_y, color, 3))
+        parts.append(circle(x + 15, row_y, 4, color))
         parts.append(text(x + 42, row_y + 4, display(label), 12, "start", "#334155", 600))
     return parts
 
 
 def label_order(series: dict[str, object]) -> list[str]:
-    preferred = ["go-nopgo", "go-pgo-5", "go-pgo-10"]
-    return [label for label in preferred if label in series] + sorted(label for label in series if label not in preferred)
+    def key(label: str) -> tuple[int, int, str]:
+        if label == "go-nopgo":
+            return (0, 0, label)
+        match = re.fullmatch(r"go-pgo-(\d+)", label)
+        if match:
+            return (1, int(match.group(1)), label)
+        return (2, 0, label)
+
+    return sorted(series, key=key)
+
+
+def color_for(label: str) -> str:
+    if label in COLORS:
+        return COLORS[label]
+    match = re.fullmatch(r"go-pgo-(\d+)", label)
+    if match:
+        index = max(int(match.group(1)) - 1, 0) % len(PGO_COLORS)
+        return PGO_COLORS[index]
+    return "#475569"
 
 
 def display(label: str) -> str:
+    match = re.fullmatch(r"go-pgo-(\d+)", label)
+    if match:
+        return f"PGO, {match.group(1)} profiles"
     return DISPLAY.get(label, label)
 
 

@@ -22,6 +22,7 @@ type handlerResult struct {
 func main() {
 	bin := flag.String("bin", "", "handler binary to invoke")
 	label := flag.String("label", "", "label written to CSV")
+	benchmark := flag.String("benchmark", "router", "handler benchmark workload")
 	iterations := flag.Int("iterations", 20, "cold process invocations")
 	requests := flag.Int("requests", 350000, "requests per handler invocation")
 	csvPath := flag.String("csv", "", "output CSV path")
@@ -48,13 +49,14 @@ func main() {
 
 	w := csv.NewWriter(f)
 	defer w.Flush()
-	mustWrite(w, []string{"label", "iteration", "wall_ms", "work_ms", "checksum"})
+	mustWrite(w, []string{"label", "benchmark", "iteration", "wall_ms", "work_ms", "checksum"})
 
 	for i := 1; i <= *iterations; i++ {
 		seed := *seedBase + uint64(i)
 		cmd := exec.Command(absBin,
 			"-requests", strconv.Itoa(*requests),
 			"-seed", strconv.FormatUint(seed, 10),
+			"-benchmark", *benchmark,
 			"-json",
 		)
 		cmd.Env = append(os.Environ(), "GOMAXPROCS=1")
@@ -72,6 +74,7 @@ func main() {
 		}
 		mustWrite(w, []string{
 			*label,
+			*benchmark,
 			strconv.Itoa(i),
 			fmt.Sprintf("%.3f", wallMS),
 			fmt.Sprintf("%.3f", result.WorkMS),

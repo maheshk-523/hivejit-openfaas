@@ -37,6 +37,12 @@ Measure:
 - Cold-ish latency after pod restart.
 - Compiler evidence from `-gcflags=all=-m=2` or PGO debug output when useful.
 
+The implemented Go runners also expose DaCapo-shaped aliases for broader CPU
+coverage: `dacapo-lusearch`, `dacapo-eclipse`, and `dacapo-h2`. These are
+Go-native analogues that keep the hot code inside the Go binary. They are useful
+for Go PGO profile-cache testing, but they are not substitutes for the actual
+JVM DaCapo programs when evaluating George/HiveJIT.
+
 ### 2. Markdown Render Function
 
 Use this as the external baseline benchmark.
