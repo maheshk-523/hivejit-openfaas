@@ -18,6 +18,7 @@ MEASURE_REQUESTS="${MEASURE_REQUESTS:-80}"
 MEASURE_WARMUP="${MEASURE_WARMUP:-10}"
 MEASURE_CONCURRENCY="${MEASURE_CONCURRENCY:-1}"
 HANDLER_REQUESTS="${HANDLER_REQUESTS:-350000}"
+BENCHMARKS="${BENCHMARKS:-router}"
 
 IMAGE_PREFIX="${IMAGE_PREFIX:-ttl.sh/${FUNCTION_NAME}-${USER:-user}}"
 PUSH_IMAGE="${PUSH_IMAGE:-1}"
@@ -33,9 +34,19 @@ PROFILE_KEY_PREFIX="${PROFILE_KEY_PREFIX:-go-pgo:${FUNCTION_NAME}}"
 GOMAXPROCS="${GOMAXPROCS:-1}"
 
 ARTIFACT_ROOT="$PROTO_DIR/.runs/$RUN_ID"
-PROFILE_ROOT="$ARTIFACT_ROOT/profiles"
-RESULT_ROOT="$ARTIFACT_ROOT/results"
+PROFILE_ROOT_BASE="$ARTIFACT_ROOT/profiles"
+RESULT_ROOT_BASE="$ARTIFACT_ROOT/results"
 URL="$OPENFAAS_GATEWAY/function/$FUNCTION_NAME"
+
+read -r -a BENCHMARK_LIST <<< "$BENCHMARKS"
+if (( ${#BENCHMARK_LIST[@]} == 0 )); then
+  echo "BENCHMARKS must contain at least one benchmark" >&2
+  exit 1
+fi
+
+slugify() {
+  printf "%s" "$1" | tr '[:upper:]' '[:lower:]' | tr -c 'a-z0-9._-' '-'
+}
 
 require_cmd() {
   if ! command -v "$1" >/dev/null 2>&1; then
@@ -63,6 +74,7 @@ build_push_deploy() {
   local tag="$1"
   local pgo_profile="$2"
   local label="$3"
+  local benchmark="$4"
   local image="${IMAGE_PREFIX}:${tag}"
 
   echo "== Build image $image =="
@@ -89,7 +101,7 @@ build_push_deploy() {
   fi
 
   echo "== Deploy $FUNCTION_NAME with $label =="
-  export OPENFAAS_GATEWAY GO_PGO_IMAGE="$image" REDIS_ADDR REDIS_PASSWORD REDIS_DB REDIS_TIMEOUT PROFILE_KEY_PREFIX BUILD_LABEL="$label" GOMAXPROCS
+  export OPENFAAS_GATEWAY GO_PGO_IMAGE="$image" REDIS_ADDR REDIS_PASSWORD REDIS_DB REDIS_TIMEOUT PROFILE_KEY_PREFIX BUILD_LABEL="$label" BENCHMARK="$benchmark" GOMAXPROCS
   faas-cli deploy -f "$PROTO_DIR/stack.yml" --gateway "$OPENFAAS_GATEWAY"
   kubectl label "deployment/$FUNCTION_NAME" -n "$FUNCTION_NAMESPACE" \
     com.openfaas.scale.min=1 \
@@ -101,28 +113,33 @@ build_push_deploy() {
 }
 
 measure() {
-  local label="$1"
-  local out_prefix="$2"
+  local benchmark="$1"
+  local label="$2"
+  local out_prefix="$3"
+  local result_root="$4"
 
   python3 "$ROOT_DIR/scripts/http_invoke_latency.py" \
     --url "$URL/work" \
     --method POST \
     --header "Content-Type: application/json" \
-    --body "{\"requests\":$HANDLER_REQUESTS}" \
+    --body "{\"benchmark\":\"$benchmark\",\"requests\":$HANDLER_REQUESTS}" \
     --requests "$MEASURE_REQUESTS" \
     --warmup "$MEASURE_WARMUP" \
     --concurrency "$MEASURE_CONCURRENCY" \
     --timeout 120 \
     --label "$label" \
-    --csv "$RESULT_ROOT/${out_prefix}.csv" \
-    --summary "$RESULT_ROOT/${out_prefix}.json" \
-    --svg "$RESULT_ROOT/${out_prefix}.svg"
+    --csv "$result_root/${out_prefix}.csv" \
+    --summary "$result_root/${out_prefix}.json" \
+    --svg "$result_root/${out_prefix}.svg"
 }
 
 capture_profile() {
-  local iter="$1"
-  local raw_key="${PROFILE_KEY_PREFIX}:raw:${RUN_ID}:${iter}"
-  local dir="$PROFILE_ROOT/raw"
+  local benchmark="$1"
+  local benchmark_slug="$2"
+  local iter="$3"
+  local profile_root="$4"
+  local raw_key="${PROFILE_KEY_PREFIX}:raw:${RUN_ID}:${benchmark_slug}:${iter}"
+  local dir="$profile_root/raw"
   mkdir -p "$dir"
 
   echo "== Capture warm profile $iter to Redis key $raw_key =="
@@ -134,7 +151,7 @@ capture_profile() {
     --url "$URL/work" \
     --method POST \
     --header "Content-Type: application/json" \
-    --body "{\"requests\":$HANDLER_REQUESTS}" \
+    --body "{\"benchmark\":\"$benchmark\",\"requests\":$HANDLER_REQUESTS}" \
     --requests "$PROFILE_LOAD_REQUESTS" \
     --warmup 0 \
     --concurrency "$PROFILE_CONCURRENCY" \
@@ -164,7 +181,7 @@ if [[ -n "$KIND_CLUSTER" ]]; then
   require_cmd kind
 fi
 
-mkdir -p "$PROFILE_ROOT" "$RESULT_ROOT"
+mkdir -p "$PROFILE_ROOT_BASE" "$RESULT_ROOT_BASE"
 
 if [[ "$INSTALL_REDIS" == "1" ]]; then
   echo "== Install Redis profile cache in namespace $FUNCTION_NAMESPACE =="
@@ -174,15 +191,6 @@ fi
 
 login_openfaas
 
-build_push_deploy "${RUN_ID}-nopgo" "" "nopgo"
-
-echo "== Check Redis connectivity from function =="
-curl -fsS "$URL/profile/ping" | tee "$RESULT_ROOT/redis-ping.json"
-echo
-
-echo "== Measure baseline =="
-measure "go-openfaas-nopgo" "go-openfaas-nopgo"
-
 max_iter=0
 for iter_count in $PROFILE_ITERS; do
   if (( iter_count > max_iter )); then
@@ -190,32 +198,52 @@ for iter_count in $PROFILE_ITERS; do
   fi
 done
 
-echo "== Capture $max_iter warm profiles from baseline =="
-for iter in $(seq 1 "$max_iter"); do
-  capture_profile "$iter"
-done
+for benchmark in "${BENCHMARK_LIST[@]}"; do
+  benchmark_slug="$(slugify "$benchmark")"
+  profile_root="$PROFILE_ROOT_BASE"
+  result_root="$RESULT_ROOT_BASE"
+  if (( ${#BENCHMARK_LIST[@]} > 1 )); then
+    profile_root="$PROFILE_ROOT_BASE/$benchmark_slug"
+    result_root="$RESULT_ROOT_BASE/$benchmark_slug"
+  fi
+  mkdir -p "$profile_root" "$result_root"
 
-for iter_count in $PROFILE_ITERS; do
-  profile_dir="$PROFILE_ROOT/${iter_count}-profiles"
-  mkdir -p "$profile_dir"
-  for iter in $(seq 1 "$iter_count"); do
-    cp "$PROFILE_ROOT/raw/invoke-${iter}.pprof" "$profile_dir/"
+  build_push_deploy "${RUN_ID}-${benchmark_slug}-nopgo" "" "nopgo-${benchmark_slug}" "$benchmark"
+
+  echo "== Check Redis connectivity from function ($benchmark) =="
+  curl -fsS "$URL/profile/ping" | tee "$result_root/redis-ping.json"
+  echo
+
+  echo "== Measure baseline ($benchmark) =="
+  measure "$benchmark" "go-openfaas-nopgo" "go-openfaas-nopgo" "$result_root"
+
+  echo "== Capture $max_iter warm profiles from baseline ($benchmark) =="
+  for iter in $(seq 1 "$max_iter"); do
+    capture_profile "$benchmark" "$benchmark_slug" "$iter" "$profile_root"
   done
 
-  echo "== Merge $iter_count Redis-backed profiles =="
-  go tool pprof -proto "$profile_dir"/invoke-*.pprof > "$profile_dir/merged.pprof"
-  merged_key="${PROFILE_KEY_PREFIX}:merged:${RUN_ID}:${iter_count}"
-  store_merged_profile "$profile_dir/merged.pprof" "$merged_key"
+  for iter_count in $PROFILE_ITERS; do
+    profile_dir="$profile_root/${iter_count}-profiles"
+    mkdir -p "$profile_dir"
+    for iter in $(seq 1 "$iter_count"); do
+      cp "$profile_root/raw/invoke-${iter}.pprof" "$profile_dir/"
+    done
 
-  rel_profile=".runs/$RUN_ID/profiles/${iter_count}-profiles/merged.pprof"
-  build_push_deploy "${RUN_ID}-pgo-${iter_count}" "$rel_profile" "pgo-${iter_count}"
+    echo "== Merge $iter_count Redis-backed profiles ($benchmark) =="
+    go tool pprof -proto "$profile_dir"/invoke-*.pprof > "$profile_dir/merged.pprof"
+    merged_key="${PROFILE_KEY_PREFIX}:merged:${RUN_ID}:${benchmark_slug}:${iter_count}"
+    store_merged_profile "$profile_dir/merged.pprof" "$merged_key"
 
-  echo "== Measure PGO build from $iter_count warm profiles =="
-  measure "go-openfaas-pgo-${iter_count}" "go-openfaas-pgo-${iter_count}"
+    rel_profile="${profile_dir#$PROTO_DIR/}/merged.pprof"
+    build_push_deploy "${RUN_ID}-${benchmark_slug}-pgo-${iter_count}" "$rel_profile" "pgo-${benchmark_slug}-${iter_count}" "$benchmark"
+
+    echo "== Measure PGO build from $iter_count warm profiles ($benchmark) =="
+    measure "$benchmark" "go-openfaas-pgo-${iter_count}" "go-openfaas-pgo-${iter_count}" "$result_root"
+  done
 done
 
 echo
 echo "Done."
 echo "  run:      $RUN_ID"
-echo "  results:  $RESULT_ROOT"
-echo "  profiles: $PROFILE_ROOT"
+echo "  results:  $RESULT_ROOT_BASE"
+echo "  profiles: $PROFILE_ROOT_BASE"

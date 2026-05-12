@@ -38,8 +38,9 @@ type validateRoute struct{}
 type enrichRoute struct{}
 
 type workRequest struct {
-	Requests int    `json:"requests"`
-	Seed     uint64 `json:"seed"`
+	Requests  int    `json:"requests"`
+	Seed      uint64 `json:"seed"`
+	Benchmark string `json:"benchmark"`
 }
 
 type redisClient struct {
@@ -106,8 +107,9 @@ func (s *server) handleWork(w http.ResponseWriter, r *http.Request) {
 	}
 
 	req := workRequest{
-		Requests: queryInt(r, "requests", 350000),
-		Seed:     queryUint64(r, "seed", 0),
+		Requests:  queryInt(r, "requests", 350000),
+		Seed:      queryUint64(r, "seed", 0),
+		Benchmark: queryString(r, "benchmark", envDefault("BENCHMARK", "router")),
 	}
 	if r.Method == http.MethodPost && r.Body != nil {
 		defer r.Body.Close()
@@ -124,13 +126,18 @@ func (s *server) handleWork(w http.ResponseWriter, r *http.Request) {
 	}
 
 	start := time.Now()
-	checksum := runInvocation(req.Requests, req.Seed)
+	checksum, normalizedBenchmark, err := runBenchmarkInvocation(req.Requests, req.Seed, req.Benchmark)
+	if err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]any{"error": err.Error()})
+		return
+	}
 	workDuration := time.Since(start)
 	sink ^= checksum
 
 	writeJSON(w, http.StatusOK, map[string]any{
 		"requests":   req.Requests,
 		"seed":       req.Seed,
+		"benchmark":  normalizedBenchmark,
 		"checksum":   fmt.Sprintf("%016x", checksum),
 		"work_ms":    float64(workDuration.Microseconds()) / 1000.0,
 		"go_version": runtime.Version(),
@@ -396,7 +403,7 @@ func readRESP(r *bufio.Reader) (any, error) {
 	}
 }
 
-func runInvocation(requests int, seed uint64) uint64 {
+func runRouterInvocation(requests int, seed uint64) uint64 {
 	ops := []operation{
 		hashRoute{},
 		hashRoute{},
@@ -553,6 +560,14 @@ func queryUint64(r *http.Request, name string, fallback uint64) uint64 {
 		return fallback
 	}
 	return value
+}
+
+func queryString(r *http.Request, name string, fallback string) string {
+	raw := r.URL.Query().Get(name)
+	if raw == "" {
+		return fallback
+	}
+	return raw
 }
 
 func envDefault(name string, fallback string) string {

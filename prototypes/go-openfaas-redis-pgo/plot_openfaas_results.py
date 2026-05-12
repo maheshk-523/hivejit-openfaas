@@ -7,6 +7,7 @@ import argparse
 import csv
 import json
 import math
+import re
 from pathlib import Path
 from typing import Any
 
@@ -22,6 +23,8 @@ COLORS = {
     "go-openfaas-pgo-5": "#0f766e",
     "go-openfaas-pgo-10": "#b45309",
 }
+
+PGO_COLORS = ["#0f766e", "#b45309", "#7c3aed", "#dc2626", "#2563eb", "#0891b2"]
 
 
 def load_rows(path: Path) -> list[dict[str, Any]]:
@@ -78,14 +81,14 @@ def render_curves(path: Path, series: dict[str, list[dict[str, Any]]], summaries
     paths = []
     for label, rows in series.items():
         points = " ".join(f'{x_scale(row["invocation"]):.1f},{y_scale(row["latency_ms"]):.1f}' for row in rows)
-        paths.append(f'<polyline points="{points}" fill="none" stroke="{COLORS[label]}" stroke-width="2.4" opacity="0.86" />')
+        paths.append(f'<polyline points="{points}" fill="none" stroke="{color_for(label)}" stroke-width="2.4" opacity="0.86" />')
 
     legend = []
     x = margin_left
     for summary in summaries:
         label = summary["label"]
-        text = f"{LABELS[label]} p50={summary['p50_ms']:.1f}ms p95={summary['p95_ms']:.1f}ms"
-        legend.append(f'<rect x="{x}" y="{height - 43}" width="13" height="13" fill="{COLORS[label]}" />')
+        text = f"{display(label)} p50={summary['p50_ms']:.1f}ms p95={summary['p95_ms']:.1f}ms"
+        legend.append(f'<rect x="{x}" y="{height - 43}" width="13" height="13" fill="{color_for(label)}" />')
         legend.append(f'<text x="{x + 18}" y="{height - 32}" font-size="12" fill="#334155">{svg_escape(text)}</text>')
         x += 300
 
@@ -143,7 +146,7 @@ def render_bars(path: Path, summaries: list[dict[str, Any]]) -> None:
             color = "#2563eb" if metric == "p50_ms" else "#dc8618"
             bars.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{bar_w}" height="{margin_top + plot_h - y:.1f}" fill="{color}" />')
             bars.append(f'<text x="{x + bar_w / 2:.1f}" y="{y - 7:.1f}" text-anchor="middle" font-size="12" fill="#334155">{value:.1f}</text>')
-        bars.append(f'<text x="{base_x + 48:.1f}" y="{height - 42}" text-anchor="middle" font-size="12" fill="#334155">{svg_escape(LABELS[summary["label"]])}</text>')
+        bars.append(f'<text x="{base_x + 48:.1f}" y="{height - 42}" text-anchor="middle" font-size="12" fill="#334155">{svg_escape(display(summary["label"]))}</text>')
 
     svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">
   <rect width="100%" height="100%" fill="#ffffff" />
@@ -165,6 +168,37 @@ def render_bars(path: Path, summaries: list[dict[str, Any]]) -> None:
     path.write_text(svg, encoding="utf-8")
 
 
+def label_order(labels: Any) -> list[str]:
+    def key(label: str) -> tuple[int, int, str]:
+        if label == "go-openfaas-nopgo":
+            return (0, 0, label)
+        match = re.fullmatch(r"go-openfaas-pgo-(\d+)", label)
+        if match:
+            return (1, int(match.group(1)), label)
+        return (2, 0, label)
+
+    return sorted(set(labels), key=key)
+
+
+def color_for(label: str) -> str:
+    if label in COLORS:
+        return COLORS[label]
+    match = re.fullmatch(r"go-openfaas-pgo-(\d+)", label)
+    if match:
+        index = max(int(match.group(1)) - 1, 0) % len(PGO_COLORS)
+        return PGO_COLORS[index]
+    return "#475569"
+
+
+def display(label: str) -> str:
+    if label in LABELS:
+        return LABELS[label]
+    match = re.fullmatch(r"go-openfaas-pgo-(\d+)", label)
+    if match:
+        return f"PGO, {match.group(1)} warm profiles"
+    return label
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--results", required=True, type=Path)
@@ -172,7 +206,9 @@ def main() -> int:
     parser.add_argument("--prefix", default="go-openfaas-redis-pgo")
     args = parser.parse_args()
 
-    labels = ["go-openfaas-nopgo", "go-openfaas-pgo-5", "go-openfaas-pgo-10"]
+    labels = label_order(path.stem for path in args.results.glob("go-openfaas-*.csv"))
+    if not labels:
+        raise SystemExit(f"no go-openfaas-*.csv files found in {args.results}")
     series = {label: load_rows(args.results / f"{label}.csv") for label in labels}
     summaries = [load_summary(args.results / f"{label}.json") for label in labels]
 

@@ -47,6 +47,7 @@ Useful knobs:
 
 ```bash
 PROFILE_ITERS="5 10 20" \
+BENCHMARKS="router dacapo-lusearch dacapo-eclipse dacapo-h2" \
 PROFILE_SECONDS=20 \
 PROFILE_LOAD_REQUESTS=120 \
 MEASURE_REQUESTS=80 \
@@ -54,9 +55,16 @@ HANDLER_REQUESTS=350000 \
 ./run_openfaas_redis_pgo.sh
 ```
 
+`BENCHMARKS` accepts `router` plus Go-native DaCapo-shaped aliases:
+`dacapo-lusearch`, `dacapo-eclipse`, and `dacapo-h2`. These are not the JVM
+DaCapo jar workloads; they keep CPU time inside the Go binary so `runtime/pprof`
+and `go build -pgo` measure the Go profile-cache mechanism instead of a Go
+wrapper waiting for a Java subprocess.
+
 ## What The Function Exposes
 
-- `POST /work`: runs the skewed Go workload and returns JSON timing/checksum data.
+- `POST /work`: runs the selected Go workload and returns JSON timing/checksum data.
+  Accepts JSON like `{"benchmark":"dacapo-lusearch","requests":350000}`.
 - `GET /profile/capture?seconds=20&key=...`: captures a CPU profile while warm traffic runs and stores the pprof bytes in Redis.
 - `GET /profile/fetch?key=...`: fetches Redis profile bytes through the function gateway.
 - `POST /profile/put?key=...`: stores merged profile bytes in Redis.
@@ -67,7 +75,9 @@ experiment, not a public function surface.
 
 ## Outputs
 
-Each run writes under `.runs/<run-id>/`:
+Each run writes under `.runs/<run-id>/`. With one benchmark, outputs are written
+directly under `profiles/` and `results/`; with multiple benchmarks, each benchmark
+gets its own subdirectory.
 
 - `profiles/raw/invoke-N.pprof`: raw warm profiles captured through OpenFaaS and Redis.
 - `profiles/<N>-profiles/merged.pprof`: merged Go PGO profile.
@@ -77,6 +87,6 @@ Each run writes under `.runs/<run-id>/`:
 Redis keys use this shape by default:
 
 ```text
-go-pgo:go-pgo-redis:raw:<run-id>:<N>
-go-pgo:go-pgo-redis:merged:<run-id>:<N>
+go-pgo:go-pgo-redis:raw:<run-id>:<benchmark>:<N>
+go-pgo:go-pgo-redis:merged:<run-id>:<benchmark>:<N>
 ```
