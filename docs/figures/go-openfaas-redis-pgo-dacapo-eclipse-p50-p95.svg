@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="430" viewBox="0 0 860 430">
+  <rect width="100%" height="100%" fill="#ffffff" />
+  <text x="80" y="28" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#111827">Go OpenFaaS Redis PGO p50/p95</text>
+  <text x="80" y="46" font-family="Arial, sans-serif" font-size="12" fill="#475569">Lower is better; gateway request latency in milliseconds</text>
+  <g font-family="Arial, sans-serif">
+    <line x1="80" y1="358.0" x2="820" y2="358.0" stroke="#e5e7eb" /><text x="70" y="362.0" text-anchor="end" font-size="12" fill="#475569">0</text><line x1="80" y1="296.8" x2="820" y2="296.8" stroke="#e5e7eb" /><text x="70" y="300.8" text-anchor="end" font-size="12" fill="#475569">5</text><line x1="80" y1="235.6" x2="820" y2="235.6" stroke="#e5e7eb" /><text x="70" y="239.6" text-anchor="end" font-size="12" fill="#475569">10</text><line x1="80" y1="174.4" x2="820" y2="174.4" stroke="#e5e7eb" /><text x="70" y="178.4" text-anchor="end" font-size="12" fill="#475569">15</text><line x1="80" y1="113.2" x2="820" y2="113.2" stroke="#e5e7eb" /><text x="70" y="117.2" text-anchor="end" font-size="12" fill="#475569">20</text><line x1="80" y1="52.0" x2="820" y2="52.0" stroke="#e5e7eb" /><text x="70" y="56.0" text-anchor="end" font-size="12" fill="#475569">25</text>
+    <line x1="80" y1="358" x2="820" y2="358" stroke="#94a3b8" />
+    <line x1="80" y1="52" x2="80" y2="358" stroke="#94a3b8" />
+    <rect x="118.0" y="240.7" width="42" height="117.3" fill="#2563eb" /><text x="139.0" y="233.7" text-anchor="middle" font-size="12" fill="#334155">9.6</text><rect x="172.0" y="220.3" width="42" height="137.7" fill="#dc8618" /><text x="193.0" y="213.3" text-anchor="middle" font-size="12" fill="#334155">11.3</text><text x="166.0" y="388" text-anchor="middle" font-size="12" fill="#334155">No PGO</text><rect x="488.0" y="240.3" width="42" height="117.7" fill="#2563eb" /><text x="509.0" y="233.3" text-anchor="middle" font-size="12" fill="#334155">9.6</text><rect x="542.0" y="217.7" width="42" height="140.3" fill="#dc8618" /><text x="563.0" y="210.7" text-anchor="middle" font-size="12" fill="#334155">11.5</text><text x="536.0" y="388" text-anchor="middle" font-size="12" fill="#334155">PGO, 1 warm profiles</text>
+    <rect x="676" y="23" width="12" height="12" fill="#2563eb" />
+    <text x="694" y="34" font-size="12" fill="#334155">p50</text>
+    <rect x="738" y="23" width="12" height="12" fill="#dc8618" />
+    <text x="756" y="34" font-size="12" fill="#334155">p95</text>
+    <text x="18" y="205.0" text-anchor="middle" font-size="13" fill="#334155" transform="rotate(-90 18 205.0)">Latency (ms)</text>
+  </g>
+</svg>

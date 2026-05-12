@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="460" viewBox="0 0 1040 460">
+  <rect width="100%" height="100%" fill="#ffffff" />
+  <text x="72" y="28" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#111827">Go OpenFaaS Redis PGO latency</text>
+  <text x="72" y="46" font-family="Arial, sans-serif" font-size="12" fill="#475569">Gateway request latency, 80 measured requests per build</text>
+  <g font-family="Arial, sans-serif">
+    <line x1="72" y1="388.0" x2="1008" y2="388.0" stroke="#e5e7eb" /><text x="62" y="392.0" text-anchor="end" font-size="12" fill="#475569">0</text><line x1="72" y1="321.2" x2="1008" y2="321.2" stroke="#e5e7eb" /><text x="62" y="325.2" text-anchor="end" font-size="12" fill="#475569">5</text><line x1="72" y1="254.4" x2="1008" y2="254.4" stroke="#e5e7eb" /><text x="62" y="258.4" text-anchor="end" font-size="12" fill="#475569">10</text><line x1="72" y1="187.6" x2="1008" y2="187.6" stroke="#e5e7eb" /><text x="62" y="191.6" text-anchor="end" font-size="12" fill="#475569">15</text><line x1="72" y1="120.8" x2="1008" y2="120.8" stroke="#e5e7eb" /><text x="62" y="124.8" text-anchor="end" font-size="12" fill="#475569">20</text><line x1="72" y1="54.0" x2="1008" y2="54.0" stroke="#e5e7eb" /><text x="62" y="58.0" text-anchor="end" font-size="12" fill="#475569">25</text>
+    <line x1="72" y1="388" x2="1008" y2="388" stroke="#94a3b8" />
+    <line x1="72" y1="54" x2="72" y2="388" stroke="#94a3b8" />
+    <polyline points="72.0,226.6 540.0,245.9 1008.0,268.5" fill="none" stroke="#334155" stroke-width="2.4" opacity="0.86" /><polyline points="72.0,263.9 540.0,270.4 1008.0,284.8" fill="none" stroke="#0f766e" stroke-width="2.4" opacity="0.86" />
+    <text x="540.0" y="442" text-anchor="middle" font-size="13" fill="#334155">HTTP invocation number</text>
+    <text x="18" y="221.0" text-anchor="middle" font-size="13" fill="#334155" transform="rotate(-90 18 221.0)">Latency (ms)</text>
+    <rect x="72" y="417" width="13" height="13" fill="#334155" /><text x="90" y="428" font-size="12" fill="#334155">No PGO p50=10.6ms p95=12.1ms</text><rect x="372" y="417" width="13" height="13" fill="#0f766e" /><text x="390" y="428" font-size="12" fill="#334155">PGO, 1 warm profiles p50=8.8ms p95=9.3ms</text>
+  </g>
+</svg>

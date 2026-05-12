@@ -1,0 +1,32 @@
+[
+  {
+    "label": "go-nopgo",
+    "display": "No PGO",
+    "n": 8,
+    "mean_wall_ms": 59.070750000000004,
+    "p50_wall_ms": 53.4915,
+    "p95_wall_ms": 82.60534999999997,
+    "min_wall_ms": 53.307,
+    "max_wall_ms": 98.089
+  },
+  {
+    "label": "go-pgo-3",
+    "display": "PGO, 3 profiles",
+    "n": 8,
+    "mean_wall_ms": 68.80125,
+    "p50_wall_ms": 50.6315,
+    "p95_wall_ms": 145.6167499999999,
+    "min_wall_ms": 50.048,
+    "max_wall_ms": 196.512
+  },
+  {
+    "label": "go-pgo-5",
+    "display": "PGO, 5 profiles",
+    "n": 8,
+    "mean_wall_ms": 70.7335,
+    "p50_wall_ms": 50.7305,
+    "p95_wall_ms": 155.2303499999999,
+    "min_wall_ms": 50.242,
+    "max_wall_ms": 211.419
+  }
+]
