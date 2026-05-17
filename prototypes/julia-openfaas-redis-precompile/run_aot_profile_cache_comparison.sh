@@ -216,7 +216,7 @@ plot_comparison() {
   python3 "$PLOT_SCRIPT" \
     --csv "${csvs[@]}" \
     --labels "${labels[@]}" \
-    --out "$RESULT_ROOT/$(slugify "$workload")-baseline-vs-aot-real-openwhisk-raw.png" \
+    --out "$RESULT_ROOT/$(slugify "$workload")-baseline-vs-aot-openfaas-pod-churn-raw.png" \
     --title "Real OpenFaaS Julia $workload - baseline vs AOT profile cache"
 }
 

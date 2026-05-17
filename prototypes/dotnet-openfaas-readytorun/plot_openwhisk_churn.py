@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Plot C#/.NET OpenWhisk-style raw latency curves with churn markers."""
+"""Plot C#/.NET raw latency curves with pod-churn markers."""
 
 from __future__ import annotations
 
@@ -169,14 +169,14 @@ def main() -> int:
         rows = all_rows[0]
         scenario = rows[0]["scenario"] if rows else "unknown"
         mode = rows[0]["mode"] if rows else "unknown"
-        title = args.title or f"OpenWhisk-level C#/.NET {scenario} - {pretty_label(mode)} raw latency"
+        title = args.title or f"OpenFaaS pod-churn C#/.NET {scenario} - {pretty_label(mode)} raw latency"
         plot_single(ax, rows, title)
         if args.summary:
             write_summary(rows, args.summary)
     else:
         labels = args.labels or [path.stem for path in args.csv]
         scenario = all_rows[0][0]["scenario"] if all_rows[0] else "unknown"
-        title = args.title or f"OpenWhisk-level C#/.NET {scenario} - IL vs AOT"
+        title = args.title or f"OpenFaaS pod-churn C#/.NET {scenario} - IL vs AOT"
         plot_overlay(ax, all_rows, labels, title)
         if args.summary:
             write_summary(all_rows[0], args.summary)

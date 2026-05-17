@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """Plot Julia/OpenFaaS latency curves with pod churn markers.
 
-Produces a matplotlib PNG that mirrors the OpenWhisk serverless benchmark
-latency graph style: raw invocation latency and dashed vertical lines at pod
-restart (container churn) points. EWMA smoothing is available as an opt-in
-debug overlay.
+Produces a matplotlib PNG with raw invocation latency and dashed vertical lines
+at pod restart (container churn) points. EWMA smoothing is available as an
+opt-in debug overlay.
 
 Usage:
   python3 plot_churn.py --csv results/lusearch-baseline.csv --out results/lusearch-baseline.png
@@ -93,7 +92,7 @@ def plot_single(
     alpha: float = 0.16,
     smooth: bool = False,
 ) -> None:
-    """Plot a single latency series on the given axes (OpenWhisk style)."""
+    """Plot a single latency series on the given axes."""
     ok_rows = [r for r in rows if 200 <= r["status"] < 400]
     if not ok_rows:
         ax.text(0.5, 0.5, "No successful invocations", transform=ax.transAxes,
@@ -229,7 +228,7 @@ def write_summary(rows: list[dict[str, Any]], out: Path) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Plot Julia/OpenFaaS warmup latency graphs (OpenWhisk style)."
+        description="Plot Julia/OpenFaaS warmup latency graphs with pod-churn markers."
     )
     parser.add_argument(
         "--csv", nargs="+", required=True, type=Path,

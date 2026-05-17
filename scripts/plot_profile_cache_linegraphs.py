@@ -407,9 +407,9 @@ def julia_linegraphs(results_dir: Path, out_dir: Path) -> None:
     missing = [workload for workload in ["lusearch", "h2", "eclipse"] if workload not in available]
     draw_trace_panels(
         panels,
-        out_dir / "julia-aot-profile-cache-openwhisk-linegraphs.png",
-        "Real Julia AOT sysimage profile cache: OpenFaaS/OpenWhisk-style traces",
-        out_dir / "julia-aot-profile-cache-openwhisk-linegraphs-summary.json",
+        out_dir / "julia-aot-profile-cache-openfaas-pod-churn-linegraphs.png",
+        "Real Julia AOT sysimage profile cache: OpenFaaS pod-churn traces",
+        out_dir / "julia-aot-profile-cache-openfaas-pod-churn-linegraphs-summary.json",
         "julia-aot-profile-cache-linegraphs.v1",
         metadata={
             "data_kind": "real-openfaas-measurement",
@@ -446,9 +446,9 @@ def dotnet_linegraphs(results_dir: Path, out_dir: Path) -> None:
     missing = [scenario for scenario in scenario_files if scenario not in available]
     draw_trace_panels(
         panels,
-        out_dir / "dotnet-aot-openwhisk-linegraphs.png",
-        "Real .NET OpenFaaS/OpenWhisk-style AOT comparison traces",
-        out_dir / "dotnet-aot-openwhisk-linegraphs-summary.json",
+        out_dir / "dotnet-aot-openfaas-pod-churn-linegraphs.png",
+        "Real .NET OpenFaaS pod-churn AOT comparison traces",
+        out_dir / "dotnet-aot-openfaas-pod-churn-linegraphs-summary.json",
         "dotnet-aot-linegraphs.v1",
         metadata={
             "data_kind": "real-openfaas-measurement",
