@@ -21,10 +21,20 @@ type indexProbeRoute struct{}
 type joinRoute struct{}
 type aggregateRoute struct{}
 
+type bytecodeDispatchRoute struct{}
+type objectModelRoute struct{}
+type exceptionRoute struct{}
+type moduleImportRoute struct{}
+
+type layoutTreeRoute struct{}
+type fontMetricRoute struct{}
+type areaResolutionRoute struct{}
+type renderPageRoute struct{}
+
 func runBenchmarkInvocation(requests int, seed uint64, benchmark string) (uint64, string, error) {
 	normalized, ok := normalizeBenchmark(benchmark)
 	if !ok {
-		return 0, "", fmt.Errorf("unknown benchmark %q; valid benchmarks: router, dacapo-lusearch, dacapo-eclipse, dacapo-h2", benchmark)
+		return 0, "", fmt.Errorf("unknown benchmark %q; valid benchmarks: router, dacapo-lusearch, dacapo-eclipse, dacapo-h2, dacapo-jython, dacapo-fop", benchmark)
 	}
 
 	switch normalized {
@@ -36,6 +46,10 @@ func runBenchmarkInvocation(requests int, seed uint64, benchmark string) (uint64
 		return runEclipseInvocation(requests, seed), normalized, nil
 	case "dacapo-h2":
 		return runH2Invocation(requests, seed), normalized, nil
+	case "dacapo-jython":
+		return runJythonInvocation(requests, seed), normalized, nil
+	case "dacapo-fop":
+		return runFopInvocation(requests, seed), normalized, nil
 	default:
 		return 0, "", fmt.Errorf("unhandled benchmark %q", normalized)
 	}
@@ -51,6 +65,10 @@ func normalizeBenchmark(name string) (string, bool) {
 		return "dacapo-eclipse", true
 	case "h2", "dacapo-h2", "dacapo:h2":
 		return "dacapo-h2", true
+	case "jython", "dacapo-jython", "dacapo:jython":
+		return "dacapo-jython", true
+	case "fop", "dacapo-fop", "dacapo:fop":
+		return "dacapo-fop", true
 	default:
 		return "", false
 	}
@@ -126,6 +144,54 @@ func runH2Invocation(requests int, seed uint64) uint64 {
 			return 6
 		}
 	}, 12)
+}
+
+func runJythonInvocation(requests int, seed uint64) uint64 {
+	ops := []operation{
+		bytecodeDispatchRoute{},
+		bytecodeDispatchRoute{},
+		bytecodeDispatchRoute{},
+		objectModelRoute{},
+		objectModelRoute{},
+		exceptionRoute{},
+		moduleImportRoute{},
+	}
+	return runOperationMix(requests, seed, 0x6a7974686f6e213f, ops, func(selector uint64) int {
+		switch {
+		case selector < 62:
+			return int(selector % 3)
+		case selector < 86:
+			return 3 + int(selector&1)
+		case selector < 96:
+			return 5
+		default:
+			return 6
+		}
+	}, 13)
+}
+
+func runFopInvocation(requests int, seed uint64) uint64 {
+	ops := []operation{
+		layoutTreeRoute{},
+		layoutTreeRoute{},
+		layoutTreeRoute{},
+		fontMetricRoute{},
+		fontMetricRoute{},
+		areaResolutionRoute{},
+		renderPageRoute{},
+	}
+	return runOperationMix(requests, seed, 0x666f705f6c61796f, ops, func(selector uint64) int {
+		switch {
+		case selector < 58:
+			return int(selector % 3)
+		case selector < 78:
+			return 3 + int(selector&1)
+		case selector < 92:
+			return 5
+		default:
+			return 6
+		}
+	}, 14)
 }
 
 func runOperationMix(requests int, seed uint64, salt uint64, ops []operation, choose func(uint64) int, rounds int) uint64 {
@@ -308,4 +374,111 @@ func (aggregateRoute) Apply(ev event) uint64 {
 		acc ^= bits.RotateLeft64(sum, group*7+1)
 	}
 	return finalize(acc)
+}
+
+func (bytecodeDispatchRoute) Apply(ev event) uint64 {
+	frame := ev.Weight ^ 0x4f1bbcdc6765f347
+	for pc := 0; pc < 16; pc++ {
+		opcode := (ev.Payload[pc&7] >> uint((pc*5)&63)) & 0x3f
+		if opcode < 38 {
+			frame += foldHash(opcode + ev.Tenant + uint64(pc))
+		} else {
+			frame ^= bits.RotateLeft64(ev.Payload[(pc+3)&7]^opcode, pc+1)
+		}
+		frame = bits.RotateLeft64(frame, int(opcode&15)+1)
+	}
+	return finalize(frame)
+}
+
+func (objectModelRoute) Apply(ev event) uint64 {
+	shape := ev.Tenant ^ ev.Route ^ 0x9e3779b97f4a7c15
+	for pass := 0; pass < 5; pass++ {
+		for i, word := range ev.Payload {
+			slot := foldHash(word+uint64(pass)*0x100000001b3) & 0xff
+			if slot < 160 {
+				shape += slot * uint64(i+1)
+			} else {
+				shape ^= bits.Reverse64(slot + word + ev.Weight)
+			}
+		}
+		shape = foldHash(shape)
+	}
+	return finalize(shape)
+}
+
+func (exceptionRoute) Apply(ev event) uint64 {
+	stack := ev.Weight + 0x243f6a8885a308d3
+	for depth := 0; depth < 9; depth++ {
+		word := ev.Payload[depth&7]
+		mask := foldHash(word ^ uint64(depth)*ev.Tenant)
+		if mask&0xf == ev.Route&0xf {
+			stack ^= mask + uint64(bits.TrailingZeros64(mask|1))
+		} else {
+			stack += bits.RotateLeft64(mask^word, depth+5)
+		}
+	}
+	return finalize(stack)
+}
+
+func (moduleImportRoute) Apply(ev event) uint64 {
+	cache := ev.Tenant + 0xc4ceb9fe1a85ec53
+	for pass := 0; pass < 4; pass++ {
+		for _, word := range ev.Payload {
+			nameHash := foldHash(word ^ cache ^ uint64(pass))
+			cache ^= nameHash + uint64(bits.OnesCount64(nameHash))
+			cache = bits.RotateLeft64(cache, 11)
+		}
+	}
+	return finalize(cache)
+}
+
+func (layoutTreeRoute) Apply(ev event) uint64 {
+	layout := ev.Weight ^ 0x6a09e667f3bcc909
+	for node := 0; node < 12; node++ {
+		word := ev.Payload[node&7]
+		width := (word >> uint((node*3)&63)) & 0x3ff
+		breakClass := (word >> uint((node*7)&63)) & 0x1f
+		if breakClass < 21 {
+			layout += foldHash(width + ev.Tenant + uint64(node))
+		} else {
+			layout ^= bits.RotateLeft64(width^word, node+2)
+		}
+	}
+	return finalize(layout)
+}
+
+func (fontMetricRoute) Apply(ev event) uint64 {
+	metrics := ev.Route + 0xbf58476d1ce4e5b9
+	for i, word := range ev.Payload {
+		glyph := (word >> uint(i*6)) & 0xffff
+		advance := foldHash(glyph+ev.Weight+uint64(i)) & 0x7ff
+		metrics += advance * uint64(bits.OnesCount64(glyph|1))
+		metrics ^= bits.RotateLeft64(metrics, i+3)
+	}
+	return finalize(metrics)
+}
+
+func (areaResolutionRoute) Apply(ev event) uint64 {
+	area := ev.Tenant ^ 0xff51afd7ed558ccd
+	for pass := 0; pass < 6; pass++ {
+		left := foldHash(ev.Payload[pass&7] + uint64(pass))
+		right := foldHash(ev.Payload[(pass+2)&7] ^ ev.Weight)
+		if left&0x3f == right&0x3f {
+			area += left ^ right
+		} else {
+			area ^= bits.RotateLeft64(left+right, pass+7)
+		}
+	}
+	return finalize(area)
+}
+
+func (renderPageRoute) Apply(ev event) uint64 {
+	paint := ev.Weight + ev.Route + 0x94d049bb133111eb
+	for layer := 0; layer < 5; layer++ {
+		for _, word := range ev.Payload {
+			paint ^= foldHash(word + uint64(layer)*paint)
+			paint += uint64(bits.LeadingZeros64(paint|1)) + ev.Tenant
+		}
+	}
+	return finalize(paint)
 }
