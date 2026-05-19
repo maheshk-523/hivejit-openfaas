@@ -6,4 +6,7 @@
     <Nullable>enable</Nullable>
     <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
+  <ItemGroup Condition="'$(ReadyToRunOptimizationData)' != ''">
+    <PublishReadyToRunPgoFiles Include="$(ReadyToRunOptimizationData)" />
+  </ItemGroup>
 </Project>
