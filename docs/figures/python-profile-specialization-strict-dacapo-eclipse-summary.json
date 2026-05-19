@@ -1,0 +1,30 @@
+[
+  {
+    "label": "python-generic",
+    "display": "Generic",
+    "benchmark": "dacapo-eclipse",
+    "n": 8,
+    "mean_wall_ms": 2532.5476251249997,
+    "p50_wall_ms": 2125.269125,
+    "p95_wall_ms": 5667.830792,
+    "mean_work_ms": 2493.589682125,
+    "p50_work_ms": 2015.073333,
+    "p95_work_ms": 5624.928083,
+    "min_wall_ms": 1874.786292,
+    "max_wall_ms": 5667.830792
+  },
+  {
+    "label": "python-specialized-3",
+    "display": "Specialized, 3 profiles",
+    "benchmark": "dacapo-eclipse",
+    "n": 8,
+    "mean_wall_ms": 1721.4189947500001,
+    "p50_wall_ms": 1724.237916,
+    "p95_wall_ms": 1784.009291,
+    "mean_work_ms": 1694.06147925,
+    "p50_work_ms": 1699.862209,
+    "p95_work_ms": 1743.610041,
+    "min_wall_ms": 1683.296708,
+    "max_wall_ms": 1784.009291
+  }
+]

@@ -1,0 +1,85 @@
+{
+  "benchmarks": {
+    "dacapo-eclipse": {
+      "by_request": [
+        {
+          "baseline_median_ms": 218.211791,
+          "baseline_samples": 1,
+          "request_in_pod": 1,
+          "saved_median_ms": 205.266417,
+          "saved_pct": 5.932481439557047,
+          "saved_samples": 1
+        }
+      ],
+      "cold_saved_pct": 5.932481439557047,
+      "hot_saved_pct": 0.0,
+      "median_position_wins": 1,
+      "positions": 1
+    },
+    "dacapo-fop": {
+      "by_request": [
+        {
+          "baseline_median_ms": 313.820042,
+          "baseline_samples": 1,
+          "request_in_pod": 1,
+          "saved_median_ms": 283.5375,
+          "saved_pct": 9.649652012983918,
+          "saved_samples": 1
+        }
+      ],
+      "cold_saved_pct": 9.649652012983918,
+      "hot_saved_pct": 0.0,
+      "median_position_wins": 1,
+      "positions": 1
+    },
+    "dacapo-h2": {
+      "by_request": [
+        {
+          "baseline_median_ms": 302.128625,
+          "baseline_samples": 1,
+          "request_in_pod": 1,
+          "saved_median_ms": 221.81025,
+          "saved_pct": 26.584165932638793,
+          "saved_samples": 1
+        }
+      ],
+      "cold_saved_pct": 26.584165932638793,
+      "hot_saved_pct": 0.0,
+      "median_position_wins": 1,
+      "positions": 1
+    },
+    "dacapo-jython": {
+      "by_request": [
+        {
+          "baseline_median_ms": 269.830542,
+          "baseline_samples": 1,
+          "request_in_pod": 1,
+          "saved_median_ms": 244.096792,
+          "saved_pct": 9.537004154259153,
+          "saved_samples": 1
+        }
+      ],
+      "cold_saved_pct": 9.537004154259153,
+      "hot_saved_pct": 0.0,
+      "median_position_wins": 1,
+      "positions": 1
+    },
+    "dacapo-lusearch": {
+      "by_request": [
+        {
+          "baseline_median_ms": 178.549333,
+          "baseline_samples": 1,
+          "request_in_pod": 1,
+          "saved_median_ms": 161.152459,
+          "saved_pct": 9.743455048359099,
+          "saved_samples": 1
+        }
+      ],
+      "cold_saved_pct": 9.743455048359099,
+      "hot_saved_pct": 0.0,
+      "median_position_wins": 1,
+      "positions": 1
+    }
+  },
+  "schema": "python-openfaas-redis-scale-plot-summary.v1"
+}

@@ -9,6 +9,8 @@ build/
 *.log
 *.iso
 __pycache__/
+.matplotlib-cache/
+arkade-darwin-arm64
 tmp/
 prototypes/**/artifacts/
 prototypes/**/bin/
@@ -16,6 +18,7 @@ prototypes/**/build/
 prototypes/**/obj/
 prototypes/**/.cache/
 prototypes/**/.runs/
+prototypes/**/.venv/
 prototypes/**/profiles/
 prototypes/**/results/
 generated/profile-cache-matrix/

@@ -54,9 +54,11 @@ type server struct {
 	redis       redisClient
 	profileLock sync.Mutex
 	seedCounter atomic.Uint64
+	requests    atomic.Uint64
 }
 
 var sink uint64
+var startedAt = time.Now()
 
 func main() {
 	addr := envDefault("HANDLER_ADDR", ":8082")
@@ -105,6 +107,7 @@ func (s *server) handleWork(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
+	requestInPod := s.requests.Add(1)
 
 	req := workRequest{
 		Requests:  queryInt(r, "requests", 350000),
@@ -135,14 +138,17 @@ func (s *server) handleWork(w http.ResponseWriter, r *http.Request) {
 	sink ^= checksum
 
 	writeJSON(w, http.StatusOK, map[string]any{
-		"requests":   req.Requests,
-		"seed":       req.Seed,
-		"benchmark":  normalizedBenchmark,
-		"checksum":   fmt.Sprintf("%016x", checksum),
-		"work_ms":    float64(workDuration.Microseconds()) / 1000.0,
-		"go_version": runtime.Version(),
-		"build":      buildLabel(),
-		"hostname":   hostname(),
+		"requests":          req.Requests,
+		"seed":              req.Seed,
+		"benchmark":         normalizedBenchmark,
+		"checksum":          fmt.Sprintf("%016x", checksum),
+		"work_ms":           float64(workDuration.Microseconds()) / 1000.0,
+		"go_version":        runtime.Version(),
+		"build":             buildLabel(),
+		"hostname":          hostname(),
+		"pod_uid":           envDefault("POD_UID", ""),
+		"process_uptime_ms": float64(time.Since(startedAt).Microseconds()) / 1000.0,
+		"request_in_pod":    requestInPod,
 	})
 }
 

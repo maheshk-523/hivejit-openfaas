@@ -4,35 +4,35 @@
 <line x1="92.0" y1="498.0" x2="936.0" y2="498.0" stroke="#e2e8f0" stroke-width="1"/>
 <text x="80.0" y="502.0" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#64748b">0</text>
 <line x1="92.0" y1="415.2" x2="936.0" y2="415.2" stroke="#e2e8f0" stroke-width="1"/>
-<text x="80.0" y="419.2" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#64748b">40</text>
+<text x="80.0" y="419.2" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#64748b">100</text>
 <line x1="92.0" y1="332.4" x2="936.0" y2="332.4" stroke="#e2e8f0" stroke-width="1"/>
-<text x="80.0" y="336.4" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#64748b">80</text>
+<text x="80.0" y="336.4" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#64748b">200</text>
 <line x1="92.0" y1="249.6" x2="936.0" y2="249.6" stroke="#e2e8f0" stroke-width="1"/>
-<text x="80.0" y="253.6" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#64748b">120</text>
+<text x="80.0" y="253.6" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#64748b">300</text>
 <line x1="92.0" y1="166.8" x2="936.0" y2="166.8" stroke="#e2e8f0" stroke-width="1"/>
-<text x="80.0" y="170.8" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#64748b">160</text>
+<text x="80.0" y="170.8" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#64748b">400</text>
 <line x1="92.0" y1="84.0" x2="936.0" y2="84.0" stroke="#e2e8f0" stroke-width="1"/>
-<text x="80.0" y="88.0" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#64748b">200</text>
+<text x="80.0" y="88.0" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#64748b">500</text>
 <line x1="92.0" y1="84.0" x2="92.0" y2="498.0" stroke="#64748b" stroke-width="1.2"/>
 <line x1="92.0" y1="498.0" x2="936.0" y2="498.0" stroke="#64748b" stroke-width="1.2"/>
 <text x="24.0" y="291.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#334155" transform="rotate(-90 24.0 291.0)">Wall latency (ms)</text>
 <text x="490.0" y="34.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="22" font-weight="700" fill="#0f172a">Go PGO Profile Cache: p50 and p95 Latency</text>
 <text x="490.0" y="58.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="400" fill="#475569">Lower is better. Bars summarize cold process invocations.</text>
-<rect x="170.0" y="340.1" width="58.0" height="157.9" rx="3" fill="#2563eb"/>
-<text x="199.0" y="332.1" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#334155">76.3</text>
-<rect x="237.3" y="322.2" width="58.0" height="175.8" rx="3" fill="#dc2626"/>
-<text x="266.3" y="314.2" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#334155">84.9</text>
+<rect x="170.0" y="307.4" width="58.0" height="190.6" rx="3" fill="#2563eb"/>
+<text x="199.0" y="299.4" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#334155">230.2</text>
+<rect x="237.3" y="268.3" width="58.0" height="229.7" rx="3" fill="#dc2626"/>
+<text x="266.3" y="260.3" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#334155">277.4</text>
 <text x="232.7" y="526.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#334155">No PGO</text>
-<rect x="451.4" y="343.3" width="58.0" height="154.7" rx="3" fill="#2563eb"/>
-<text x="480.4" y="335.3" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#334155">74.7</text>
-<rect x="518.6" y="190.6" width="58.0" height="307.4" rx="3" fill="#dc2626"/>
-<text x="547.6" y="182.6" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#334155">148.5</text>
-<text x="514.0" y="526.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#334155">PGO, 3 profiles</text>
-<rect x="732.7" y="343.9" width="58.0" height="154.1" rx="3" fill="#2563eb"/>
-<text x="761.7" y="335.9" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#334155">74.4</text>
-<rect x="800.0" y="262.0" width="58.0" height="236.0" rx="3" fill="#dc2626"/>
-<text x="829.0" y="254.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#334155">114.0</text>
-<text x="795.3" y="526.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#334155">PGO, 5 profiles</text>
+<rect x="451.4" y="319.7" width="58.0" height="178.3" rx="3" fill="#2563eb"/>
+<text x="480.4" y="311.7" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#334155">215.3</text>
+<rect x="518.6" y="271.2" width="58.0" height="226.8" rx="3" fill="#dc2626"/>
+<text x="547.6" y="263.2" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#334155">274.0</text>
+<text x="514.0" y="526.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#334155">PGO, 5 profiles</text>
+<rect x="732.7" y="320.5" width="58.0" height="177.5" rx="3" fill="#2563eb"/>
+<text x="761.7" y="312.5" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#334155">214.4</text>
+<rect x="800.0" y="275.1" width="58.0" height="222.9" rx="3" fill="#dc2626"/>
+<text x="829.0" y="267.1" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#334155">269.2</text>
+<text x="795.3" y="526.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#334155">PGO, 10 profiles</text>
 <rect x="746.0" y="90.0" width="12.0" height="12.0" rx="3" fill="#2563eb"/>
 <text x="764.0" y="101.0" text-anchor="start" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" fill="#334155">p50</text>
 <rect x="810.0" y="90.0" width="12.0" height="12.0" rx="3" fill="#dc2626"/>

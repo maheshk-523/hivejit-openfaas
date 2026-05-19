@@ -1,0 +1,135 @@
+{
+  "panels": {
+    "eclipse": {
+      "baseline": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 2565.668208,
+        "min_latency_ms": 5.275,
+        "points": 40
+      },
+      "sysimage5": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 3480.244959,
+        "min_latency_ms": 5.245042,
+        "points": 40
+      }
+    },
+    "fop": {
+      "baseline": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 3191.60825,
+        "min_latency_ms": 3.29075,
+        "points": 40
+      },
+      "sysimage5": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 2736.504917,
+        "min_latency_ms": 3.167625,
+        "points": 40
+      }
+    },
+    "h2": {
+      "baseline": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 2702.013792,
+        "min_latency_ms": 3.088958,
+        "points": 40
+      },
+      "sysimage5": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 2542.636041,
+        "min_latency_ms": 3.052667,
+        "points": 40
+      }
+    },
+    "jython": {
+      "baseline": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 2947.90625,
+        "min_latency_ms": 3.312459,
+        "points": 40
+      },
+      "sysimage5": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 2681.096,
+        "min_latency_ms": 3.08475,
+        "points": 40
+      }
+    },
+    "lusearch": {
+      "baseline": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 2667.311708,
+        "min_latency_ms": 3.9495,
+        "points": 40
+      },
+      "sysimage5": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 3160.87175,
+        "min_latency_ms": 4.267333,
+        "points": 40
+      }
+    }
+  },
+  "schema": "pod-churn-invocation-traces.v1"
+}

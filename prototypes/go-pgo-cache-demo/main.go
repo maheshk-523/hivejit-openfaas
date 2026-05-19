@@ -33,7 +33,7 @@ var sink uint64
 func main() {
 	requests := flag.Int("requests", 350000, "number of synthetic requests handled by this one-shot serverless invocation")
 	seed := flag.Uint64("seed", 1, "deterministic workload seed")
-	benchmark := flag.String("benchmark", "router", "benchmark workload: router, dacapo-lusearch, dacapo-eclipse, dacapo-h2")
+	benchmark := flag.String("benchmark", "router", "benchmark workload: router, dacapo-lusearch, dacapo-eclipse, dacapo-h2, dacapo-jython, dacapo-fop")
 	profileOut := flag.String("profile-out", "", "write a Go CPU pprof profile for this invocation")
 	jsonOut := flag.Bool("json", false, "print result as JSON")
 	flag.Parse()

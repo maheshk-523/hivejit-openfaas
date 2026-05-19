@@ -1,0 +1,165 @@
+{
+  "panels": {
+    "eclipse": {
+      "baseline": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33,
+          41,
+          49,
+          57
+        ],
+        "max_latency_ms": 598.020125,
+        "min_latency_ms": 8.265416,
+        "points": 64
+      },
+      "redis-cache": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33,
+          41,
+          49,
+          57
+        ],
+        "max_latency_ms": 474.2055,
+        "min_latency_ms": 8.199334,
+        "points": 64
+      }
+    },
+    "fop": {
+      "baseline": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33,
+          41,
+          49,
+          57
+        ],
+        "max_latency_ms": 556.209208,
+        "min_latency_ms": 5.11375,
+        "points": 64
+      },
+      "redis-cache": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33,
+          41,
+          49,
+          57
+        ],
+        "max_latency_ms": 368.30975,
+        "min_latency_ms": 5.270708,
+        "points": 64
+      }
+    },
+    "h2": {
+      "baseline": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33,
+          41,
+          49,
+          57
+        ],
+        "max_latency_ms": 529.16075,
+        "min_latency_ms": 5.227417,
+        "points": 64
+      },
+      "redis-cache": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33,
+          41,
+          49,
+          57
+        ],
+        "max_latency_ms": 509.29475,
+        "min_latency_ms": 6.247334,
+        "points": 64
+      }
+    },
+    "jython": {
+      "baseline": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33,
+          41,
+          49,
+          57
+        ],
+        "max_latency_ms": 639.507791,
+        "min_latency_ms": 5.445458,
+        "points": 64
+      },
+      "redis-cache": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33,
+          41,
+          49,
+          57
+        ],
+        "max_latency_ms": 386.957666,
+        "min_latency_ms": 5.418084,
+        "points": 64
+      }
+    },
+    "lusearch": {
+      "baseline": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33,
+          41,
+          49,
+          57
+        ],
+        "max_latency_ms": 970.89825,
+        "min_latency_ms": 10.249792,
+        "points": 64
+      },
+      "redis-cache": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33,
+          41,
+          49,
+          57
+        ],
+        "max_latency_ms": 390.0035,
+        "min_latency_ms": 10.189916,
+        "points": 64
+      }
+    }
+  },
+  "schema": "pod-churn-invocation-traces.v1"
+}

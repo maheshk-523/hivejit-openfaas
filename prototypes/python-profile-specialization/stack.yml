@@ -1,0 +1,36 @@
+version: "1.0"
+
+provider:
+  name: openfaas
+  gateway: ${OPENFAAS_GATEWAY}
+
+functions:
+  python-profile-specialization:
+    lang: dockerfile
+    handler: .
+    image: ${PY_SPEC_IMAGE}
+    labels:
+      com.openfaas.scale.min: "1"
+      com.openfaas.scale.max: "1"
+      com.openfaas.scale.zero: "false"
+    annotations:
+      com.openfaas.health.http.path: "/healthz"
+      com.openfaas.health.http.initialDelay: "2s"
+    environment:
+      BUILD_LABEL: ${BUILD_LABEL}
+      BENCHMARK: ${BENCHMARK}
+      REQUESTS: ${REQUESTS}
+      PROFILE_REQUESTS: ${PROFILE_REQUESTS}
+      PROFILE_ITERS: ${PROFILE_ITERS}
+      PY_SPEC_MODE: ${PY_SPEC_MODE}
+      PY_SPEC_ARTIFACT_KEY: ${PY_SPEC_ARTIFACT_KEY}
+      PY_SPEC_ARTIFACT_PATH: ${PY_SPEC_ARTIFACT_PATH}
+      PY_SPEC_IMPORT_META: ${PY_SPEC_IMPORT_META}
+      PY_SPEC_REQUIRE_ARTIFACT: ${PY_SPEC_REQUIRE_ARTIFACT}
+      REDIS_ADDR: ${REDIS_ADDR}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      REDIS_DB: ${REDIS_DB}
+      REDIS_TIMEOUT: ${REDIS_TIMEOUT}
+      read_timeout: ${WATCHDOG_TIMEOUT}
+      write_timeout: ${WATCHDOG_TIMEOUT}
+      exec_timeout: ${WATCHDOG_TIMEOUT}

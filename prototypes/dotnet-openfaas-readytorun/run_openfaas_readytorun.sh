@@ -167,6 +167,8 @@ metadata:
     com.openfaas.scale.zero: "false"
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       faas_function: $FUNCTION_NAME
@@ -192,6 +194,10 @@ spec:
               value: "$label"
             - name: DOTNET_SYSTEM_GLOBALIZATION_INVARIANT
               value: "1"
+            - name: DOTNET_hostBuilder__reloadConfigOnChange
+              value: "false"
+            - name: ASPNETCORE_hostBuilder__reloadConfigOnChange
+              value: "false"
             - name: read_timeout
               value: "120s"
             - name: write_timeout
@@ -273,7 +279,7 @@ measure_churn() {
   env MPLBACKEND=Agg MPLCONFIGDIR="$PROTO_DIR/tmp/mplconfig" XDG_CACHE_HOME="$PROTO_DIR/tmp/fontconfig" \
     python3 "$PROTO_DIR/plot_openwhisk_churn.py" \
       --csv "$RESULT_ROOT/${out_prefix}-churn.csv" \
-      --out "$RESULT_ROOT/${out_prefix}-real-openwhisk-raw.png" \
+      --out "$RESULT_ROOT/${out_prefix}-openfaas-pod-churn-raw.png" \
       --summary "$RESULT_ROOT/${out_prefix}-plot-summary.json" \
       --title "Real OpenFaaS C#/.NET $scenario - $build_label raw latency"
 }
@@ -291,7 +297,7 @@ plot_churn_comparison() {
     python3 "$PROTO_DIR/plot_openwhisk_churn.py" \
       --csv "${csvs[@]}" \
       --labels "${labels[@]}" \
-      --out "$RESULT_ROOT/${scenario}-real-il-vs-aot-openwhisk-raw.png" \
+      --out "$RESULT_ROOT/${scenario}-il-vs-aot-openfaas-pod-churn-raw.png" \
       --title "Real OpenFaaS C#/.NET $scenario - IL vs ReadyToRun vs NativeAOT"
 }
 

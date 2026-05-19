@@ -26,7 +26,7 @@ Useful knobs:
 ```bash
 INVOKES=40 REQUESTS=500000 PROFILE_REQUESTS=1200000 ./run_profile_cache.sh
 PROFILE_ITERS="5 10 20" ./run_profile_cache.sh
-BENCHMARKS="dacapo-lusearch dacapo-eclipse dacapo-h2" PROFILE_ITERS="3 5" ./run_profile_cache.sh
+BENCHMARKS="dacapo-lusearch dacapo-eclipse dacapo-h2 dacapo-jython dacapo-fop" PROFILE_ITERS="3 5" ./run_profile_cache.sh
 ```
 
 `BENCHMARKS` accepts `router` plus Go-native DaCapo-shaped workloads:
@@ -34,9 +34,11 @@ BENCHMARKS="dacapo-lusearch dacapo-eclipse dacapo-h2" PROFILE_ITERS="3 5" ./run_
 - `dacapo-lusearch`: search/indexing style route mix.
 - `dacapo-eclipse`: parser, resolver, and workspace-index route mix.
 - `dacapo-h2`: scan, index probe, join, and aggregation route mix.
+- `dacapo-jython`: bytecode dispatch, object-model, exception, and module-import route mix.
+- `dacapo-fop`: layout tree, font metric, area resolution, and page rendering route mix.
 
 These names are intentionally explicit aliases for the benchmark shapes. The real DaCapo
-`lusearch`, `eclipse`, and `h2` programs are JVM workloads; wrapping them in a Go process
+`lusearch`, `eclipse`, `h2`, `jython`, and `fop` programs are JVM workloads; wrapping them in a Go process
 would mostly profile `os/exec` and waiting, not the Java CPU work that Go PGO can optimize.
 
 ## What It Measures
@@ -52,7 +54,10 @@ would mostly profile `os/exec` and waiting, not the Java CPU work that Go PGO ca
 The default `router` workload intentionally uses a skewed route mix through interface dispatch.
 The DaCapo-shaped workloads use the same profile-cache loop with different CPU-bound route
 families, giving Go PGO concrete hot-path information it can use for inlining and
-devirtualization decisions.
+devirtualization decisions. The 5-profile and 10-profile budgets both apply per
+selected benchmark: the script exports that many baseline invocation profiles,
+merges only those `invoke-*.pprof` files, rebuilds with the merged profile, then
+measures the next cold-process executions for the same benchmark.
 
 The latest multi-benchmark validation run on this machine used:
 

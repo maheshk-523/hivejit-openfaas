@@ -30,6 +30,18 @@ ROUTE_SPECS: dict[str, list[dict[str, int | str]]] = {
         {"name": "index_workspace", "threshold": 94, "rounds": 15, "salt": 0xD6E8FEB86659FD93},
         {"name": "refactor_plan", "threshold": 100, "rounds": 18, "salt": 0xA5A3564E27F8866F},
     ],
+    "dacapo-jython": [
+        {"name": "bytecode_dispatch", "threshold": 44, "rounds": 10, "salt": 0xDB4F0B9175AE2165},
+        {"name": "call_site", "threshold": 69, "rounds": 13, "salt": 0xBBE0563303A4615F},
+        {"name": "parser", "threshold": 88, "rounds": 15, "salt": 0xA0F2EC75A1FE1575},
+        {"name": "object_graph", "threshold": 100, "rounds": 17, "salt": 0x89E182857D9ED689},
+    ],
+    "dacapo-fop": [
+        {"name": "xml_parse", "threshold": 45, "rounds": 12, "salt": 0xC13FA9A902A6328F},
+        {"name": "layout", "threshold": 76, "rounds": 16, "salt": 0x91E10DA5C79E7B1D},
+        {"name": "render", "threshold": 92, "rounds": 18, "salt": 0xD1B54A32D192ED03},
+        {"name": "regex", "threshold": 100, "rounds": 14, "salt": 0xABC98388FB8FAC03},
+    ],
 }
 
 
@@ -70,6 +82,10 @@ def render_route_block(benchmark: str, route: dict[str, int | str], indent: str)
         return render_h2_route(name, rounds, salt, indent)
     if benchmark == "dacapo-eclipse":
         return render_eclipse_route(name, rounds, salt, indent)
+    if benchmark == "dacapo-jython":
+        return render_jython_route(name, rounds, salt, indent)
+    if benchmark == "dacapo-fop":
+        return render_fop_route(name, rounds, salt, indent)
     raise ValueError(f"unknown benchmark {benchmark}")
 
 
@@ -164,6 +180,111 @@ def render_eclipse_route(name: str, rounds: int, salt: int, indent: str) -> list
             lines.append(f"{indent}    acc ^= mix64(value ^ 0xD1B54A32D192ED03)")
         else:
             lines.append(f"{indent}    acc = (acc + mix64(value ^ acc)) & MASK")
+    lines.append(f"{indent}state ^= acc & MASK")
+    lines.append(f"{indent}state &= MASK")
+    return lines
+
+
+def render_jython_route(name: str, rounds: int, salt: int, indent: str) -> list[str]:
+    opcode_groups = {
+        "bytecode_dispatch": ("load", "binary", "store"),
+        "call_site": ("load", "dispatch", "guard", "return"),
+        "parser": ("scan", "parse", "build"),
+        "object_graph": ("lookup", "link", "trace"),
+    }[name]
+    lines = [
+        f"{indent}stack = [state ^ {salt}, index, {salt}, state, index ^ {salt}, 0, 0, 0]",
+        f"{indent}sp = 0",
+        f"{indent}acc = state ^ {salt} ^ (index * 0x100000001B3)",
+    ]
+    for opcode in opcode_groups:
+        lines.append(f"{indent}for round_index in range({rounds}):")
+        lines.append(f"{indent}    probe = mix64(acc + stack[(sp - 1) & 7] + {salt} + round_index)")
+        if opcode == "load":
+            lines.append(f"{indent}    stack[sp & 7] = probe")
+            lines.append(f"{indent}    sp += 1")
+        elif opcode == "binary":
+            lines.append(f"{indent}    rhs = stack[(sp - 1) & 7]")
+            lines.append(f"{indent}    lhs = stack[(sp - 2) & 7]")
+            lines.append(f"{indent}    acc ^= (lhs + rhs + probe) & MASK")
+        elif opcode == "store":
+            lines.append(f"{indent}    stack[(sp + 3) & 7] = acc ^ probe")
+            lines.append(f"{indent}    acc = (acc + mix64(stack[(sp + 3) & 7])) & MASK")
+        elif opcode == "dispatch":
+            lines.append(f"{indent}    acc = mix64(acc ^ probe ^ stack[sp & 7])")
+        elif opcode == "guard":
+            lines.append(f"{indent}    acc = (acc + probe) & MASK if (probe & 1) else (acc ^ mix64(probe + index))")
+        elif opcode == "return":
+            lines.append(f"{indent}    acc ^= mix64(acc + stack[(sp - 1) & 7])")
+        elif opcode == "scan":
+            lines.append(f"{indent}    acc = (acc + (probe & 0xFFFF)) & MASK")
+        elif opcode == "parse":
+            lines.append(f"{indent}    acc ^= (probe << 7) & MASK")
+        elif opcode == "build":
+            lines.append(f"{indent}    stack[sp & 7] = mix64(acc + probe)")
+            lines.append(f"{indent}    sp += 1")
+        elif opcode == "lookup":
+            lines.append(f"{indent}    acc ^= mix64(stack[(probe >> 3) & 7] + probe)")
+        elif opcode == "link":
+            lines.append(f"{indent}    acc = (acc * 5 + probe + stack[sp & 7]) & MASK")
+        elif opcode == "trace":
+            lines.append(f"{indent}    acc ^= mix64(acc ^ probe ^ round_index)")
+        else:
+            lines.append(f"{indent}    acc = mix64(acc + probe)")
+    lines.append(f"{indent}state ^= acc & MASK")
+    lines.append(f"{indent}state &= MASK")
+    return lines
+
+
+def render_fop_route(name: str, rounds: int, salt: int, indent: str) -> list[str]:
+    pipeline_ops = {
+        "xml_parse": ("token", "tree", "validate"),
+        "layout": ("measure", "break", "place"),
+        "render": ("paint", "encode", "flush"),
+        "regex": ("match", "replace", "fold"),
+    }[name]
+    lines = [
+        f"{indent}acc = state ^ {salt}",
+        f"{indent}cursor = index & 0x3FF",
+        f"{indent}page = 1",
+        f"{indent}depth = 0",
+    ]
+    for step in pipeline_ops:
+        lines.append(f"{indent}for round_index in range({rounds}):")
+        lines.append(f"{indent}    probe = mix64(acc + {salt} + round_index + (index << 2))")
+        if step == "token":
+            lines.append(f"{indent}    depth += 1 if (probe & 3) else -1")
+            lines.append(f"{indent}    depth = max(depth, 0)")
+            lines.append(f"{indent}    acc ^= mix64(probe + depth)")
+        elif step == "tree":
+            lines.append(f"{indent}    acc = (acc + ((depth + 1) * (probe & 0xFFFF))) & MASK")
+        elif step == "validate":
+            lines.append(f"{indent}    acc ^= mix64(acc + probe + depth)")
+        elif step == "measure":
+            lines.append(f"{indent}    cursor += 8 + (probe & 63)")
+            lines.append(f"{indent}    acc = (acc + cursor + page) & MASK")
+        elif step == "break":
+            lines.append(f"{indent}    if cursor > 720:")
+            lines.append(f"{indent}        page += 1")
+            lines.append(f"{indent}        cursor = cursor % 89")
+            lines.append(f"{indent}    acc ^= mix64(page + cursor + probe)")
+        elif step == "place":
+            lines.append(f"{indent}    acc = ((acc << 5) | (acc >> 59)) & MASK")
+            lines.append(f"{indent}    acc ^= mix64(cursor + round_index)")
+        elif step == "paint":
+            lines.append(f"{indent}    acc = mix64(acc ^ ((round_index + 1) * 0x45D9F3B))")
+        elif step == "encode":
+            lines.append(f"{indent}    acc = (acc + mix64(probe ^ page)) & MASK")
+        elif step == "flush":
+            lines.append(f"{indent}    acc ^= mix64(acc + cursor + page)")
+        elif step == "match":
+            lines.append(f"{indent}    acc ^= mix64(probe + 31) if (acc & 1) == 0 else mix64(probe + 17)")
+        elif step == "replace":
+            lines.append(f"{indent}    acc = (acc * 3 + (probe & 0xFFF)) & MASK")
+        elif step == "fold":
+            lines.append(f"{indent}    acc = (acc + mix64(probe ^ acc)) & MASK")
+        else:
+            lines.append(f"{indent}    acc = mix64(acc + probe)")
     lines.append(f"{indent}state ^= acc & MASK")
     lines.append(f"{indent}state &= MASK")
     return lines

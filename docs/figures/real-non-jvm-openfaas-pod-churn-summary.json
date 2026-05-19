@@ -1,0 +1,53 @@
+{
+  "schema": "real-non-jvm-openfaas-pod-churn.v1",
+  "domains": [
+    {
+      "name": "dotnet",
+      "source": "/Users/maheshk/Documents/New project 5/prototypes/dotnet-openfaas-readytorun/.runs/real-openfaas-pod-churn-dotnet-dacapo-20260517/results",
+      "panels": [
+        "lusearch:il=/Users/maheshk/Documents/New project 5/prototypes/dotnet-openfaas-readytorun/.runs/real-openfaas-pod-churn-dotnet-dacapo-20260517/results/dotnet-openfaas-il-lusearch-churn.csv,r2r=/Users/maheshk/Documents/New project 5/prototypes/dotnet-openfaas-readytorun/.runs/real-openfaas-pod-churn-dotnet-dacapo-20260517/results/dotnet-openfaas-r2r-lusearch-churn.csv,nativeaot=prototypes/dotnet-openfaas-readytorun/.runs/real-openfaas-pod-churn-dotnet-nativeaot-dacapo-20260518/results/dotnet-openfaas-nativeaot-lusearch-churn.csv",
+        "h2:il=/Users/maheshk/Documents/New project 5/prototypes/dotnet-openfaas-readytorun/.runs/real-openfaas-pod-churn-dotnet-dacapo-20260517/results/dotnet-openfaas-il-h2-churn.csv,r2r=/Users/maheshk/Documents/New project 5/prototypes/dotnet-openfaas-readytorun/.runs/real-openfaas-pod-churn-dotnet-dacapo-20260517/results/dotnet-openfaas-r2r-h2-churn.csv,nativeaot=prototypes/dotnet-openfaas-readytorun/.runs/real-openfaas-pod-churn-dotnet-nativeaot-dacapo-20260518/results/dotnet-openfaas-nativeaot-h2-churn.csv",
+        "fop:il=/Users/maheshk/Documents/New project 5/prototypes/dotnet-openfaas-readytorun/.runs/real-openfaas-pod-churn-dotnet-dacapo-20260517/results/dotnet-openfaas-il-fop-churn.csv,r2r=/Users/maheshk/Documents/New project 5/prototypes/dotnet-openfaas-readytorun/.runs/real-openfaas-pod-churn-dotnet-dacapo-20260517/results/dotnet-openfaas-r2r-fop-churn.csv,nativeaot=prototypes/dotnet-openfaas-readytorun/.runs/real-openfaas-pod-churn-dotnet-nativeaot-dacapo-20260518/results/dotnet-openfaas-nativeaot-fop-churn.csv",
+        "jython:il=/Users/maheshk/Documents/New project 5/prototypes/dotnet-openfaas-readytorun/.runs/real-openfaas-pod-churn-dotnet-dacapo-20260517/results/dotnet-openfaas-il-jython-churn.csv,r2r=/Users/maheshk/Documents/New project 5/prototypes/dotnet-openfaas-readytorun/.runs/real-openfaas-pod-churn-dotnet-dacapo-20260517/results/dotnet-openfaas-r2r-jython-churn.csv,nativeaot=prototypes/dotnet-openfaas-readytorun/.runs/real-openfaas-pod-churn-dotnet-nativeaot-dacapo-20260518/results/dotnet-openfaas-nativeaot-jython-churn.csv",
+        "eclipse:il=/Users/maheshk/Documents/New project 5/prototypes/dotnet-openfaas-readytorun/.runs/real-openfaas-pod-churn-dotnet-dacapo-20260517/results/dotnet-openfaas-il-eclipse-churn.csv,r2r=/Users/maheshk/Documents/New project 5/prototypes/dotnet-openfaas-readytorun/.runs/real-openfaas-pod-churn-dotnet-dacapo-20260517/results/dotnet-openfaas-r2r-eclipse-churn.csv,nativeaot=prototypes/dotnet-openfaas-readytorun/.runs/real-openfaas-pod-churn-dotnet-nativeaot-dacapo-20260518/results/dotnet-openfaas-nativeaot-eclipse-churn.csv"
+      ],
+      "missing": {},
+      "invocation_png": "/Users/maheshk/Documents/New project 5/docs/figures/real-dotnet-openfaas-pod-churn-invocation-traces.png",
+      "invocation_summary": "/Users/maheshk/Documents/New project 5/docs/figures/real-dotnet-openfaas-pod-churn-invocation-traces-summary.json",
+      "position_medians_png": "/Users/maheshk/Documents/New project 5/docs/figures/real-dotnet-openfaas-pod-churn-position-medians.png",
+      "position_medians_summary": "/Users/maheshk/Documents/New project 5/docs/figures/real-dotnet-openfaas-pod-churn-position-medians-summary.json"
+    },
+    {
+      "name": "julia",
+      "source": "/Users/maheshk/Documents/New project 5/prototypes/julia-openfaas-redis-precompile/.runs/real-openfaas-pod-churn-julia-dacapo-workload-aot2-20260517/results",
+      "panels": [
+        "lusearch:baseline=/Users/maheshk/Documents/New project 5/prototypes/julia-openfaas-redis-precompile/.runs/real-openfaas-pod-churn-julia-dacapo-workload-aot2-20260517/results/lusearch-baseline.csv,sysimage5=/Users/maheshk/Documents/New project 5/prototypes/julia-openfaas-redis-precompile/.runs/real-openfaas-pod-churn-julia-dacapo-workload-aot2-20260517/results/lusearch-sysimage5.csv",
+        "h2:baseline=/Users/maheshk/Documents/New project 5/prototypes/julia-openfaas-redis-precompile/.runs/real-openfaas-pod-churn-julia-dacapo-workload-aot2-20260517/results/h2-baseline.csv,sysimage5=/Users/maheshk/Documents/New project 5/prototypes/julia-openfaas-redis-precompile/.runs/real-openfaas-pod-churn-julia-dacapo-workload-aot2-20260517/results/h2-sysimage5.csv",
+        "fop:baseline=/Users/maheshk/Documents/New project 5/prototypes/julia-openfaas-redis-precompile/.runs/real-openfaas-pod-churn-julia-dacapo-workload-aot2-20260517/results/fop-baseline.csv,sysimage5=/Users/maheshk/Documents/New project 5/prototypes/julia-openfaas-redis-precompile/.runs/real-openfaas-pod-churn-julia-dacapo-workload-aot2-20260517/results/fop-sysimage5.csv",
+        "jython:baseline=/Users/maheshk/Documents/New project 5/prototypes/julia-openfaas-redis-precompile/.runs/real-openfaas-pod-churn-julia-dacapo-workload-aot2-20260517/results/jython-baseline.csv,sysimage5=/Users/maheshk/Documents/New project 5/prototypes/julia-openfaas-redis-precompile/.runs/real-openfaas-pod-churn-julia-dacapo-workload-aot2-20260517/results/jython-sysimage5.csv",
+        "eclipse:baseline=/Users/maheshk/Documents/New project 5/prototypes/julia-openfaas-redis-precompile/.runs/real-openfaas-pod-churn-julia-dacapo-workload-aot2-20260517/results/eclipse-baseline.csv,sysimage5=/Users/maheshk/Documents/New project 5/prototypes/julia-openfaas-redis-precompile/.runs/real-openfaas-pod-churn-julia-dacapo-workload-aot2-20260517/results/eclipse-sysimage5.csv"
+      ],
+      "missing": {},
+      "invocation_png": "/Users/maheshk/Documents/New project 5/docs/figures/real-julia-openfaas-pod-churn-invocation-traces.png",
+      "invocation_summary": "/Users/maheshk/Documents/New project 5/docs/figures/real-julia-openfaas-pod-churn-invocation-traces-summary.json",
+      "position_medians_png": "/Users/maheshk/Documents/New project 5/docs/figures/real-julia-openfaas-pod-churn-position-medians.png",
+      "position_medians_summary": "/Users/maheshk/Documents/New project 5/docs/figures/real-julia-openfaas-pod-churn-position-medians-summary.json"
+    },
+    {
+      "name": "jax-xla",
+      "source": "/Users/maheshk/Documents/New project 5/prototypes/jax-openfaas-redis-xla/.runs/real-jax-xla-openfaas-pod-churn-five-20260518/results",
+      "panels": [
+        "lusearch:baseline=/Users/maheshk/Documents/New project 5/prototypes/jax-openfaas-redis-xla/.runs/real-jax-xla-openfaas-pod-churn-five-20260518/results/dacapo-lusearch/baseline.csv,redis-cache=/Users/maheshk/Documents/New project 5/prototypes/jax-openfaas-redis-xla/.runs/real-jax-xla-openfaas-pod-churn-five-20260518/results/dacapo-lusearch/redis-cache.csv",
+        "h2:baseline=/Users/maheshk/Documents/New project 5/prototypes/jax-openfaas-redis-xla/.runs/real-jax-xla-openfaas-pod-churn-five-20260518/results/dacapo-h2/baseline.csv,redis-cache=/Users/maheshk/Documents/New project 5/prototypes/jax-openfaas-redis-xla/.runs/real-jax-xla-openfaas-pod-churn-five-20260518/results/dacapo-h2/redis-cache.csv",
+        "fop:baseline=/Users/maheshk/Documents/New project 5/prototypes/jax-openfaas-redis-xla/.runs/real-jax-xla-openfaas-pod-churn-five-20260518/results/dacapo-fop/baseline.csv,redis-cache=/Users/maheshk/Documents/New project 5/prototypes/jax-openfaas-redis-xla/.runs/real-jax-xla-openfaas-pod-churn-five-20260518/results/dacapo-fop/redis-cache.csv",
+        "jython:baseline=/Users/maheshk/Documents/New project 5/prototypes/jax-openfaas-redis-xla/.runs/real-jax-xla-openfaas-pod-churn-five-20260518/results/dacapo-jython/baseline.csv,redis-cache=/Users/maheshk/Documents/New project 5/prototypes/jax-openfaas-redis-xla/.runs/real-jax-xla-openfaas-pod-churn-five-20260518/results/dacapo-jython/redis-cache.csv",
+        "eclipse:baseline=/Users/maheshk/Documents/New project 5/prototypes/jax-openfaas-redis-xla/.runs/real-jax-xla-openfaas-pod-churn-five-20260518/results/dacapo-eclipse/baseline.csv,redis-cache=/Users/maheshk/Documents/New project 5/prototypes/jax-openfaas-redis-xla/.runs/real-jax-xla-openfaas-pod-churn-five-20260518/results/dacapo-eclipse/redis-cache.csv"
+      ],
+      "missing": {},
+      "invocation_png": "/Users/maheshk/Documents/New project 5/docs/figures/real-jax-xla-openfaas-pod-churn-invocation-traces.png",
+      "invocation_summary": "/Users/maheshk/Documents/New project 5/docs/figures/real-jax-xla-openfaas-pod-churn-invocation-traces-summary.json",
+      "position_medians_png": "/Users/maheshk/Documents/New project 5/docs/figures/real-jax-xla-openfaas-pod-churn-position-medians.png",
+      "position_medians_summary": "/Users/maheshk/Documents/New project 5/docs/figures/real-jax-xla-openfaas-pod-churn-position-medians-summary.json"
+    }
+  ]
+}

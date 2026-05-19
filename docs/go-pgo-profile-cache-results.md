@@ -105,6 +105,45 @@ Figures:
 - [eclipse invocation curve](figures/go-pgo-profile-cache-dacapo-eclipse-invocation-curves.svg)
 - [h2 invocation curve](figures/go-pgo-profile-cache-dacapo-h2-invocation-curves.svg)
 
+## Profile-Optimization Effect Graphs
+
+Use these split figures when the claim needs to compare saved warm/profile
+state against not saving it. The baseline line is `No saved profile state`: each
+cold process uses a binary compiled with `-pgo=off`. The saved-state line is a
+later binary rebuilt with profiles captured from warm baseline executions. The
+top panel keeps the first invocation visible. The bottom panel starts at
+invocation 2, where the profile-optimized binary's steady path is visible
+against the no-save baseline.
+
+![Go PGO lusearch profile effect](figures/go-pgo-profile-effect-dacapo-lusearch.svg)
+
+![Go PGO h2 profile effect](figures/go-pgo-profile-effect-dacapo-h2.svg)
+
+![Go PGO eclipse profile effect](figures/go-pgo-profile-effect-dacapo-eclipse.svg)
+
+| benchmark | selected optimized build | baseline warm median ms | optimized warm median ms | warm median improvement | paired warm invocations below baseline |
+|---|---|---:|---:|---:|---:|
+| `dacapo-lusearch` | PGO, 5 cached profiles | 68.9 | 63.0 | 8.6% | 15/15 |
+| `dacapo-h2` | PGO, 3 cached profiles | 58.3 | 55.8 | 4.3% | 14/15 |
+| `dacapo-eclipse` | PGO, 5 cached profiles | 76.2 | 74.4 | 2.3% | 15/15 |
+
+This is the profile-cache/optimization result that JAX/XLA persistent cache
+cannot provide. The profile is captured from baseline executions, persisted,
+merged, and imported into a later AOT build with `go build -pgo`. The expected
+shape is therefore optimized steady-state latency below the no-PGO baseline,
+not just a lower first compile.
+
+These paper-style versions use a log y-axis and explicit Cold/Warm/Hot bands so
+the startup spike is visible in the same visual language as the Conference'17
+warmup figures. They use the same comparison: `No saved profile state` versus
+`Saved profile state`.
+
+![Go PGO lusearch paper warmup](figures/go-pgo-paper-warmup-dacapo-lusearch.svg)
+
+![Go PGO h2 paper warmup](figures/go-pgo-paper-warmup-dacapo-h2.svg)
+
+![Go PGO eclipse paper warmup](figures/go-pgo-paper-warmup-dacapo-eclipse.svg)
+
 ## Reading The Graphs
 
 - `No PGO` is the baseline Go binary compiled with `-pgo=off`.

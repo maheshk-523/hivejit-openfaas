@@ -11,11 +11,11 @@ Usage:
 
 Examples:
   julia --startup-file=no build_sysimage.jl 5
-  julia --startup-file=no build_sysimage.jl 10 lusearch h2 eclipse
+  julia --startup-file=no build_sysimage.jl 10 lusearch h2 eclipse jython fop
 """
 
 n_profiles = length(ARGS) >= 1 ? parse(Int, ARGS[1]) : 5
-workloads  = length(ARGS) >= 2 ? collect(ARGS[2:end]) : ["lusearch", "h2", "eclipse"]
+workloads  = length(ARGS) >= 2 ? collect(ARGS[2:end]) : ["lusearch", "h2", "eclipse", "jython", "fop"]
 
 @info "AOT sysimage build" n_profiles=n_profiles workloads=workloads
 
@@ -47,8 +47,12 @@ end
 end
 
 t0 = time()
+# Keep the sysimage focused on runtime-derived workload specialisations.
+# Baking the full HTTP/JSON server stack into the image made the Docker build
+# impractically slow on the local OpenFaaS test VM, while the benchmark signal
+# comes from dispatch_workload() and its profile-driven callees.
 create_sysimage(
-    [:HTTP, :JSON3],
+    String[],
     project = project_dir,
     sysimage_path = "/app/sysimage.so",
     precompile_execution_file = exec_file,

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="600" viewBox="0 0 980 600" role="img" aria-label="Python profile specialization p50 and p95 latency">
+<title>Python profile specialization p50 and p95 latency</title>
+<rect width="100%" height="100%" fill="#ffffff" />
+<line x1="92.0" y1="498.0" x2="936.0" y2="498.0" stroke="#e2e8f0" stroke-width="1" />
+<text x="80.0" y="502.0" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#64748b">0</text>
+<line x1="92.0" y1="415.2" x2="936.0" y2="415.2" stroke="#e2e8f0" stroke-width="1" />
+<text x="80.0" y="419.2" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#64748b">100</text>
+<line x1="92.0" y1="332.4" x2="936.0" y2="332.4" stroke="#e2e8f0" stroke-width="1" />
+<text x="80.0" y="336.4" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#64748b">200</text>
+<line x1="92.0" y1="249.6" x2="936.0" y2="249.6" stroke="#e2e8f0" stroke-width="1" />
+<text x="80.0" y="253.6" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#64748b">300</text>
+<line x1="92.0" y1="166.8" x2="936.0" y2="166.8" stroke="#e2e8f0" stroke-width="1" />
+<text x="80.0" y="170.8" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#64748b">400</text>
+<line x1="92.0" y1="84.0" x2="936.0" y2="84.0" stroke="#e2e8f0" stroke-width="1" />
+<text x="80.0" y="88.0" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#64748b">500</text>
+<line x1="92.0" y1="84.0" x2="92.0" y2="498.0" stroke="#64748b" stroke-width="1.2" />
+<line x1="92.0" y1="498.0" x2="936.0" y2="498.0" stroke="#64748b" stroke-width="1.2" />
+<text x="24.0" y="291.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" fill="#334155" font-weight="600" transform="rotate(-90 24.0 291.0)">Wall latency (ms)</text>
+<text x="490.0" y="34.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="22" fill="#0f172a" font-weight="700">Python Profile Specialization: dacapo-h2 p50/p95</text>
+<text x="490.0" y="58.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" fill="#475569">Lower is better. Bars summarize cold process invocations.</text>
+<rect x="240.4" y="237.6" width="58.0" height="260.4" fill="#2563eb" />
+<text x="269.4" y="229.6" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" fill="#334155" font-weight="600">314.5</text>
+<rect x="307.6" y="233.6" width="58.0" height="264.4" fill="#dc2626" />
+<text x="336.6" y="225.6" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" fill="#334155" font-weight="600">319.3</text>
+<text x="303.0" y="526.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" fill="#334155" font-weight="600">Generic</text>
+<rect x="662.4" y="275.2" width="58.0" height="222.8" fill="#2563eb" />
+<text x="691.4" y="267.2" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" fill="#334155" font-weight="600">269.1</text>
+<rect x="729.6" y="266.7" width="58.0" height="231.3" fill="#dc2626" />
+<text x="758.6" y="258.7" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" fill="#334155" font-weight="600">279.4</text>
+<text x="725.0" y="526.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" fill="#334155" font-weight="600">Specialized, 3 profiles</text>
+<rect x="746.0" y="90.0" width="12.0" height="12.0" fill="#2563eb" />
+<text x="764.0" y="101.0" text-anchor="start" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" fill="#334155">p50</text>
+<rect x="810.0" y="90.0" width="12.0" height="12.0" fill="#dc2626" />
+<text x="828.0" y="101.0" text-anchor="start" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" fill="#334155">p95</text>
+</svg>

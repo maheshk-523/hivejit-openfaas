@@ -4,27 +4,27 @@
     "display": "Generic",
     "benchmark": "dacapo-h2",
     "n": 16,
-    "mean_wall_ms": 314.8163045625,
-    "p50_wall_ms": 314.469125,
-    "p95_wall_ms": 319.282791,
-    "mean_work_ms": 290.5711276875,
-    "p50_work_ms": 290.534125,
-    "p95_work_ms": 295.203917,
-    "min_wall_ms": 309.747625,
-    "max_wall_ms": 319.282791
+    "mean_wall_ms": 425.46075,
+    "p50_wall_ms": 422.86225,
+    "p95_wall_ms": 442.147166,
+    "mean_work_ms": 388.884260375,
+    "p50_work_ms": 386.094583,
+    "p95_work_ms": 404.812958,
+    "min_wall_ms": 411.818334,
+    "max_wall_ms": 442.147166
   },
   {
     "label": "python-specialized-3",
     "display": "Specialized, 3 profiles",
     "benchmark": "dacapo-h2",
     "n": 16,
-    "mean_wall_ms": 269.4635728125,
-    "p50_wall_ms": 269.135458,
-    "p95_wall_ms": 279.372083,
-    "mean_work_ms": 244.7211900625,
-    "p50_work_ms": 245.275917,
-    "p95_work_ms": 253.773958,
-    "min_wall_ms": 261.41625,
-    "max_wall_ms": 279.372083
+    "mean_wall_ms": 348.9263385625,
+    "p50_wall_ms": 346.723375,
+    "p95_wall_ms": 366.971583,
+    "mean_work_ms": 312.69757031250003,
+    "p50_work_ms": 312.053375,
+    "p95_work_ms": 331.342042,
+    "min_wall_ms": 335.664625,
+    "max_wall_ms": 366.971583
   }
 ]

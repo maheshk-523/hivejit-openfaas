@@ -1,0 +1,18 @@
+# Adds a pod UID for result attribution and an emptyDir for the per-pod JAX cache.
+spec:
+  template:
+    spec:
+      terminationGracePeriodSeconds: 20
+      volumes:
+        - name: jax-cache
+          emptyDir: {}
+      containers:
+        - name: jax-xla-redis
+          env:
+            - name: POD_UID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.uid
+          volumeMounts:
+            - name: jax-cache
+              mountPath: /profiles

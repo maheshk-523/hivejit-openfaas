@@ -1,0 +1,120 @@
+{
+  "benchmarks": {
+    "dacapo-eclipse": {
+      "baseline": {
+        "elapsed_ms": 205.776,
+        "improvement_pct": 0.0,
+        "iterations": 2200000,
+        "per_invocation_ns": 93.53,
+        "result": 8539891721632147771
+      },
+      "pgo-10": {
+        "elapsed_ms": 208.624,
+        "improvement_pct": -1.384029235673735,
+        "iterations": 2200000,
+        "per_invocation_ns": 94.83,
+        "result": 8539891721632147771
+      },
+      "pgo-5": {
+        "elapsed_ms": 221.466,
+        "improvement_pct": -7.624795894564961,
+        "iterations": 2200000,
+        "per_invocation_ns": 100.67,
+        "result": 8539891721632147771
+      }
+    },
+    "dacapo-fop": {
+      "baseline": {
+        "elapsed_ms": 406.204,
+        "improvement_pct": 0.0,
+        "iterations": 2200000,
+        "per_invocation_ns": 184.64,
+        "result": 2936846009085910024
+      },
+      "pgo-10": {
+        "elapsed_ms": 438.183,
+        "improvement_pct": -7.872645271833853,
+        "iterations": 2200000,
+        "per_invocation_ns": 199.17,
+        "result": 2936846009085910024
+      },
+      "pgo-5": {
+        "elapsed_ms": 405.836,
+        "improvement_pct": 0.09059487351183025,
+        "iterations": 2200000,
+        "per_invocation_ns": 184.47,
+        "result": 2936846009085910024
+      }
+    },
+    "dacapo-h2": {
+      "baseline": {
+        "elapsed_ms": 260.796,
+        "improvement_pct": 0.0,
+        "iterations": 2200000,
+        "per_invocation_ns": 118.54,
+        "result": 3555225775387216877
+      },
+      "pgo-10": {
+        "elapsed_ms": 208.29,
+        "improvement_pct": 20.132977499654903,
+        "iterations": 2200000,
+        "per_invocation_ns": 94.68,
+        "result": 3555225775387216877
+      },
+      "pgo-5": {
+        "elapsed_ms": 208.235,
+        "improvement_pct": 20.154066780165333,
+        "iterations": 2200000,
+        "per_invocation_ns": 94.65,
+        "result": 3555225775387216877
+      }
+    },
+    "dacapo-jython": {
+      "baseline": {
+        "elapsed_ms": 279.016,
+        "improvement_pct": 0.0,
+        "iterations": 2200000,
+        "per_invocation_ns": 126.83,
+        "result": 18431439714614457621
+      },
+      "pgo-10": {
+        "elapsed_ms": 282.834,
+        "improvement_pct": -1.3683803079393235,
+        "iterations": 2200000,
+        "per_invocation_ns": 128.56,
+        "result": 18431439714614457621
+      },
+      "pgo-5": {
+        "elapsed_ms": 302.505,
+        "improvement_pct": -8.418513633626738,
+        "iterations": 2200000,
+        "per_invocation_ns": 137.5,
+        "result": 18431439714614457621
+      }
+    },
+    "dacapo-lusearch": {
+      "baseline": {
+        "elapsed_ms": 281.256,
+        "improvement_pct": 0.0,
+        "iterations": 2200000,
+        "per_invocation_ns": 127.84,
+        "result": 9295566680645966686
+      },
+      "pgo-10": {
+        "elapsed_ms": 267.273,
+        "improvement_pct": 4.9716272719515135,
+        "iterations": 2200000,
+        "per_invocation_ns": 121.49,
+        "result": 9295566680645966686
+      },
+      "pgo-5": {
+        "elapsed_ms": 237.038,
+        "improvement_pct": 15.721620160992108,
+        "iterations": 2200000,
+        "per_invocation_ns": 107.74,
+        "result": 9295566680645966686
+      }
+    }
+  },
+  "schema": "llvm-aot-pgo-summary.v1"
+}

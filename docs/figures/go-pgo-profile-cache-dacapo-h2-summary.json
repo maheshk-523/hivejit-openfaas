@@ -2,31 +2,31 @@
   {
     "label": "go-nopgo",
     "display": "No PGO",
-    "n": 16,
-    "mean_wall_ms": 58.6824375,
-    "p50_wall_ms": 58.302499999999995,
-    "p95_wall_ms": 59.96975,
-    "min_wall_ms": 57.934,
-    "max_wall_ms": 62.708
-  },
-  {
-    "label": "go-pgo-3",
-    "display": "PGO, 3 profiles",
-    "n": 16,
-    "mean_wall_ms": 66.0628125,
-    "p50_wall_ms": 55.7945,
-    "p95_wall_ms": 98.50800000000001,
-    "min_wall_ms": 55.245,
-    "max_wall_ms": 212.811
+    "n": 20,
+    "mean_wall_ms": 186.634,
+    "p50_wall_ms": 185.249,
+    "p95_wall_ms": 205.20215,
+    "min_wall_ms": 162.639,
+    "max_wall_ms": 210.088
   },
   {
     "label": "go-pgo-5",
     "display": "PGO, 5 profiles",
-    "n": 16,
-    "mean_wall_ms": 68.134875,
-    "p50_wall_ms": 57.9285,
-    "p95_wall_ms": 109.333,
-    "min_wall_ms": 56.638,
-    "max_wall_ms": 200.263
+    "n": 20,
+    "mean_wall_ms": 171.9417,
+    "p50_wall_ms": 162.061,
+    "p95_wall_ms": 238.94485000000003,
+    "min_wall_ms": 138.093,
+    "max_wall_ms": 283.155
+  },
+  {
+    "label": "go-pgo-10",
+    "display": "PGO, 10 profiles",
+    "n": 20,
+    "mean_wall_ms": 177.5343,
+    "p50_wall_ms": 162.922,
+    "p95_wall_ms": 198.86600000000016,
+    "min_wall_ms": 151.02,
+    "max_wall_ms": 381.646
   }
 ]

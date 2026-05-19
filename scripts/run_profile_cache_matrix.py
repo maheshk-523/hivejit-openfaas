@@ -51,6 +51,12 @@ def domains() -> list[Domain]:
             description="Python route/query profile export and generated specialization artifact import.",
         ),
         Domain(
+            name="jax-xla-runtime-specialization",
+            command=["bash", "prototypes/jax-xla-runtime-specialization/run_jax_xla.sh"],
+            tools=["bash"],
+            description="JAX tensor signature export and XLA persistent compilation cache import.",
+        ),
+        Domain(
             name="dotnet-readytorun-pgo",
             command=["bash", "prototypes/dotnet-readytorun-pgo/run_readytorun.sh"],
             tools=["bash", "dotnet"],

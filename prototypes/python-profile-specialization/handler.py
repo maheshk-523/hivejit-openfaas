@@ -36,10 +36,26 @@ ECLIPSE_ROUTES = [
     {"name": "refactor_plan", "threshold": 100, "rounds": 18, "salt": 0xA5A3564E27F8866F},
 ]
 
+JYTHON_ROUTES = [
+    {"name": "bytecode_dispatch", "threshold": 44, "rounds": 10, "salt": 0xDB4F0B9175AE2165},
+    {"name": "call_site", "threshold": 69, "rounds": 13, "salt": 0xBBE0563303A4615F},
+    {"name": "parser", "threshold": 88, "rounds": 15, "salt": 0xA0F2EC75A1FE1575},
+    {"name": "object_graph", "threshold": 100, "rounds": 17, "salt": 0x89E182857D9ED689},
+]
+
+FOP_ROUTES = [
+    {"name": "xml_parse", "threshold": 45, "rounds": 12, "salt": 0xC13FA9A902A6328F},
+    {"name": "layout", "threshold": 76, "rounds": 16, "salt": 0x91E10DA5C79E7B1D},
+    {"name": "render", "threshold": 92, "rounds": 18, "salt": 0xD1B54A32D192ED03},
+    {"name": "regex", "threshold": 100, "rounds": 14, "salt": 0xABC98388FB8FAC03},
+]
+
 ROUTES = {
     "dacapo-lusearch": LUSEARCH_ROUTES,
     "dacapo-h2": H2_ROUTES,
     "dacapo-eclipse": ECLIPSE_ROUTES,
+    "dacapo-jython": JYTHON_ROUTES,
+    "dacapo-fop": FOP_ROUTES,
 }
 
 
@@ -94,6 +110,22 @@ def normalize_route(benchmark: str, route: dict[str, int | str]) -> dict[str, ob
             "refactor_plan": ("scan", "resolve", "rewrite", "fold"),
         }
         normalized["phases"] = tuple(str(phase) for phase in phase_ops[route_name])
+    elif benchmark == "dacapo-jython":
+        opcode_groups: dict[str, tuple[str, ...]] = {
+            "bytecode_dispatch": ("load", "binary", "store"),
+            "call_site": ("load", "dispatch", "guard", "return"),
+            "parser": ("scan", "parse", "build"),
+            "object_graph": ("lookup", "link", "trace"),
+        }
+        normalized["opcodes"] = tuple(str(opcode) for opcode in opcode_groups[route_name])
+    elif benchmark == "dacapo-fop":
+        pipeline_ops: dict[str, tuple[str, ...]] = {
+            "xml_parse": ("token", "tree", "validate"),
+            "layout": ("measure", "break", "place"),
+            "render": ("paint", "encode", "flush"),
+            "regex": ("match", "replace", "fold"),
+        }
+        normalized["pipeline"] = tuple(str(step) for step in pipeline_ops[route_name])
     else:
         raise ValueError(f"unknown benchmark {benchmark}")
     return normalized
@@ -206,10 +238,119 @@ def interpreted_eclipse(route: dict[str, int | str], state: int, index: int) -> 
     return acc & MASK
 
 
+def interpreted_jython(route: dict[str, int | str], state: int, index: int) -> int:
+    route_name = str(route["name"])
+    rounds = int(route["rounds"])
+    salt = int(route["salt"])
+    opcodes = route.get("opcodes")
+    if not opcodes:
+        opcodes = {
+            "bytecode_dispatch": ("load", "binary", "store"),
+            "call_site": ("load", "dispatch", "guard", "return"),
+            "parser": ("scan", "parse", "build"),
+            "object_graph": ("lookup", "link", "trace"),
+        }[route_name]
+    stack = [state ^ salt, index, salt, state, index ^ salt, 0, 0, 0]
+    sp = 0
+    acc = state ^ salt ^ (index * 0x100000001B3)
+    for opcode in opcodes:
+        for round_index in range(rounds):
+            probe = mix64(acc + stack[(sp - 1) & 7] + salt + round_index)
+            if opcode == "load":
+                stack[sp & 7] = probe
+                sp += 1
+            elif opcode == "binary":
+                rhs = stack[(sp - 1) & 7]
+                lhs = stack[(sp - 2) & 7]
+                acc ^= (lhs + rhs + probe) & MASK
+            elif opcode == "store":
+                stack[(sp + 3) & 7] = acc ^ probe
+                acc = (acc + mix64(stack[(sp + 3) & 7])) & MASK
+            elif opcode == "dispatch":
+                acc = mix64(acc ^ probe ^ stack[sp & 7])
+            elif opcode == "guard":
+                acc = (acc + probe) & MASK if (probe & 1) else (acc ^ mix64(probe + index))
+            elif opcode == "return":
+                acc ^= mix64(acc + stack[(sp - 1) & 7])
+            elif opcode == "scan":
+                acc = (acc + (probe & 0xFFFF)) & MASK
+            elif opcode == "parse":
+                acc ^= (probe << 7) & MASK
+            elif opcode == "build":
+                stack[sp & 7] = mix64(acc + probe)
+                sp += 1
+            elif opcode == "lookup":
+                acc ^= mix64(stack[(probe >> 3) & 7] + probe)
+            elif opcode == "link":
+                acc = (acc * 5 + probe + stack[sp & 7]) & MASK
+            elif opcode == "trace":
+                acc ^= mix64(acc ^ probe ^ round_index)
+            else:
+                acc = mix64(acc + probe)
+    return acc & MASK
+
+
+def interpreted_fop(route: dict[str, int | str], state: int, index: int) -> int:
+    route_name = str(route["name"])
+    rounds = int(route["rounds"])
+    salt = int(route["salt"])
+    pipeline = route.get("pipeline")
+    if not pipeline:
+        pipeline = {
+            "xml_parse": ("token", "tree", "validate"),
+            "layout": ("measure", "break", "place"),
+            "render": ("paint", "encode", "flush"),
+            "regex": ("match", "replace", "fold"),
+        }[route_name]
+    acc = state ^ salt
+    cursor = index & 0x3FF
+    page = 1
+    depth = 0
+    for step in pipeline:
+        for round_index in range(rounds):
+            probe = mix64(acc + salt + round_index + (index << 2))
+            if step == "token":
+                depth += 1 if (probe & 3) else -1
+                depth = max(depth, 0)
+                acc ^= mix64(probe + depth)
+            elif step == "tree":
+                acc = (acc + ((depth + 1) * (probe & 0xFFFF))) & MASK
+            elif step == "validate":
+                acc ^= mix64(acc + probe + depth)
+            elif step == "measure":
+                cursor += 8 + (probe & 63)
+                acc = (acc + cursor + page) & MASK
+            elif step == "break":
+                if cursor > 720:
+                    page += 1
+                    cursor = cursor % 89
+                acc ^= mix64(page + cursor + probe)
+            elif step == "place":
+                acc = ((acc << 5) | (acc >> 59)) & MASK
+                acc ^= mix64(cursor + round_index)
+            elif step == "paint":
+                acc = mix64(acc ^ ((round_index + 1) * 0x45D9F3B))
+            elif step == "encode":
+                acc = (acc + mix64(probe ^ page)) & MASK
+            elif step == "flush":
+                acc ^= mix64(acc + cursor + page)
+            elif step == "match":
+                acc ^= mix64(probe + 31) if (acc & 1) == 0 else mix64(probe + 17)
+            elif step == "replace":
+                acc = (acc * 3 + (probe & 0xFFF)) & MASK
+            elif step == "fold":
+                acc = (acc + mix64(probe ^ acc)) & MASK
+            else:
+                acc = mix64(acc + probe)
+    return acc & MASK
+
+
 INTERPRETERS: dict[str, Callable[[dict[str, int | str], int, int], int]] = {
     "dacapo-lusearch": interpreted_lusearch,
     "dacapo-h2": interpreted_h2,
     "dacapo-eclipse": interpreted_eclipse,
+    "dacapo-jython": interpreted_jython,
+    "dacapo-fop": interpreted_fop,
 }
 
 

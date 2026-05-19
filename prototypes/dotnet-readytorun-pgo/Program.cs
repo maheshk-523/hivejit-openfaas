@@ -66,6 +66,99 @@ sealed class GraphRoute : IRoute
     }
 }
 
+sealed class InterpreterRoute : IRoute
+{
+    public ulong Run(ulong value)
+    {
+        unchecked
+        {
+            Span<ulong> stack = stackalloc ulong[8];
+            int sp = 0;
+            for (ulong i = 0; i < 17; i++)
+            {
+                stack[sp++ & 7] = Workload.Mix64(value + i);
+                ulong rhs = stack[(sp - 1) & 7];
+                ulong lhs = stack[(sp - 2) & 7];
+                value ^= (lhs + rhs + i) * 0x100000001b3UL;
+            }
+            return value;
+        }
+    }
+}
+
+sealed class CallSiteRoute : IRoute
+{
+    public ulong Run(ulong value)
+    {
+        unchecked
+        {
+            for (ulong i = 0; i < 21; i++)
+            {
+                value = (i & 1UL) == 0
+                    ? Workload.Mix64(value ^ (i + 0x51ed2705UL))
+                    : Workload.Mix64(value + (i * 0x9e3779b97f4a7c15UL));
+            }
+            return value;
+        }
+    }
+}
+
+sealed class XmlRoute : IRoute
+{
+    public ulong Run(ulong value)
+    {
+        unchecked
+        {
+            ulong depth = 0;
+            for (ulong i = 0; i < 25; i++)
+            {
+                depth += ((value >> (int)(i & 15)) & 1UL) == 0 ? 1UL : ulong.MaxValue;
+                value ^= Workload.Mix64(value + depth + i);
+            }
+            return value;
+        }
+    }
+}
+
+sealed class LayoutRoute : IRoute
+{
+    public ulong Run(ulong value)
+    {
+        unchecked
+        {
+            ulong page = 1;
+            ulong cursor = 0;
+            for (ulong i = 0; i < 29; i++)
+            {
+                ulong height = 8 + (Workload.Mix64(value + i) % 64);
+                if (cursor + height > 720)
+                {
+                    page++;
+                    cursor = 0;
+                }
+                cursor += height;
+                value ^= Workload.Mix64(page + cursor + i);
+            }
+            return value;
+        }
+    }
+}
+
+sealed class RenderRoute : IRoute
+{
+    public ulong Run(ulong value)
+    {
+        unchecked
+        {
+            for (ulong i = 0; i < 31; i++)
+            {
+                value = Workload.Mix64(value ^ ((i + 1) * 0x45d9f3bUL));
+            }
+            return value;
+        }
+    }
+}
+
 sealed record Result(
     string Domain,
     string Scenario,
@@ -83,12 +176,28 @@ sealed record Result(
 
 static class Workload
 {
-    private static readonly IRoute[] Routes =
+    private static readonly IRoute[] CommonRoutes =
     [
         new HotRoute(),
         new ParseRoute(),
         new RegexRoute(),
         new GraphRoute(),
+    ];
+
+    private static readonly IRoute[] JythonRoutes =
+    [
+        new InterpreterRoute(),
+        new ParseRoute(),
+        new CallSiteRoute(),
+        new GraphRoute(),
+    ];
+
+    private static readonly IRoute[] FopRoutes =
+    [
+        new XmlRoute(),
+        new LayoutRoute(),
+        new RenderRoute(),
+        new RegexRoute(),
     ];
 
     public static ulong Mix64(ulong value)
@@ -118,7 +227,51 @@ static class Workload
             "serve-mixed" when ticket < 65 => 1,
             "serve-mixed" when ticket < 84 => 2,
             "serve-mixed" => 3,
+            "lusearch" when ticket < 56 => 2,
+            "lusearch" when ticket < 76 => 1,
+            "lusearch" when ticket < 93 => 0,
+            "lusearch" => 3,
+            "h2" when ticket < 48 => 3,
+            "h2" when ticket < 73 => 0,
+            "h2" when ticket < 91 => 1,
+            "h2" => 2,
+            "eclipse" when ticket < 43 => 1,
+            "eclipse" when ticket < 71 => 3,
+            "eclipse" when ticket < 90 => 2,
+            "eclipse" => 0,
+            "jython" when ticket < 44 => 0,
+            "jython" when ticket < 69 => 2,
+            "jython" when ticket < 88 => 1,
+            "jython" => 3,
+            "fop" when ticket < 45 => 0,
+            "fop" when ticket < 76 => 1,
+            "fop" when ticket < 92 => 2,
+            "fop" => 3,
             _ => (int)(ticket & 3UL),
+        };
+    }
+
+    private static string CanonicalScenario(string scenario)
+    {
+        string value = scenario.Trim().ToLowerInvariant();
+        if (value.StartsWith("dacapo-", StringComparison.Ordinal))
+        {
+            value = value["dacapo-".Length..];
+        }
+        return value switch
+        {
+            "fopo" => "fop",
+            _ => value,
+        };
+    }
+
+    private static IRoute[] RoutesForScenario(string scenario)
+    {
+        return scenario switch
+        {
+            "jython" => JythonRoutes,
+            "fop" => FopRoutes,
+            _ => CommonRoutes,
         };
     }
 
@@ -127,9 +280,10 @@ static class Workload
         unchecked
         {
             ulong state = seed;
+            IRoute[] routes = RoutesForScenario(scenario);
             for (ulong i = 0; i < iterations; i++)
             {
-                IRoute route = Routes[ChooseRoute(scenario, i, state)];
+                IRoute route = routes[ChooseRoute(scenario, i, state)];
                 state ^= route.Run(state + i);
             }
             return state;
@@ -138,6 +292,7 @@ static class Workload
 
     public static Result Run(string scenario, int invocations, ulong iterations)
     {
+        scenario = CanonicalScenario(scenario);
         List<double> invocationTimes = new(invocations);
         ulong checksum = 0UL;
         Stopwatch total = Stopwatch.StartNew();

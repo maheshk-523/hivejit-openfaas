@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="560.0" y="36" text-anchor="middle" font-family="Georgia, Times New Roman, serif" font-size="28" font-weight="700" fill="#111827">Python eclipse profile specialization</text>
+<text x="560.0" y="62" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#374151">Saved runtime profile artifact versus not saving warm state</text>
+<rect x="118.0" y="96" width="54.4" height="44" fill="#5b84d7" opacity="0.85"/>
+<rect x="172.4" y="96" width="489.6" height="44" fill="#f4d7ad" opacity="0.9"/>
+<rect x="662.0" y="96" width="408.0" height="44" fill="#df7774" opacity="0.9"/>
+<text x="417.2" y="126" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#111827">Warm</text>
+<text x="866.0" y="126" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#111827">Hot</text>
+<line x1="118" y1="588.0" x2="1070" y2="588.0" stroke="#cbd5e1"/>
+<text x="104" y="593.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#111827">10<tspan baseline-shift="super" font-size="12">3</tspan></text>
+<line x1="118" y1="439.9" x2="1070" y2="439.9" stroke="#e5e7eb"/>
+<line x1="118" y1="244.1" x2="1070" y2="244.1" stroke="#e5e7eb"/>
+<line x1="118" y1="96.0" x2="1070" y2="96.0" stroke="#cbd5e1"/>
+<text x="104" y="101.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#111827">10<tspan baseline-shift="super" font-size="12">4</tspan></text>
+<line x1="172.4" y1="96" x2="172.4" y2="588" stroke="#f4c08a" stroke-dasharray="7 7" stroke-width="2.0" opacity="0.95"/>
+<line x1="662.0" y1="96" x2="662.0" y2="588" stroke="#df7774" stroke-dasharray="7 7" stroke-width="2.0" opacity="0.95"/>
+<line x1="118.0" y1="588" x2="118.0" y2="595" stroke="#111827"/>
+<text x="118.0" y="619" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#111827">1</text>
+<line x1="662.0" y1="588" x2="662.0" y2="595" stroke="#111827"/>
+<text x="662.0" y="619" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#111827">5</text>
+<line x1="1070.0" y1="588" x2="1070.0" y2="595" stroke="#111827"/>
+<text x="1070.0" y="619" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#111827">8</text>
+<line x1="118" y1="588" x2="1070" y2="588" stroke="#111827"/>
+<line x1="118" y1="96" x2="118" y2="588" stroke="#111827"/>
+<polyline points="118.0,436.6 254.0,391.5 390.0,217.3 526.0,426.9 662.0,442.6 798.0,451.5 934.0,453.7 1070.0,421.1" fill="none" stroke="#334155" stroke-width="2.8"/>
+<circle cx="118.0" cy="436.6" r="4.0" fill="#334155"/>
+<circle cx="254.0" cy="391.5" r="4.0" fill="#334155"/>
+<circle cx="390.0" cy="217.3" r="4.0" fill="#334155"/>
+<circle cx="526.0" cy="426.9" r="4.0" fill="#334155"/>
+<circle cx="662.0" cy="442.6" r="4.0" fill="#334155"/>
+<circle cx="798.0" cy="451.5" r="4.0" fill="#334155"/>
+<circle cx="934.0" cy="453.7" r="4.0" fill="#334155"/>
+<circle cx="1070.0" cy="421.1" r="4.0" fill="#334155"/>
+<polyline points="118.0,471.6 254.0,474.6 390.0,464.3 526.0,476.7 662.0,473.1 798.0,471.0 934.0,469.9 1070.0,474.5" fill="none" stroke="#0f766e" stroke-width="2.8"/>
+<circle cx="118.0" cy="471.6" r="4.0" fill="#0f766e"/>
+<circle cx="254.0" cy="474.6" r="4.0" fill="#0f766e"/>
+<circle cx="390.0" cy="464.3" r="4.0" fill="#0f766e"/>
+<circle cx="526.0" cy="476.7" r="4.0" fill="#0f766e"/>
+<circle cx="662.0" cy="473.1" r="4.0" fill="#0f766e"/>
+<circle cx="798.0" cy="471.0" r="4.0" fill="#0f766e"/>
+<circle cx="934.0" cy="469.9" r="4.0" fill="#0f766e"/>
+<circle cx="1070.0" cy="474.5" r="4.0" fill="#0f766e"/>
+<line x1="118" y1="447.0" x2="990.0" y2="447.0" stroke="#7e22ce" stroke-dasharray="7 5" stroke-width="2"/>
+<line x1="118" y1="472.1" x2="990.0" y2="472.1" stroke="#7e22ce" stroke-dasharray="7 5" stroke-width="2"/>
+<line x1="990.0" y1="447.0" x2="990.0" y2="472.1" stroke="#111827" stroke-width="2.4"/>
+<path d="M 983.0 456.0 L 990.0 447.0 L 997.0 456.0" fill="none" stroke="#111827" stroke-width="2.4"/>
+<path d="M 983.0 463.1 L 990.0 472.1 L 997.0 463.1" fill="none" stroke="#111827" stroke-width="2.4"/>
+<text x="1006.0" y="464.5" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#111827">1.12x</text>
+<text x="118" y="654" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#111827">Hot median: No saved specialization state 1934.4 ms, Saved specialization artifact 1720.4 ms; saved-state line below no-save baseline on 4/4 hot requests.</text>
+<rect x="136.0" y="493.6" width="80" height="30" rx="3" fill="#5b84d7" opacity="0.9"/>
+<text x="176.0" y="515.6" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#111827">Cold</text>
+<line x1="216.0" y1="493.6" x2="112.0" y2="475.6" stroke="#111827" stroke-width="2.2"/>
+<line x1="820" y1="518" x2="852" y2="518" stroke="#334155" stroke-width="3"/>
+<circle cx="836" cy="518" r="4" fill="#334155"/>
+<text x="862" y="522" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#111827">No saved specialization state</text>
+<line x1="820" y1="544" x2="852" y2="544" stroke="#0f766e" stroke-width="3"/>
+<circle cx="836" cy="544" r="4" fill="#0f766e"/>
+<text x="862" y="548" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#111827">Saved specialization artifact</text>
+<text x="594.0" y="632" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="24" fill="#111827">Request Number</text>
+<text x="42" y="342.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="24" fill="#111827" transform="rotate(-90 42 342.0)">Latency (ms)</text>
+</svg>

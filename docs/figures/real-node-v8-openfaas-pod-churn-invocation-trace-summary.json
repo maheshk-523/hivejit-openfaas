@@ -1,0 +1,31 @@
+{
+  "panels": {
+    "node-v8": {
+      "baseline": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 198.944416,
+        "min_latency_ms": 23.39825,
+        "points": 40
+      },
+      "v8cache": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 168.753,
+        "min_latency_ms": 22.702333,
+        "points": 40
+      }
+    }
+  },
+  "schema": "pod-churn-invocation-traces.v1"
+}

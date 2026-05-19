@@ -4,89 +4,101 @@
 <line x1="92.0" y1="552.0" x2="1074.0" y2="552.0" stroke="#e2e8f0" stroke-width="1"/>
 <text x="80.0" y="556.0" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#64748b">0</text>
 <line x1="92.0" y1="456.8" x2="1074.0" y2="456.8" stroke="#e2e8f0" stroke-width="1"/>
-<text x="80.0" y="460.8" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#64748b">60</text>
+<text x="80.0" y="460.8" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#64748b">100</text>
 <line x1="92.0" y1="361.6" x2="1074.0" y2="361.6" stroke="#e2e8f0" stroke-width="1"/>
-<text x="80.0" y="365.6" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#64748b">120</text>
+<text x="80.0" y="365.6" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#64748b">200</text>
 <line x1="92.0" y1="266.4" x2="1074.0" y2="266.4" stroke="#e2e8f0" stroke-width="1"/>
-<text x="80.0" y="270.4" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#64748b">180</text>
+<text x="80.0" y="270.4" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#64748b">300</text>
 <line x1="92.0" y1="171.2" x2="1074.0" y2="171.2" stroke="#e2e8f0" stroke-width="1"/>
-<text x="80.0" y="175.2" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#64748b">240</text>
+<text x="80.0" y="175.2" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#64748b">400</text>
 <line x1="92.0" y1="76.0" x2="1074.0" y2="76.0" stroke="#e2e8f0" stroke-width="1"/>
-<text x="80.0" y="80.0" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#64748b">300</text>
+<text x="80.0" y="80.0" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#64748b">500</text>
 <line x1="92.0" y1="76.0" x2="92.0" y2="552.0" stroke="#64748b" stroke-width="1.2"/>
 <line x1="92.0" y1="552.0" x2="1074.0" y2="552.0" stroke="#64748b" stroke-width="1.2"/>
 <text x="24.0" y="314.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#334155" transform="rotate(-90 24.0 314.0)">Wall latency (ms)</text>
 <text x="560.0" y="32.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="22" font-weight="700" fill="#0f172a">Go PGO Serverless Profile Cache: Cold Invocation Latency</text>
 <text x="560.0" y="56.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="400" fill="#475569">Each point is a separate process invocation of the function binary.</text>
-<polyline points="92.0,376.5 157.5,447.0 222.9,447.4 288.4,447.5 353.9,447.4 419.3,440.1 484.8,431.0 550.3,434.2 615.7,434.1 681.2,440.9 746.7,444.2 812.1,443.7 877.6,442.5 943.1,443.3 1008.5,442.7 1074.0,440.7" fill="none" stroke="#334155" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="92.0" cy="376.5" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
-<circle cx="157.5" cy="447.0" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
-<circle cx="222.9" cy="447.4" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
-<circle cx="288.4" cy="447.5" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
-<circle cx="353.9" cy="447.4" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
-<circle cx="419.3" cy="440.1" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
-<circle cx="484.8" cy="431.0" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
-<circle cx="550.3" cy="434.2" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
-<circle cx="615.7" cy="434.1" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
-<circle cx="681.2" cy="440.9" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
-<circle cx="746.7" cy="444.2" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
-<circle cx="812.1" cy="443.7" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
-<circle cx="877.6" cy="442.5" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
-<circle cx="943.1" cy="443.3" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
-<circle cx="1008.5" cy="442.7" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
-<circle cx="1074.0" cy="440.7" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
-<polyline points="92.0,207.8 157.5,451.9 222.9,451.1 288.4,451.0 353.9,450.9 419.3,424.4 484.8,449.1 550.3,441.9 615.7,448.1 681.2,451.3 746.7,451.0 812.1,451.6 877.6,450.6 943.1,451.1 1008.5,450.1 1074.0,451.2" fill="none" stroke="#7c3aed" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="92.0" cy="207.8" r="3.0" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
-<circle cx="157.5" cy="451.9" r="3.0" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
-<circle cx="222.9" cy="451.1" r="3.0" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
-<circle cx="288.4" cy="451.0" r="3.0" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
-<circle cx="353.9" cy="450.9" r="3.0" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
-<circle cx="419.3" cy="424.4" r="3.0" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
-<circle cx="484.8" cy="449.1" r="3.0" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
-<circle cx="550.3" cy="441.9" r="3.0" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
-<circle cx="615.7" cy="448.1" r="3.0" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
-<circle cx="681.2" cy="451.3" r="3.0" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
-<circle cx="746.7" cy="451.0" r="3.0" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
-<circle cx="812.1" cy="451.6" r="3.0" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
-<circle cx="877.6" cy="450.6" r="3.0" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
-<circle cx="943.1" cy="451.1" r="3.0" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
-<circle cx="1008.5" cy="450.1" r="3.0" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
-<circle cx="1074.0" cy="451.2" r="3.0" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
-<polyline points="92.0,207.8 157.5,452.2 222.9,451.6 288.4,453.1 353.9,452.0 419.3,451.6 484.8,452.0 550.3,452.4 615.7,451.5 681.2,452.8 746.7,452.0 812.1,451.8 877.6,452.3 943.1,451.9 1008.5,451.9 1074.0,451.7" fill="none" stroke="#0f766e" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="92.0" cy="207.8" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
-<circle cx="157.5" cy="452.2" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
-<circle cx="222.9" cy="451.6" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
-<circle cx="288.4" cy="453.1" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
-<circle cx="353.9" cy="452.0" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
-<circle cx="419.3" cy="451.6" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
-<circle cx="484.8" cy="452.0" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
-<circle cx="550.3" cy="452.4" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
-<circle cx="615.7" cy="451.5" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
-<circle cx="681.2" cy="452.8" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
-<circle cx="746.7" cy="452.0" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
-<circle cx="812.1" cy="451.8" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
-<circle cx="877.6" cy="452.3" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
-<circle cx="943.1" cy="451.9" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
-<circle cx="1008.5" cy="451.9" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
-<circle cx="1074.0" cy="451.7" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
+<polyline points="92.0,231.6 143.7,313.1 195.4,341.6 247.1,350.2 298.7,351.4 350.4,342.5 402.1,338.1 453.8,341.9 505.5,354.2 557.2,357.8 608.8,352.3 660.5,325.4 712.2,325.9 763.9,353.4 815.6,364.5 867.3,347.6 918.9,342.2 970.6,273.2 1022.3,330.7 1074.0,332.0" fill="none" stroke="#334155" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="92.0" cy="231.6" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
+<circle cx="143.7" cy="313.1" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
+<circle cx="195.4" cy="341.6" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
+<circle cx="247.1" cy="350.2" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
+<circle cx="298.7" cy="351.4" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
+<circle cx="350.4" cy="342.5" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
+<circle cx="402.1" cy="338.1" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
+<circle cx="453.8" cy="341.9" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
+<circle cx="505.5" cy="354.2" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
+<circle cx="557.2" cy="357.8" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
+<circle cx="608.8" cy="352.3" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
+<circle cx="660.5" cy="325.4" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
+<circle cx="712.2" cy="325.9" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
+<circle cx="763.9" cy="353.4" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
+<circle cx="815.6" cy="364.5" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
+<circle cx="867.3" cy="347.6" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
+<circle cx="918.9" cy="342.2" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
+<circle cx="970.6" cy="273.2" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
+<circle cx="1022.3" cy="330.7" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
+<circle cx="1074.0" cy="332.0" r="3.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
+<polyline points="92.0,174.4 143.7,377.2 195.4,350.3 247.1,316.6 298.7,304.0 350.4,347.1 402.1,366.6 453.8,356.8 505.5,329.8 557.2,347.7 608.8,357.7 660.5,348.0 712.2,352.7 763.9,360.4 815.6,359.8 867.3,374.1 918.9,375.4 970.6,372.3 1022.3,376.7 1074.0,371.5" fill="none" stroke="#0f766e" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="92.0" cy="174.4" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
+<circle cx="143.7" cy="377.2" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
+<circle cx="195.4" cy="350.3" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
+<circle cx="247.1" cy="316.6" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
+<circle cx="298.7" cy="304.0" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
+<circle cx="350.4" cy="347.1" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
+<circle cx="402.1" cy="366.6" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
+<circle cx="453.8" cy="356.8" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
+<circle cx="505.5" cy="329.8" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
+<circle cx="557.2" cy="347.7" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
+<circle cx="608.8" cy="357.7" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
+<circle cx="660.5" cy="348.0" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
+<circle cx="712.2" cy="352.7" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
+<circle cx="763.9" cy="360.4" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
+<circle cx="815.6" cy="359.8" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
+<circle cx="867.3" cy="374.1" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
+<circle cx="918.9" cy="375.4" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
+<circle cx="970.6" cy="372.3" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
+<circle cx="1022.3" cy="376.7" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
+<circle cx="1074.0" cy="371.5" r="3.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
+<polyline points="92.0,145.9 143.7,347.1 195.4,354.7 247.1,343.6 298.7,368.4 350.4,383.0 402.1,386.1 453.8,383.8 505.5,391.2 557.2,394.8 608.8,386.3 660.5,361.2 712.2,363.7 763.9,345.6 815.6,378.9 867.3,386.1 918.9,393.4 970.6,394.3 1022.3,387.3 1074.0,380.9" fill="none" stroke="#b45309" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="92.0" cy="145.9" r="3.0" fill="#b45309" stroke="#ffffff" stroke-width="1"/>
+<circle cx="143.7" cy="347.1" r="3.0" fill="#b45309" stroke="#ffffff" stroke-width="1"/>
+<circle cx="195.4" cy="354.7" r="3.0" fill="#b45309" stroke="#ffffff" stroke-width="1"/>
+<circle cx="247.1" cy="343.6" r="3.0" fill="#b45309" stroke="#ffffff" stroke-width="1"/>
+<circle cx="298.7" cy="368.4" r="3.0" fill="#b45309" stroke="#ffffff" stroke-width="1"/>
+<circle cx="350.4" cy="383.0" r="3.0" fill="#b45309" stroke="#ffffff" stroke-width="1"/>
+<circle cx="402.1" cy="386.1" r="3.0" fill="#b45309" stroke="#ffffff" stroke-width="1"/>
+<circle cx="453.8" cy="383.8" r="3.0" fill="#b45309" stroke="#ffffff" stroke-width="1"/>
+<circle cx="505.5" cy="391.2" r="3.0" fill="#b45309" stroke="#ffffff" stroke-width="1"/>
+<circle cx="557.2" cy="394.8" r="3.0" fill="#b45309" stroke="#ffffff" stroke-width="1"/>
+<circle cx="608.8" cy="386.3" r="3.0" fill="#b45309" stroke="#ffffff" stroke-width="1"/>
+<circle cx="660.5" cy="361.2" r="3.0" fill="#b45309" stroke="#ffffff" stroke-width="1"/>
+<circle cx="712.2" cy="363.7" r="3.0" fill="#b45309" stroke="#ffffff" stroke-width="1"/>
+<circle cx="763.9" cy="345.6" r="3.0" fill="#b45309" stroke="#ffffff" stroke-width="1"/>
+<circle cx="815.6" cy="378.9" r="3.0" fill="#b45309" stroke="#ffffff" stroke-width="1"/>
+<circle cx="867.3" cy="386.1" r="3.0" fill="#b45309" stroke="#ffffff" stroke-width="1"/>
+<circle cx="918.9" cy="393.4" r="3.0" fill="#b45309" stroke="#ffffff" stroke-width="1"/>
+<circle cx="970.6" cy="394.3" r="3.0" fill="#b45309" stroke="#ffffff" stroke-width="1"/>
+<circle cx="1022.3" cy="387.3" r="3.0" fill="#b45309" stroke="#ffffff" stroke-width="1"/>
+<circle cx="1074.0" cy="380.9" r="3.0" fill="#b45309" stroke="#ffffff" stroke-width="1"/>
 <line x1="92.0" y1="552.0" x2="92.0" y2="558.0" stroke="#64748b" stroke-width="1"/>
 <text x="92.0" y="576.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#475569">1</text>
-<line x1="353.9" y1="552.0" x2="353.9" y2="558.0" stroke="#64748b" stroke-width="1"/>
-<text x="353.9" y="576.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#475569">5</text>
-<line x1="681.2" y1="552.0" x2="681.2" y2="558.0" stroke="#64748b" stroke-width="1"/>
-<text x="681.2" y="576.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#475569">10</text>
-<line x1="1008.5" y1="552.0" x2="1008.5" y2="558.0" stroke="#64748b" stroke-width="1"/>
-<text x="1008.5" y="576.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#475569">15</text>
+<line x1="298.7" y1="552.0" x2="298.7" y2="558.0" stroke="#64748b" stroke-width="1"/>
+<text x="298.7" y="576.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#475569">5</text>
+<line x1="557.2" y1="552.0" x2="557.2" y2="558.0" stroke="#64748b" stroke-width="1"/>
+<text x="557.2" y="576.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#475569">10</text>
+<line x1="815.6" y1="552.0" x2="815.6" y2="558.0" stroke="#64748b" stroke-width="1"/>
+<text x="815.6" y="576.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#475569">15</text>
 <line x1="1074.0" y1="552.0" x2="1074.0" y2="558.0" stroke="#64748b" stroke-width="1"/>
-<text x="1074.0" y="576.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#475569">16</text>
+<text x="1074.0" y="576.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#475569">20</text>
 <text x="583.0" y="612.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#334155">Cold invocation number</text>
 <line x1="854.0" y1="82.0" x2="884.0" y2="82.0" stroke="#334155" stroke-width="3"/>
 <circle cx="869.0" cy="82.0" r="4.0" fill="#334155" stroke="#ffffff" stroke-width="1"/>
 <text x="896.0" y="86.0" text-anchor="start" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#334155">No PGO</text>
-<line x1="854.0" y1="106.0" x2="884.0" y2="106.0" stroke="#7c3aed" stroke-width="3"/>
-<circle cx="869.0" cy="106.0" r="4.0" fill="#7c3aed" stroke="#ffffff" stroke-width="1"/>
-<text x="896.0" y="110.0" text-anchor="start" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#334155">PGO, 3 profiles</text>
-<line x1="854.0" y1="130.0" x2="884.0" y2="130.0" stroke="#0f766e" stroke-width="3"/>
-<circle cx="869.0" cy="130.0" r="4.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
-<text x="896.0" y="134.0" text-anchor="start" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#334155">PGO, 5 profiles</text>
+<line x1="854.0" y1="106.0" x2="884.0" y2="106.0" stroke="#0f766e" stroke-width="3"/>
+<circle cx="869.0" cy="106.0" r="4.0" fill="#0f766e" stroke="#ffffff" stroke-width="1"/>
+<text x="896.0" y="110.0" text-anchor="start" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#334155">PGO, 5 profiles</text>
+<line x1="854.0" y1="130.0" x2="884.0" y2="130.0" stroke="#b45309" stroke-width="3"/>
+<circle cx="869.0" cy="130.0" r="4.0" fill="#b45309" stroke="#ffffff" stroke-width="1"/>
+<text x="896.0" y="134.0" text-anchor="start" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#334155">PGO, 10 profiles</text>
 </svg>

@@ -1,0 +1,17 @@
+spec:
+  template:
+    spec:
+      terminationGracePeriodSeconds: 20
+      volumes:
+        - name: python-profile-artifact
+          emptyDir: {}
+      containers:
+        - name: python-profile-specialization
+          env:
+            - name: POD_UID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.uid
+          volumeMounts:
+            - name: python-profile-artifact
+              mountPath: /profiles

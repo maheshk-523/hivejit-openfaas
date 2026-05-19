@@ -80,7 +80,10 @@ for benchmark in "${BENCHMARK_LIST[@]}"; do
       echo "No raw profiles found in $profile_dir" >&2
       exit 1
     fi
-    go tool pprof -proto "${profile_inputs[@]}" > "$merged_tmp"
+    HOME="${PPROF_HOME:-/private/tmp/go-pprof-home}" \
+      PPROF_TMPDIR="${PPROF_TMPDIR:-/private/tmp/go-pprof-tmp}" \
+      go tool pprof -symbolize=none -proto -output="$merged_tmp" \
+        "$BUILD_DIR/handler.nopgo" "${profile_inputs[@]}"
     if [[ ! -s "$merged_tmp" ]]; then
       echo "Merged profile is empty: $merged_tmp" >&2
       exit 1

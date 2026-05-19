@@ -1,0 +1,176 @@
+[
+  {
+    "workload": "dacapo-lusearch",
+    "label": "lusearch",
+    "run_id": "20260513-openfaas-python-clear-median",
+    "generic_csv": "/Users/maheshk/Documents/New project 5/prototypes/python-profile-specialization/.runs/20260513-openfaas-python-clear-median/results/dacapo-lusearch/python-generic-lifecycle.csv",
+    "specialized_csv": "/Users/maheshk/Documents/New project 5/prototypes/python-profile-specialization/.runs/20260513-openfaas-python-clear-median/results/dacapo-lusearch/python-specialized-3-lifecycle.csv",
+    "populate_json": "/Users/maheshk/Documents/New project 5/prototypes/python-profile-specialization/.runs/20260513-openfaas-python-clear-median/results/dacapo-lusearch/populate.json",
+    "requests_per_mode": {
+      "generic": 40,
+      "specialized": 40
+    },
+    "profile_requests": 240000,
+    "profile_iters": 3,
+    "artifact_bytes": 3881,
+    "artifact_hash": "48505dd8748136bb3d27a74f759b9237a0c6dea40449b91964b69836b8256599",
+    "redis_key": "python-profile-specialization:python-profile-specialization:20260513-openfaas-python-clear-median:dacapo-lusearch:artifact:v1",
+    "redis_export_ok": true,
+    "specialized_import_confirmed": true,
+    "generic_no_artifact_confirmed": true,
+    "phase_medians_ms": {
+      "cold": {
+        "generic": 1202.490459,
+        "specialized": 1088.33325
+      },
+      "warmup": {
+        "generic": 1114.4112085000002,
+        "specialized": 1055.2358125
+      },
+      "hot": {
+        "generic": 1115.241083,
+        "specialized": 1046.675417
+      }
+    },
+    "position_medians_ms": {
+      "generic": {
+        "1": 1202.490459,
+        "2": 1106.955167,
+        "3": 1126.72825,
+        "4": 1121.577875,
+        "5": 1112.588958,
+        "6": 1114.701708,
+        "7": 1101.588459,
+        "8": 1115.270042
+      },
+      "specialized": {
+        "1": 1088.33325,
+        "2": 1055.704458,
+        "3": 1037.981167,
+        "4": 1079.114958,
+        "5": 1047.049125,
+        "6": 1048.410541,
+        "7": 1031.77025,
+        "8": 1021.195333
+      },
+      "wins": 8,
+      "positions": 8
+    }
+  },
+  {
+    "workload": "dacapo-h2",
+    "label": "h2",
+    "run_id": "20260513-openfaas-python-h2",
+    "generic_csv": "/Users/maheshk/Documents/New project 5/prototypes/python-profile-specialization/.runs/20260513-openfaas-python-h2/results/dacapo-h2/python-generic-lifecycle.csv",
+    "specialized_csv": "/Users/maheshk/Documents/New project 5/prototypes/python-profile-specialization/.runs/20260513-openfaas-python-h2/results/dacapo-h2/python-specialized-3-lifecycle.csv",
+    "populate_json": "/Users/maheshk/Documents/New project 5/prototypes/python-profile-specialization/.runs/20260513-openfaas-python-h2/results/dacapo-h2/populate.json",
+    "requests_per_mode": {
+      "generic": 16,
+      "specialized": 16
+    },
+    "profile_requests": 36000,
+    "profile_iters": 3,
+    "artifact_bytes": 3564,
+    "artifact_hash": "8404270608147376373b8cd4df6d858c827990ca517d0f0e2d023a65c04e8b51",
+    "redis_key": "python-profile-specialization:python-profile-specialization:20260513-openfaas-python-h2:dacapo-h2:artifact:v1",
+    "redis_export_ok": true,
+    "specialized_import_confirmed": true,
+    "generic_no_artifact_confirmed": true,
+    "phase_medians_ms": {
+      "cold": {
+        "generic": 351.980333,
+        "specialized": 276.47799999999995
+      },
+      "warmup": {
+        "generic": 319.54412449999995,
+        "specialized": 229.354208
+      },
+      "hot": {
+        "generic": 307.831917,
+        "specialized": 228.5003125
+      }
+    },
+    "position_medians_ms": {
+      "generic": {
+        "1": 351.980333,
+        "2": 317.8950205,
+        "3": 360.91812500000003,
+        "4": 316.03024949999997,
+        "5": 316.6305625,
+        "6": 307.44997950000004,
+        "7": 306.85112549999997,
+        "8": 308.587354
+      },
+      "specialized": {
+        "1": 276.47799999999995,
+        "2": 233.48174999999998,
+        "3": 228.8862295,
+        "4": 232.90493750000002,
+        "5": 226.603396,
+        "6": 228.776375,
+        "7": 230.4420215,
+        "8": 225.180209
+      },
+      "wins": 8,
+      "positions": 8
+    }
+  },
+  {
+    "workload": "dacapo-eclipse",
+    "label": "eclipse",
+    "run_id": "20260513-openfaas-python-eclipse-clear",
+    "generic_csv": "/Users/maheshk/Documents/New project 5/prototypes/python-profile-specialization/.runs/20260513-openfaas-python-eclipse-clear/results/dacapo-eclipse/python-generic-lifecycle.csv",
+    "specialized_csv": "/Users/maheshk/Documents/New project 5/prototypes/python-profile-specialization/.runs/20260513-openfaas-python-eclipse-clear/results/dacapo-eclipse/python-specialized-3-lifecycle.csv",
+    "populate_json": "/Users/maheshk/Documents/New project 5/prototypes/python-profile-specialization/.runs/20260513-openfaas-python-eclipse-clear/results/dacapo-eclipse/populate.json",
+    "requests_per_mode": {
+      "generic": 40,
+      "specialized": 40
+    },
+    "profile_requests": 360000,
+    "profile_iters": 3,
+    "artifact_bytes": 4342,
+    "artifact_hash": "808148ab619d760db1209af5d50655c62dff7efb475e274e869466a91fa57f1b",
+    "redis_key": "python-profile-specialization:python-profile-specialization:20260513-openfaas-python-eclipse-clear:dacapo-eclipse:artifact:v1",
+    "redis_export_ok": true,
+    "specialized_import_confirmed": true,
+    "generic_no_artifact_confirmed": true,
+    "phase_medians_ms": {
+      "cold": {
+        "generic": 2172.173583,
+        "specialized": 1911.220333
+      },
+      "warmup": {
+        "generic": 2125.474,
+        "specialized": 1860.611146
+      },
+      "hot": {
+        "generic": 2114.290625,
+        "specialized": 1887.055333
+      }
+    },
+    "position_medians_ms": {
+      "generic": {
+        "1": 2172.173583,
+        "2": 2134.377958,
+        "3": 2112.734958,
+        "4": 2114.290625,
+        "5": 2124.789375,
+        "6": 2128.104375,
+        "7": 2106.258792,
+        "8": 2106.866917
+      },
+      "specialized": {
+        "1": 1911.220333,
+        "2": 1861.404542,
+        "3": 1859.81775,
+        "4": 1978.980792,
+        "5": 1855.127042,
+        "6": 1850.927167,
+        "7": 1863.719667,
+        "8": 1898.652667
+      },
+      "wins": 8,
+      "positions": 8
+    }
+  }
+]

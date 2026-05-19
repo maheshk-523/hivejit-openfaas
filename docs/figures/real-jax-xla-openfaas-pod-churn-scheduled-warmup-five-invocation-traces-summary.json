@@ -1,0 +1,136 @@
+{
+  "metric": "http_latency_ms",
+  "panels": {
+    "eclipse": {
+      "baseline": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 1518.949916,
+        "min_latency_ms": 7.654458,
+        "points": 40
+      },
+      "redis-cache": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 571.242417,
+        "min_latency_ms": 6.871042,
+        "points": 40
+      }
+    },
+    "fop": {
+      "baseline": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 1457.160958,
+        "min_latency_ms": 5.5085,
+        "points": 40
+      },
+      "redis-cache": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 598.255625,
+        "min_latency_ms": 5.324375,
+        "points": 40
+      }
+    },
+    "h2": {
+      "baseline": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 1275.143666,
+        "min_latency_ms": 4.859625,
+        "points": 40
+      },
+      "redis-cache": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 566.205833,
+        "min_latency_ms": 5.205833,
+        "points": 40
+      }
+    },
+    "jython": {
+      "baseline": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 1963.153875,
+        "min_latency_ms": 7.555666,
+        "points": 40
+      },
+      "redis-cache": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 822.891584,
+        "min_latency_ms": 7.221083,
+        "points": 40
+      }
+    },
+    "lusearch": {
+      "baseline": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 2264.715541,
+        "min_latency_ms": 9.1795,
+        "points": 40
+      },
+      "redis-cache": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 972.115333,
+        "min_latency_ms": 11.500959,
+        "points": 40
+      }
+    }
+  },
+  "schema": "pod-churn-invocation-traces.v1"
+}

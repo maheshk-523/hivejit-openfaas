@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="556" viewBox="0 0 980 556">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24" y="36" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#202124">JAX/XLA compile-or-load time by runtime signature</text>
+<text x="24" y="60" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#5f6368">Lower is better. Persistent-cache reuse is a fresh Python process reading artifacts from disk.</text>
+<text x="24" y="104" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#202124">attention-small</text>
+<text x="182" y="104" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#3c4043">no-cache</text>
+<rect x="190" y="86" width="244.30" height="28" rx="3" fill="#b9413c"/>
+<text x="442.30" y="104" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#202124">62.22 ms</text>
+<text x="182" y="137" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#3c4043">persistent-cache-populate</text>
+<rect x="190" y="119" width="239.77" height="28" rx="3" fill="#526d94"/>
+<text x="437.77" y="137" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#202124">61.07 ms</text>
+<text x="182" y="170" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#3c4043">persistent-cache-reuse</text>
+<rect x="190" y="152" width="33.40" height="28" rx="3" fill="#2f7d59"/>
+<text x="231.40" y="170" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#202124">8.51 ms</text>
+<text x="24" y="219" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#202124">mlp-small</text>
+<text x="182" y="219" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#3c4043">no-cache</text>
+<rect x="190" y="201" width="660.00" height="28" rx="3" fill="#b9413c"/>
+<text x="858.00" y="219" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#202124">168.09 ms</text>
+<text x="182" y="252" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#3c4043">persistent-cache-populate</text>
+<rect x="190" y="234" width="165.67" height="28" rx="3" fill="#526d94"/>
+<text x="363.67" y="252" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#202124">42.19 ms</text>
+<text x="182" y="285" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#3c4043">persistent-cache-reuse</text>
+<rect x="190" y="267" width="61.84" height="28" rx="3" fill="#2f7d59"/>
+<text x="259.84" y="285" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#202124">15.75 ms</text>
+<text x="24" y="334" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#202124">mlp-wide</text>
+<text x="182" y="334" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#3c4043">no-cache</text>
+<rect x="190" y="316" width="113.80" height="28" rx="3" fill="#b9413c"/>
+<text x="311.80" y="334" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#202124">28.98 ms</text>
+<text x="182" y="367" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#3c4043">persistent-cache-populate</text>
+<rect x="190" y="349" width="115.92" height="28" rx="3" fill="#526d94"/>
+<text x="313.92" y="367" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#202124">29.52 ms</text>
+<text x="182" y="400" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#3c4043">persistent-cache-reuse</text>
+<rect x="190" y="382" width="28.72" height="28" rx="3" fill="#2f7d59"/>
+<text x="226.72" y="400" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#202124">7.31 ms</text>
+</svg>

@@ -34,14 +34,14 @@ only the full-AOT Docker build path.
 
 Each run writes CSV, JSON summaries, and SVGs under `.runs/<run-id>/results`.
 
-For real OpenWhisk-style raw traces, run the churn benchmark. This invokes
-OpenFaaS for every plotted request and restarts the Kubernetes pod at the
-same irregular request indices as the reference figure:
+For real pod-churn raw traces, run the churn benchmark. This invokes OpenFaaS
+for every plotted request and restarts the Kubernetes pod at irregular request
+indices:
 
 ```bash
 SCENARIOS="serve-hot serve-mixed" \
 bash prototypes/dotnet-openfaas-readytorun/run_real_openwhisk_trace.sh
 ```
 
-The generated `*-real-il-vs-aot-openwhisk-raw.png` files are the real-data
+The generated `*-il-vs-aot-openfaas-pod-churn-raw.png` files are the real-data
 graphs to use for results.

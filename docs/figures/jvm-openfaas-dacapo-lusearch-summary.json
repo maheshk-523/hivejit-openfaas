@@ -1,0 +1,30 @@
+[
+  {
+    "label": "lusearch-default",
+    "url": "http://127.0.0.1:18080/function/hivejit-fn?benchmark=lusearch&size=default&iterations=1&threads=2",
+    "requests": 5,
+    "warmup": 1,
+    "ok": 5,
+    "mean_ms": 10143.2094,
+    "min_ms": 9758.384,
+    "p50_ms": 10112.567,
+    "p90_ms": 10557.1752,
+    "p95_ms": 10664.639599999999,
+    "p99_ms": 10750.61112,
+    "max_ms": 10772.104
+  },
+  {
+    "label": "lusearch-small",
+    "url": "http://127.0.0.1:18080/function/hivejit-fn?benchmark=lusearch&size=small&iterations=1&threads=2",
+    "requests": 10,
+    "warmup": 2,
+    "ok": 10,
+    "mean_ms": 2085.7161,
+    "min_ms": 2045.714,
+    "p50_ms": 2089.9065,
+    "p90_ms": 2101.5538,
+    "p95_ms": 2113.2619,
+    "p99_ms": 2122.6283799999997,
+    "max_ms": 2124.97
+  }
+]

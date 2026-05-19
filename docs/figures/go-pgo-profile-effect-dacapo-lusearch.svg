@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="920" viewBox="0 0 1060 920">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="530.0" y="38" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="700" fill="#111827">Go AOT PGO profile cache: dacapo-lusearch</text>
+<text x="92" y="68" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#111827">Profile-optimized warm median: 68.9 -&gt; 63.0 ms (8.6% lower).</text>
+<text x="92" y="88" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#111827">PGO, 5 cached profiles is below baseline on 15/15 paired warm invocations; invocation 1 is kept separate so startup noise does not hide the optimized steady path.</text>
+<text x="92" y="118" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#111827">Full invocation sequence</text>
+<line x1="92" y1="419.0" x2="992" y2="419.0" stroke="#d1d5db"/>
+<text x="82" y="423.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">0</text>
+<line x1="92" y1="362.0" x2="992" y2="362.0" stroke="#d1d5db"/>
+<text x="82" y="366.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">60</text>
+<line x1="92" y1="305.0" x2="992" y2="305.0" stroke="#d1d5db"/>
+<text x="82" y="309.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">120</text>
+<line x1="92" y1="248.0" x2="992" y2="248.0" stroke="#d1d5db"/>
+<text x="82" y="252.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">180</text>
+<line x1="92" y1="191.0" x2="992" y2="191.0" stroke="#d1d5db"/>
+<text x="82" y="195.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">240</text>
+<line x1="92" y1="134.0" x2="992" y2="134.0" stroke="#d1d5db"/>
+<text x="82" y="138.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">300</text>
+<line x1="92.0" y1="134" x2="92.0" y2="419" stroke="#e5e7eb"/>
+<text x="92.0" y="441" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">1</text>
+<line x1="152.0" y1="134" x2="152.0" y2="419" stroke="#e5e7eb"/>
+<text x="152.0" y="441" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">2</text>
+<line x1="272.0" y1="134" x2="272.0" y2="419" stroke="#e5e7eb"/>
+<text x="272.0" y="441" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">4</text>
+<line x1="392.0" y1="134" x2="392.0" y2="419" stroke="#e5e7eb"/>
+<text x="392.0" y="441" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">6</text>
+<line x1="512.0" y1="134" x2="512.0" y2="419" stroke="#e5e7eb"/>
+<text x="512.0" y="441" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">8</text>
+<line x1="632.0" y1="134" x2="632.0" y2="419" stroke="#e5e7eb"/>
+<text x="632.0" y="441" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">10</text>
+<line x1="752.0" y1="134" x2="752.0" y2="419" stroke="#e5e7eb"/>
+<text x="752.0" y="441" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">12</text>
+<line x1="872.0" y1="134" x2="872.0" y2="419" stroke="#e5e7eb"/>
+<text x="872.0" y="441" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">14</text>
+<line x1="992.0" y1="134" x2="992.0" y2="419" stroke="#e5e7eb"/>
+<text x="992.0" y="441" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">16</text>
+<line x1="92" y1="419" x2="992" y2="419" stroke="#111827"/>
+<line x1="92" y1="134" x2="92" y2="419" stroke="#111827"/>
+<line x1="92.0" y1="134" x2="92.0" y2="419" stroke="#6b7280" stroke-dasharray="5 5"/>
+<text x="102.0" y="152.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#374151">startup / first invocation</text>
+<polyline points="92.0,313.9 152.0,356.1 212.0,356.4 272.0,356.4 332.0,356.3 392.0,352.0 452.0,346.5 512.0,348.5 572.0,348.4 632.0,352.5 692.0,354.5 752.0,354.1 812.0,353.4 872.0,353.9 932.0,353.5 992.0,352.4" fill="none" stroke="#334155" stroke-width="2.6"/>
+<circle cx="92.0" cy="313.9" r="4.0" fill="#334155"/>
+<circle cx="152.0" cy="356.1" r="4.0" fill="#334155"/>
+<circle cx="212.0" cy="356.4" r="4.0" fill="#334155"/>
+<circle cx="272.0" cy="356.4" r="4.0" fill="#334155"/>
+<circle cx="332.0" cy="356.3" r="4.0" fill="#334155"/>
+<circle cx="392.0" cy="352.0" r="4.0" fill="#334155"/>
+<circle cx="452.0" cy="346.5" r="4.0" fill="#334155"/>
+<circle cx="512.0" cy="348.5" r="4.0" fill="#334155"/>
+<circle cx="572.0" cy="348.4" r="4.0" fill="#334155"/>
+<circle cx="632.0" cy="352.5" r="4.0" fill="#334155"/>
+<circle cx="692.0" cy="354.5" r="4.0" fill="#334155"/>
+<circle cx="752.0" cy="354.1" r="4.0" fill="#334155"/>
+<circle cx="812.0" cy="353.4" r="4.0" fill="#334155"/>
+<circle cx="872.0" cy="353.9" r="4.0" fill="#334155"/>
+<circle cx="932.0" cy="353.5" r="4.0" fill="#334155"/>
+<circle cx="992.0" cy="352.4" r="4.0" fill="#334155"/>
+<polyline points="92.0,212.9 152.0,359.2 212.0,358.9 272.0,359.8 332.0,359.2 392.0,358.9 452.0,359.1 512.0,359.3 572.0,358.8 632.0,359.6 692.0,359.2 752.0,359.0 812.0,359.3 872.0,359.0 932.0,359.1 992.0,359.0" fill="none" stroke="#2563eb" stroke-width="2.6"/>
+<circle cx="92.0" cy="212.9" r="4.0" fill="#2563eb"/>
+<circle cx="152.0" cy="359.2" r="4.0" fill="#2563eb"/>
+<circle cx="212.0" cy="358.9" r="4.0" fill="#2563eb"/>
+<circle cx="272.0" cy="359.8" r="4.0" fill="#2563eb"/>
+<circle cx="332.0" cy="359.2" r="4.0" fill="#2563eb"/>
+<circle cx="392.0" cy="358.9" r="4.0" fill="#2563eb"/>
+<circle cx="452.0" cy="359.1" r="4.0" fill="#2563eb"/>
+<circle cx="512.0" cy="359.3" r="4.0" fill="#2563eb"/>
+<circle cx="572.0" cy="358.8" r="4.0" fill="#2563eb"/>
+<circle cx="632.0" cy="359.6" r="4.0" fill="#2563eb"/>
+<circle cx="692.0" cy="359.2" r="4.0" fill="#2563eb"/>
+<circle cx="752.0" cy="359.0" r="4.0" fill="#2563eb"/>
+<circle cx="812.0" cy="359.3" r="4.0" fill="#2563eb"/>
+<circle cx="872.0" cy="359.0" r="4.0" fill="#2563eb"/>
+<circle cx="932.0" cy="359.1" r="4.0" fill="#2563eb"/>
+<circle cx="992.0" cy="359.0" r="4.0" fill="#2563eb"/>
+<text x="92" y="532" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#111827">Optimized steady path zoom (invocations 2+)</text>
+<line x1="92" y1="833.0" x2="992" y2="833.0" stroke="#d1d5db"/>
+<text x="82" y="837.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">59.2</text>
+<line x1="92" y1="776.0" x2="992" y2="776.0" stroke="#d1d5db"/>
+<text x="82" y="780.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">63.3</text>
+<line x1="92" y1="719.0" x2="992" y2="719.0" stroke="#d1d5db"/>
+<text x="82" y="723.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">67.3</text>
+<line x1="92" y1="662.0" x2="992" y2="662.0" stroke="#d1d5db"/>
+<text x="82" y="666.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">71.3</text>
+<line x1="92" y1="605.0" x2="992" y2="605.0" stroke="#d1d5db"/>
+<text x="82" y="609.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">75.3</text>
+<line x1="92" y1="548.0" x2="992" y2="548.0" stroke="#d1d5db"/>
+<text x="82" y="552.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">79.4</text>
+<line x1="92.0" y1="548" x2="92.0" y2="833" stroke="#e5e7eb"/>
+<text x="92.0" y="855" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">2</text>
+<line x1="220.6" y1="548" x2="220.6" y2="833" stroke="#e5e7eb"/>
+<text x="220.6" y="855" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">4</text>
+<line x1="349.1" y1="548" x2="349.1" y2="833" stroke="#e5e7eb"/>
+<text x="349.1" y="855" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">6</text>
+<line x1="477.7" y1="548" x2="477.7" y2="833" stroke="#e5e7eb"/>
+<text x="477.7" y="855" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">8</text>
+<line x1="606.3" y1="548" x2="606.3" y2="833" stroke="#e5e7eb"/>
+<text x="606.3" y="855" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">10</text>
+<line x1="734.9" y1="548" x2="734.9" y2="833" stroke="#e5e7eb"/>
+<text x="734.9" y="855" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">12</text>
+<line x1="863.4" y1="548" x2="863.4" y2="833" stroke="#e5e7eb"/>
+<text x="863.4" y="855" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">14</text>
+<line x1="992.0" y1="548" x2="992.0" y2="833" stroke="#e5e7eb"/>
+<text x="992.0" y="855" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#111827">16</text>
+<line x1="92" y1="833" x2="992" y2="833" stroke="#111827"/>
+<line x1="92" y1="548" x2="92" y2="833" stroke="#111827"/>
+<polyline points="92.0,734.3 156.3,738.0 220.6,738.8 284.9,737.9 349.1,673.0 413.4,591.5 477.7,620.8 542.0,619.6 606.3,680.6 670.6,709.8 734.9,705.1 799.1,694.4 863.4,701.3 927.7,696.0 992.0,678.7" fill="none" stroke="#334155" stroke-width="2.6"/>
+<circle cx="92.0" cy="734.3" r="4.0" fill="#334155"/>
+<circle cx="156.3" cy="738.0" r="4.0" fill="#334155"/>
+<circle cx="220.6" cy="738.8" r="4.0" fill="#334155"/>
+<circle cx="284.9" cy="737.9" r="4.0" fill="#334155"/>
+<circle cx="349.1" cy="673.0" r="4.0" fill="#334155"/>
+<circle cx="413.4" cy="591.5" r="4.0" fill="#334155"/>
+<circle cx="477.7" cy="620.8" r="4.0" fill="#334155"/>
+<circle cx="542.0" cy="619.6" r="4.0" fill="#334155"/>
+<circle cx="606.3" cy="680.6" r="4.0" fill="#334155"/>
+<circle cx="670.6" cy="709.8" r="4.0" fill="#334155"/>
+<circle cx="734.9" cy="705.1" r="4.0" fill="#334155"/>
+<circle cx="799.1" cy="694.4" r="4.0" fill="#334155"/>
+<circle cx="863.4" cy="701.3" r="4.0" fill="#334155"/>
+<circle cx="927.7" cy="696.0" r="4.0" fill="#334155"/>
+<circle cx="992.0" cy="678.7" r="4.0" fill="#334155"/>
+<polyline points="92.0,781.0 156.3,775.9 220.6,789.5 284.9,779.7 349.1,775.3 413.4,779.4 477.7,782.5 542.0,774.4 606.3,786.8 670.6,779.7 734.9,777.6 799.1,782.0 863.4,778.0 927.7,778.2 992.0,776.9" fill="none" stroke="#2563eb" stroke-width="2.6"/>
+<circle cx="92.0" cy="781.0" r="4.0" fill="#2563eb"/>
+<circle cx="156.3" cy="775.9" r="4.0" fill="#2563eb"/>
+<circle cx="220.6" cy="789.5" r="4.0" fill="#2563eb"/>
+<circle cx="284.9" cy="779.7" r="4.0" fill="#2563eb"/>
+<circle cx="349.1" cy="775.3" r="4.0" fill="#2563eb"/>
+<circle cx="413.4" cy="779.4" r="4.0" fill="#2563eb"/>
+<circle cx="477.7" cy="782.5" r="4.0" fill="#2563eb"/>
+<circle cx="542.0" cy="774.4" r="4.0" fill="#2563eb"/>
+<circle cx="606.3" cy="786.8" r="4.0" fill="#2563eb"/>
+<circle cx="670.6" cy="779.7" r="4.0" fill="#2563eb"/>
+<circle cx="734.9" cy="777.6" r="4.0" fill="#2563eb"/>
+<circle cx="799.1" cy="782.0" r="4.0" fill="#2563eb"/>
+<circle cx="863.4" cy="778.0" r="4.0" fill="#2563eb"/>
+<circle cx="927.7" cy="778.2" r="4.0" fill="#2563eb"/>
+<circle cx="992.0" cy="776.9" r="4.0" fill="#2563eb"/>
+<line x1="92" y1="696.0" x2="992" y2="696.0" stroke="#334155" stroke-width="1.5" stroke-dasharray="6 6" opacity="0.75"/>
+<text x="984" y="688.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#334155">No PGO baseline median 68.9 ms</text>
+<line x1="92" y1="779.4" x2="992" y2="779.4" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="6 6" opacity="0.75"/>
+<text x="984" y="769.4" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#2563eb">PGO, 5 cached profiles median 63.0 ms</text>
+<line x1="758" y1="68" x2="790" y2="68" stroke="#334155" stroke-width="3"/>
+<circle cx="774" cy="68" r="4" fill="#334155"/>
+<text x="800" y="72" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#111827">No PGO baseline</text>
+<line x1="758" y1="92" x2="790" y2="92" stroke="#2563eb" stroke-width="3"/>
+<circle cx="774" cy="92" r="4" fill="#2563eb"/>
+<text x="800" y="96" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#111827">PGO, 5 cached profiles</text>
+<text x="542.0" y="896" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#111827">Invocation #</text>
+<text x="28" y="460.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#111827" transform="rotate(-90 28 460.0)">Latency (ms)</text>
+</svg>

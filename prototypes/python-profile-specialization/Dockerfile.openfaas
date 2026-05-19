@@ -1,0 +1,25 @@
+ARG BASE_IMAGE=jax-xla-redis:20260513-warmup
+
+FROM ${BASE_IMAGE}
+
+ARG BUILD_LABEL=python-profile-specialization
+
+WORKDIR /app
+COPY handler.py profile_codegen.py openfaas_redis.py openfaas_artifact.py openfaas_handler.py entrypoint-openfaas.sh /app/
+RUN chmod +x /app/entrypoint-openfaas.sh
+
+ENV mode="http" \
+    upstream_url="http://127.0.0.1:8082" \
+    http_port="8080" \
+    fprocess="python /app/openfaas_handler.py" \
+    HANDLER_ADDR=":8082" \
+    BUILD_LABEL="${BUILD_LABEL}" \
+    PY_SPEC_MODE="baseline" \
+    PY_SPEC_ARTIFACT_PATH="/profiles/specialized.py" \
+    PY_SPEC_IMPORT_META="/profiles/python-specialization-import.json" \
+    REQUESTS="12000" \
+    PROFILE_REQUESTS="36000" \
+    PROFILE_ITERS="3"
+
+HEALTHCHECK --interval=5s CMD [ -e /tmp/.lock ] || exit 1
+CMD ["/app/entrypoint-openfaas.sh"]

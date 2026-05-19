@@ -1,0 +1,105 @@
+{
+  "benchmarks": {
+    "dacapo-eclipse": {
+      "0": {
+        "elapsed_ms": 205.776,
+        "improvement_pct": 0.0,
+        "n": 1,
+        "per_invocation_ns": 93.53
+      },
+      "10": {
+        "elapsed_ms": 208.624,
+        "improvement_pct": -1.384029235673735,
+        "n": 1,
+        "per_invocation_ns": 94.83
+      },
+      "5": {
+        "elapsed_ms": 221.466,
+        "improvement_pct": -7.624795894564961,
+        "n": 1,
+        "per_invocation_ns": 100.67
+      }
+    },
+    "dacapo-fop": {
+      "0": {
+        "elapsed_ms": 406.204,
+        "improvement_pct": 0.0,
+        "n": 1,
+        "per_invocation_ns": 184.64
+      },
+      "10": {
+        "elapsed_ms": 438.183,
+        "improvement_pct": -7.872645271833853,
+        "n": 1,
+        "per_invocation_ns": 199.17
+      },
+      "5": {
+        "elapsed_ms": 405.836,
+        "improvement_pct": 0.09059487351183025,
+        "n": 1,
+        "per_invocation_ns": 184.47
+      }
+    },
+    "dacapo-h2": {
+      "0": {
+        "elapsed_ms": 260.796,
+        "improvement_pct": 0.0,
+        "n": 1,
+        "per_invocation_ns": 118.54
+      },
+      "10": {
+        "elapsed_ms": 208.29,
+        "improvement_pct": 20.132977499654903,
+        "n": 1,
+        "per_invocation_ns": 94.68
+      },
+      "5": {
+        "elapsed_ms": 208.235,
+        "improvement_pct": 20.154066780165333,
+        "n": 1,
+        "per_invocation_ns": 94.65
+      }
+    },
+    "dacapo-jython": {
+      "0": {
+        "elapsed_ms": 279.016,
+        "improvement_pct": 0.0,
+        "n": 1,
+        "per_invocation_ns": 126.83
+      },
+      "10": {
+        "elapsed_ms": 282.834,
+        "improvement_pct": -1.3683803079393235,
+        "n": 1,
+        "per_invocation_ns": 128.56
+      },
+      "5": {
+        "elapsed_ms": 302.505,
+        "improvement_pct": -8.418513633626738,
+        "n": 1,
+        "per_invocation_ns": 137.5
+      }
+    },
+    "dacapo-lusearch": {
+      "0": {
+        "elapsed_ms": 281.256,
+        "improvement_pct": 0.0,
+        "n": 1,
+        "per_invocation_ns": 127.84
+      },
+      "10": {
+        "elapsed_ms": 267.273,
+        "improvement_pct": 4.9716272719515135,
+        "n": 1,
+        "per_invocation_ns": 121.49
+      },
+      "5": {
+        "elapsed_ms": 237.038,
+        "improvement_pct": 15.721620160992108,
+        "n": 1,
+        "per_invocation_ns": 107.74
+      }
+    }
+  },
+  "schema": "llvm-aot-pgo-profile-budget-linegraph.v1"
+}

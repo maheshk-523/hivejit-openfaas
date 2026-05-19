@@ -61,6 +61,15 @@ The smoke run is intentionally too small for performance conclusions. Use larger
 
 ![Go OpenFaaS Redis PGO p50 p95](figures/go-openfaas-redis-pgo-p50-p95.svg)
 
+The clearest serverless-backed profile-optimization line graph is the split
+view below. Profiles are captured from warm OpenFaaS baseline traffic, stored in
+Redis, merged, imported into a rebuilt Go binary with `go build -pgo`, and then
+redeployed through OpenFaaS. In this run the 10-profile PGO build is below the
+baseline on 56/79 paired measured invocations after invocation 1, with a 1.1%
+lower warm median and a much larger p95 improvement in the summary table above.
+
+![Go OpenFaaS Redis PGO profile effect](figures/go-openfaas-redis-pgo-profile-effect-router.svg)
+
 ## Artifacts
 
 - Raw benchmark outputs: `prototypes/go-openfaas-redis-pgo/.runs/20260511-171511/results`

@@ -1,0 +1,195 @@
+{
+  "panels": {
+    "eclipse": {
+      "nopgo": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 118.577458,
+        "min_latency_ms": 61.513917,
+        "points": 40
+      },
+      "pgo10": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 112.676959,
+        "min_latency_ms": 61.230625,
+        "points": 40
+      },
+      "pgo5": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 283.703375,
+        "min_latency_ms": 61.178583,
+        "points": 40
+      }
+    },
+    "fop": {
+      "nopgo": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 198.261125,
+        "min_latency_ms": 86.542459,
+        "points": 40
+      },
+      "pgo10": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 133.780416,
+        "min_latency_ms": 87.092417,
+        "points": 40
+      },
+      "pgo5": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 384.240208,
+        "min_latency_ms": 87.336459,
+        "points": 40
+      }
+    },
+    "h2": {
+      "nopgo": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 120.990041,
+        "min_latency_ms": 46.847791,
+        "points": 40
+      },
+      "pgo10": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 92.1115,
+        "min_latency_ms": 45.33075,
+        "points": 40
+      },
+      "pgo5": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 127.493084,
+        "min_latency_ms": 45.269834,
+        "points": 40
+      }
+    },
+    "jython": {
+      "nopgo": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 301.795583,
+        "min_latency_ms": 162.191083,
+        "points": 40
+      },
+      "pgo10": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 214.376666,
+        "min_latency_ms": 162.757,
+        "points": 40
+      },
+      "pgo5": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 218.262792,
+        "min_latency_ms": 162.635667,
+        "points": 40
+      }
+    },
+    "lusearch": {
+      "nopgo": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 334.36875,
+        "min_latency_ms": 54.440666,
+        "points": 40
+      },
+      "pgo10": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 118.978459,
+        "min_latency_ms": 54.230375,
+        "points": 40
+      },
+      "pgo5": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 98.67325,
+        "min_latency_ms": 53.89475,
+        "points": 40
+      }
+    }
+  },
+  "schema": "pod-churn-invocation-traces.v1"
+}

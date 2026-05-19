@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="640" viewBox="0 0 1120 640" role="img" aria-label="Python profile specialization cold invocation latency">
+<title>Python profile specialization cold invocation latency</title>
+<rect width="100%" height="100%" fill="#ffffff" />
+<line x1="92.0" y1="552.0" x2="1074.0" y2="552.0" stroke="#e2e8f0" stroke-width="1" />
+<text x="80.0" y="556.0" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#64748b">0</text>
+<line x1="92.0" y1="456.8" x2="1074.0" y2="456.8" stroke="#e2e8f0" stroke-width="1" />
+<text x="80.0" y="460.8" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#64748b">100</text>
+<line x1="92.0" y1="361.6" x2="1074.0" y2="361.6" stroke="#e2e8f0" stroke-width="1" />
+<text x="80.0" y="365.6" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#64748b">200</text>
+<line x1="92.0" y1="266.4" x2="1074.0" y2="266.4" stroke="#e2e8f0" stroke-width="1" />
+<text x="80.0" y="270.4" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#64748b">300</text>
+<line x1="92.0" y1="171.2" x2="1074.0" y2="171.2" stroke="#e2e8f0" stroke-width="1" />
+<text x="80.0" y="175.2" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#64748b">400</text>
+<line x1="92.0" y1="76.0" x2="1074.0" y2="76.0" stroke="#e2e8f0" stroke-width="1" />
+<text x="80.0" y="80.0" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#64748b">500</text>
+<line x1="92.0" y1="76.0" x2="92.0" y2="552.0" stroke="#64748b" stroke-width="1.2" />
+<line x1="92.0" y1="552.0" x2="1074.0" y2="552.0" stroke="#64748b" stroke-width="1.2" />
+<text x="24.0" y="314.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" fill="#334155" font-weight="600" transform="rotate(-90 24.0 314.0)">Wall latency (ms)</text>
+<text x="560.0" y="32.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="22" fill="#0f172a" font-weight="700">Python Profile Specialization: dacapo-h2</text>
+<text x="560.0" y="56.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" fill="#475569">Each point is a fresh Python process importing either generic code or the generated profile artifact.</text>
+<polyline points="92.0,252.2 157.5,253.0 222.9,255.8 288.4,253.6 353.9,251.5 419.3,257.1 484.8,251.5 550.3,253.0 615.7,252.6 681.2,253.0 746.7,252.7 812.1,248.8 877.6,248.0 943.1,248.1 1008.5,252.3 1074.0,253.4" fill="none" stroke="#334155" stroke-width="2.5" />
+<circle cx="92.0" cy="252.2" r="3.0" fill="#334155" />
+<circle cx="157.5" cy="253.0" r="3.0" fill="#334155" />
+<circle cx="222.9" cy="255.8" r="3.0" fill="#334155" />
+<circle cx="288.4" cy="253.6" r="3.0" fill="#334155" />
+<circle cx="353.9" cy="251.5" r="3.0" fill="#334155" />
+<circle cx="419.3" cy="257.1" r="3.0" fill="#334155" />
+<circle cx="484.8" cy="251.5" r="3.0" fill="#334155" />
+<circle cx="550.3" cy="253.0" r="3.0" fill="#334155" />
+<circle cx="615.7" cy="252.6" r="3.0" fill="#334155" />
+<circle cx="681.2" cy="253.0" r="3.0" fill="#334155" />
+<circle cx="746.7" cy="252.7" r="3.0" fill="#334155" />
+<circle cx="812.1" cy="248.8" r="3.0" fill="#334155" />
+<circle cx="877.6" cy="248.0" r="3.0" fill="#334155" />
+<circle cx="943.1" cy="248.1" r="3.0" fill="#334155" />
+<circle cx="1008.5" cy="252.3" r="3.0" fill="#334155" />
+<circle cx="1074.0" cy="253.4" r="3.0" fill="#334155" />
+<polyline points="92.0,300.9 157.5,303.1 222.9,295.8 288.4,293.9 353.9,300.3 419.3,294.8 484.8,292.3 550.3,298.0 615.7,299.1 681.2,296.0 746.7,297.8 812.1,288.1 877.6,287.9 943.1,293.2 1008.5,300.1 1074.0,286.0" fill="none" stroke="#0f766e" stroke-width="2.5" />
+<circle cx="92.0" cy="300.9" r="3.0" fill="#0f766e" />
+<circle cx="157.5" cy="303.1" r="3.0" fill="#0f766e" />
+<circle cx="222.9" cy="295.8" r="3.0" fill="#0f766e" />
+<circle cx="288.4" cy="293.9" r="3.0" fill="#0f766e" />
+<circle cx="353.9" cy="300.3" r="3.0" fill="#0f766e" />
+<circle cx="419.3" cy="294.8" r="3.0" fill="#0f766e" />
+<circle cx="484.8" cy="292.3" r="3.0" fill="#0f766e" />
+<circle cx="550.3" cy="298.0" r="3.0" fill="#0f766e" />
+<circle cx="615.7" cy="299.1" r="3.0" fill="#0f766e" />
+<circle cx="681.2" cy="296.0" r="3.0" fill="#0f766e" />
+<circle cx="746.7" cy="297.8" r="3.0" fill="#0f766e" />
+<circle cx="812.1" cy="288.1" r="3.0" fill="#0f766e" />
+<circle cx="877.6" cy="287.9" r="3.0" fill="#0f766e" />
+<circle cx="943.1" cy="293.2" r="3.0" fill="#0f766e" />
+<circle cx="1008.5" cy="300.1" r="3.0" fill="#0f766e" />
+<circle cx="1074.0" cy="286.0" r="3.0" fill="#0f766e" />
+<line x1="92.0" y1="552.0" x2="92.0" y2="558.0" stroke="#64748b" stroke-width="1" />
+<text x="92.0" y="576.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#475569">1</text>
+<line x1="353.9" y1="552.0" x2="353.9" y2="558.0" stroke="#64748b" stroke-width="1" />
+<text x="353.9" y="576.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#475569">5</text>
+<line x1="681.2" y1="552.0" x2="681.2" y2="558.0" stroke="#64748b" stroke-width="1" />
+<text x="681.2" y="576.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#475569">10</text>
+<line x1="1008.5" y1="552.0" x2="1008.5" y2="558.0" stroke="#64748b" stroke-width="1" />
+<text x="1008.5" y="576.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#475569">15</text>
+<line x1="1074.0" y1="552.0" x2="1074.0" y2="558.0" stroke="#64748b" stroke-width="1" />
+<text x="1074.0" y="576.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#475569">16</text>
+<text x="583.0" y="612.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" fill="#334155" font-weight="600">Cold invocation number</text>
+<line x1="822.0" y1="82.0" x2="852.0" y2="82.0" stroke="#334155" stroke-width="3" />
+<circle cx="837.0" cy="82.0" r="4.0" fill="#334155" />
+<text x="864.0" y="86.0" text-anchor="start" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" fill="#334155" font-weight="600">Generic</text>
+<line x1="822.0" y1="106.0" x2="852.0" y2="106.0" stroke="#0f766e" stroke-width="3" />
+<circle cx="837.0" cy="106.0" r="4.0" fill="#0f766e" />
+<text x="864.0" y="110.0" text-anchor="start" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" fill="#334155" font-weight="600">Specialized, 3 profiles</text>
+</svg>

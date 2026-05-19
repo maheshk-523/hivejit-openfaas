@@ -65,11 +65,27 @@ the same abstraction maps to different artifact types.
 - Added a Python/domain-specific profile-specialization cache prototype:
   - [prototypes/python-profile-specialization](prototypes/python-profile-specialization)
   - [docs/python-profile-specialization-results.md](docs/python-profile-specialization-results.md)
+- Added a JAX/XLA runtime-signature specialization and persistent compilation
+  cache prototype:
+  - [prototypes/jax-xla-runtime-specialization](prototypes/jax-xla-runtime-specialization)
+  - [docs/jax-xla-runtime-specialization-results.md](docs/jax-xla-runtime-specialization-results.md)
+- Added an OpenFaaS/Redis version of the JAX/XLA persistent-cache experiment for
+  baseline-vs-cache cold-start measurements:
+  - [prototypes/jax-openfaas-redis-xla](prototypes/jax-openfaas-redis-xla)
+  - [docs/jax-openfaas-redis-xla-results.md](docs/jax-openfaas-redis-xla-results.md)
 - Added the research map and benchmark plan in
   [docs/research-map.md](docs/research-map.md).
 - Added implementation notes for cache keys, heap traversal instrumentation,
   function creation overhead, and benchmark selection in
   [docs/serverless-profile-cache-design.md](docs/serverless-profile-cache-design.md).
+- Added a JVM/DaCapo OpenFaaS churn harness that runs real `h2`, `lusearch`,
+  and `eclipse` in one long-lived JVM process and plots pod-restart warmup
+  resets:
+  - [prototypes/jvm-openfaas-dacapo](prototypes/jvm-openfaas-dacapo)
+- Added a Julia/OpenFaaS/Redis precompile-cache experiment that demonstrates
+  the same warmup graph shape as the JVM but using Julia's LLVM JIT and
+  `--trace-compile` precompile artifacts stored in Redis:
+  - [prototypes/julia-openfaas-redis-precompile](prototypes/julia-openfaas-redis-precompile)
 
 ## Quick Start
 
@@ -132,6 +148,32 @@ Run the Python profile-specialization cache across two DaCapo-shaped workloads:
 bash prototypes/python-profile-specialization/run_profile_cache.sh
 ```
 
+Run the JAX/XLA runtime-signature specialization prototype:
+
+```bash
+bash prototypes/jax-xla-runtime-specialization/run_jax_xla.sh
+```
+
+Run the JAX/XLA OpenFaaS Redis cold-start experiment when OpenFaaS is installed:
+
+```bash
+bash scripts/07_run_jax_openfaas_redis_xla.sh
+```
+
+Run real DaCapo `h2`, `lusearch`, and `eclipse` on OpenFaaS with scripted pod
+churn:
+
+```bash
+bash scripts/08_run_jvm_openfaas_dacapo_churn.sh
+```
+
+Run the Julia precompile-cache experiment (DaCapo-analog workloads, same warmup
+graph style, different language/compiler):
+
+```bash
+bash scripts/09_run_julia_openfaas_redis_precompile.sh
+```
+
 Run the C#/.NET ReadyToRun prototype when the .NET SDK is installed:
 
 ```bash
@@ -145,6 +187,9 @@ bash prototypes/dotnet-readytorun-pgo/run_readytorun.sh
 | JVM / HiveJIT | Execution -> MethodData export -> MethodData import -> eager JIT | Main research system; avoids whole heap traversal. |
 | Go PGO | Execution -> pprof export -> `go build -pgo` -> execution | Clean AOT version of the loop; implemented as a prototype. |
 | Python profile specialization | Execution -> route/query profile export -> generated specialization module -> execution | Domain-specific specialization path; latest run improves cold-process p50 on lusearch and h2. |
+| JAX/XLA | Execution -> tensor signature profile -> XLA persistent compilation cache -> execution | ML/tensor compiler path; runtime shapes, dtypes, and static args drive specialized XLA executables. |
+| JAX/XLA on OpenFaaS + Redis | OpenFaaS pod -> Redis cache artifact import -> JAX persistent compilation cache -> first request | Serverless version of the JAX path for measuring baseline versus Redis-backed cold starts. |
+| Julia LLVM JIT | Execution -> `--trace-compile` precompile.jl export -> Redis import -> `include(precompile.jl)` at startup -> execution | Same warmup graph as JVM but for Julia's LLVM JIT; DaCapo-analog workloads (lusearch/h2/eclipse) in pure Julia. |
 | .NET PGO + ReadyToRun | Execution -> trace/MIBC -> ReadyToRun publish -> execution | Managed runtime comparison with JIT and AOT pieces; implemented as SDK/static-PGO scripts. |
 | Node/V8 | Execution -> V8 code cache export -> cachedData import -> execution | Runnable local prototype; useful serverless cold-start baseline. |
 | LLVM/Clang | Execution -> `.profraw` -> `.profdata` -> `-fprofile-use` -> execution | Strict AOT profile export/import loop; runnable local prototype. |
@@ -169,3 +214,6 @@ compilation events, deoptimization events, and artifact import/export overhead.
 - AWS Lambda SnapStart: https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html
 - VM warmup paper: https://doi.org/10.1145/3133876
 - DaCapo benchmarks: https://www.dacapobench.org/
+- JAX tracing: https://docs.jax.dev/en/latest/tracing.html
+- JAX persistent compilation cache: https://docs.jax.dev/en/latest/persistent_compilation_cache.html
+- XLA overview: https://openxla.org/xla

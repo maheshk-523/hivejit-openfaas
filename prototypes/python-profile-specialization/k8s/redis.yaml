@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: profile-cache-redis
+  labels:
+    app: profile-cache-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: profile-cache-redis
+  template:
+    metadata:
+      labels:
+        app: profile-cache-redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:7-alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: redis
+              containerPort: 6379
+          args: ["--save", ""]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: profile-cache-redis
+  labels:
+    app: profile-cache-redis
+spec:
+  selector:
+    app: profile-cache-redis
+  ports:
+    - name: redis
+      port: 6379
+      targetPort: redis

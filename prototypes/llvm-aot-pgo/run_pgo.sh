@@ -2,18 +2,42 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-BUILD="$ROOT/build"
+RUN_ID="${RUN_ID:-$(date +%Y%m%d-%H%M%S)}"
+BUILD="${BUILD:-$ROOT/build/$RUN_ID}"
 SRC="$ROOT/handler.c"
 CLANG=(xcrun clang)
 PROFDATA=(xcrun llvm-profdata)
+
+BENCHMARKS="${BENCHMARKS:-dacapo-lusearch dacapo-h2 dacapo-eclipse dacapo-jython dacapo-fop}"
+PROFILE_ITERS="${PROFILE_ITERS:-5 10}"
+TRAIN_ITERATIONS="${TRAIN_ITERATIONS:-1200000}"
+MEASURE_ITERATIONS="${MEASURE_ITERATIONS:-2200000}"
+FIGURE_DIR="${FIGURE_DIR:-$ROOT/../../docs/figures}"
+PLOT_RESULTS="${PLOT_RESULTS:-1}"
 
 mkdir -p "$BUILD"
 
 BASE="$BUILD/handler-base"
 INSTR="$BUILD/handler-instrumented"
-PGO="$BUILD/handler-pgo"
-RAW="$BUILD/train.profraw"
-DATA="$BUILD/train.profdata"
+PROFILE_ROOT="$BUILD/profiles"
+RESULT_ROOT="$BUILD/results"
+
+mkdir -p "$PROFILE_ROOT" "$RESULT_ROOT"
+
+slugify() {
+  printf "%s" "$1" | tr '[:upper:]' '[:lower:]' | tr -c 'a-z0-9._-' '-'
+}
+
+max_profile_iter() {
+  local max=0
+  local count
+  for count in $PROFILE_ITERS; do
+    if (( count > max )); then
+      max="$count"
+    fi
+  done
+  echo "$max"
+}
 
 echo "== Build baseline"
 "${CLANG[@]}" -O3 "$SRC" -o "$BASE"
@@ -21,22 +45,51 @@ echo "== Build baseline"
 echo "== Build instrumented"
 "${CLANG[@]}" -O3 -fprofile-instr-generate "$SRC" -o "$INSTR"
 
-echo "== Train and export raw profile"
-LLVM_PROFILE_FILE="$RAW" "$INSTR" train 1200000 || true
+MAX_PROFILE_ITERS="$(max_profile_iter)"
 
-echo "== Merge profile"
-"${PROFDATA[@]}" merge -output="$DATA" "$RAW"
+for benchmark in $BENCHMARKS; do
+  slug="$(slugify "$benchmark")"
+  profile_dir="$PROFILE_ROOT/$slug"
+  result_dir="$RESULT_ROOT/$slug"
+  mkdir -p "$profile_dir" "$result_dir"
 
-echo "== Build PGO binary"
-"${CLANG[@]}" -O3 -fprofile-instr-use="$DATA" "$SRC" -o "$PGO"
+  echo "== Baseline measurement: $benchmark"
+  "$BASE" "$benchmark" "$MEASURE_ITERATIONS" > "$result_dir/baseline.txt" || true
+  cat "$result_dir/baseline.txt"
 
-echo "== Compare serve-hot"
-"$BASE" serve-hot 2200000 || true
-"$PGO" serve-hot 2200000 || true
+  echo "== Train and export $MAX_PROFILE_ITERS raw profiles: $benchmark"
+  for iter in $(seq 1 "$MAX_PROFILE_ITERS"); do
+    raw="$profile_dir/invoke-${iter}.profraw"
+    LLVM_PROFILE_FILE="$raw" "$INSTR" "$benchmark" "$TRAIN_ITERATIONS" > "$profile_dir/train-${iter}.txt" || true
+  done
 
-echo "== Compare serve-mixed"
-"$BASE" serve-mixed 2200000 || true
-"$PGO" serve-mixed 2200000 || true
+  for iter_count in $PROFILE_ITERS; do
+    data="$profile_dir/${iter_count}-profiles.profdata"
+    pgo="$BUILD/handler-pgo-${slug}-${iter_count}"
+    inputs=()
+    for iter in $(seq 1 "$iter_count"); do
+      inputs+=("$profile_dir/invoke-${iter}.profraw")
+    done
+
+    echo "== Merge $iter_count profiles: $benchmark"
+    "${PROFDATA[@]}" merge -output="$data" "${inputs[@]}"
+
+    echo "== Build PGO binary from $iter_count profiles: $benchmark"
+    "${CLANG[@]}" -O3 -fprofile-instr-use="$data" "$SRC" -o "$pgo"
+
+    echo "== PGO measurement: $benchmark profiles=$iter_count"
+    "$pgo" "$benchmark" "$MEASURE_ITERATIONS" > "$result_dir/pgo-${iter_count}.txt" || true
+    cat "$result_dir/pgo-${iter_count}.txt"
+  done
+done
 
 echo "== Artifacts"
-ls -lh "$BUILD"
+find "$BUILD" -maxdepth 3 -type f | sort
+
+if [[ "$PLOT_RESULTS" == "1" ]]; then
+  echo "== Render figures"
+  python3 "$ROOT/plot_results.py" \
+    --results-root "$RESULT_ROOT" \
+    --out "$FIGURE_DIR/llvm-aot-pgo-all-results.png" \
+    --summary "$FIGURE_DIR/llvm-aot-pgo-all-results-summary.json"
+fi

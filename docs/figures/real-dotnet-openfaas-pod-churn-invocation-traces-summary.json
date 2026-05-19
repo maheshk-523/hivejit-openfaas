@@ -1,0 +1,210 @@
+{
+  "panels": {
+    "eclipse": {
+      "il": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 201.995416,
+        "min_latency_ms": 23.389709,
+        "points": 40
+      },
+      "nativeaot": {
+        "churn_invocations": [
+          1,
+          112,
+          478,
+          800,
+          1044,
+          1283,
+          1679,
+          1790
+        ],
+        "max_latency_ms": 494.300958,
+        "min_latency_ms": 24.230834,
+        "points": 2000
+      },
+      "r2r": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 168.211583,
+        "min_latency_ms": 22.727416,
+        "points": 40
+      }
+    },
+    "fop": {
+      "il": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 345.167959,
+        "min_latency_ms": 44.846167,
+        "points": 40
+      },
+      "nativeaot": {
+        "churn_invocations": [
+          1,
+          112,
+          478,
+          800,
+          1044,
+          1283,
+          1679,
+          1790
+        ],
+        "max_latency_ms": 173.64975,
+        "min_latency_ms": 49.16625,
+        "points": 2000
+      },
+      "r2r": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 171.933083,
+        "min_latency_ms": 45.154833,
+        "points": 40
+      }
+    },
+    "h2": {
+      "il": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 250.037792,
+        "min_latency_ms": 40.578125,
+        "points": 40
+      },
+      "nativeaot": {
+        "churn_invocations": [
+          1,
+          112,
+          478,
+          800,
+          1044,
+          1283,
+          1679,
+          1790
+        ],
+        "max_latency_ms": 163.761667,
+        "min_latency_ms": 23.666875,
+        "points": 2000
+      },
+      "r2r": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 176.922875,
+        "min_latency_ms": 22.197084,
+        "points": 40
+      }
+    },
+    "jython": {
+      "il": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 187.792583,
+        "min_latency_ms": 27.179042,
+        "points": 40
+      },
+      "nativeaot": {
+        "churn_invocations": [
+          1,
+          112,
+          478,
+          800,
+          1044,
+          1283,
+          1679,
+          1790
+        ],
+        "max_latency_ms": 143.365292,
+        "min_latency_ms": 28.5655,
+        "points": 2000
+      },
+      "r2r": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 125.994875,
+        "min_latency_ms": 27.108334,
+        "points": 40
+      }
+    },
+    "lusearch": {
+      "il": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 367.416333,
+        "min_latency_ms": 40.052583,
+        "points": 40
+      },
+      "nativeaot": {
+        "churn_invocations": [
+          1,
+          112,
+          478,
+          800,
+          1044,
+          1283,
+          1679,
+          1790
+        ],
+        "max_latency_ms": 605.360583,
+        "min_latency_ms": 26.907334,
+        "points": 2000
+      },
+      "r2r": {
+        "churn_invocations": [
+          1,
+          9,
+          17,
+          25,
+          33
+        ],
+        "max_latency_ms": 130.335333,
+        "min_latency_ms": 25.294792,
+        "points": 40
+      }
+    }
+  },
+  "schema": "pod-churn-invocation-traces.v1"
+}

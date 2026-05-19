@@ -1,0 +1,24 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: ${OPENFAAS_GATEWAY:-http://127.0.0.1:8080}
+functions:
+  dacapo-jvm:
+    skip_build: true
+    image: ${DACAPO_JVM_IMAGE}
+    labels:
+      com.openfaas.scale.min: "1"
+      com.openfaas.scale.max: "1"
+      com.openfaas.scale.zero: "false"
+    environment:
+      DACAPO_ALLOWED_BENCHMARKS: h2,lusearch,eclipse
+      DACAPO_BENCHMARK: lusearch
+      DACAPO_SIZE: ${SIZE:-small}
+      DACAPO_ITERATIONS: ${ITERATIONS:-1}
+      DACAPO_THREADS: ${THREADS:-1}
+      DACAPO_VALIDATION: ${VALIDATION:-none}
+      DACAPO_PRE_GC: ${PRE_GC:-true}
+      DACAPO_DIGEST_OUTPUT: false
+      read_timeout: ${WATCHDOG_TIMEOUT:-300s}
+      write_timeout: ${WATCHDOG_TIMEOUT:-300s}
+      exec_timeout: ${WATCHDOG_TIMEOUT:-300s}

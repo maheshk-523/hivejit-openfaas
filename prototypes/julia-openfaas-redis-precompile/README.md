@@ -105,8 +105,8 @@ AOT_PROFILE_COUNTS="5 10" \
 bash prototypes/julia-openfaas-redis-precompile/run_aot_profile_cache_comparison.sh
 ```
 
-For a real run with the same request scale and irregular churn positions as
-the OpenWhisk reference figure, use the real trace wrapper. This invokes
+For a real run with the same request scale and irregular churn positions as the
+reference serverless warmup figure, use the real trace wrapper. This invokes
 OpenFaaS for every row in the CSV and restarts the Kubernetes pod at each
 dashed-line position:
 
@@ -115,8 +115,8 @@ WORKLOADS="lusearch h2 eclipse" \
 bash prototypes/julia-openfaas-redis-precompile/run_real_openwhisk_trace.sh
 ```
 
-The generated `*-baseline-vs-aot-real-openwhisk-raw.png` files are the
-OpenWhisk-style graphs to use for results.
+The generated `*-baseline-vs-aot-openfaas-pod-churn-raw.png` files are the
+real-data graphs to use for results.
 
 ## Manual Docker Build
 
@@ -152,7 +152,7 @@ Results land under `.runs/<RUN_ID>/results/`:
 <workload>-sysimage10.json
 <workload>-sysimage10-warmup.png
 <workload>-aot-comparison.png
-<workload>-baseline-vs-aot-real-openwhisk-raw.png
+<workload>-baseline-vs-aot-openfaas-pod-churn-raw.png
 <workload>-real-openwhisk-shape-eval.json
 ```
 
@@ -160,10 +160,10 @@ The plot layout is identical to the JVM DaCapo churn plots so both can be
 placed side-by-side in a paper. By default the PNGs show raw per-request
 latency only; smoothed lines are opt-in.
 
-`evaluate_warmup_shape.py` checks whether a trace is actually at the
-OpenWhisk-reference level: enough requests, enough churn points, and a
-multi-request raw decay tail after each churn. This prevents a single cold
-spike plus flat steady state from being mistaken for the reference behavior.
+`evaluate_warmup_shape.py` checks whether a trace has enough requests, enough
+churn points, and a multi-request raw decay tail after each churn. This prevents
+a single cold spike plus flat steady state from being mistaken for the reference
+behavior.
 
 ## Interpreting the Graph
 

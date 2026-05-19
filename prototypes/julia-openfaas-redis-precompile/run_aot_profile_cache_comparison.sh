@@ -22,7 +22,7 @@ FUNCTION_NAMESPACE="${FUNCTION_NAMESPACE:-openfaas-fn}"
 OPENFAAS_GATEWAY="${OPENFAAS_GATEWAY:-http://127.0.0.1:8080}"
 
 RUN_ID="${RUN_ID:-aot-profile-cache-$(date +%Y%m%d-%H%M%S)}"
-WORKLOADS="${WORKLOADS:-lusearch h2 eclipse}"
+WORKLOADS="${WORKLOADS:-lusearch h2 eclipse jython fop}"
 SIZE="${SIZE:-1}"
 INVOCATIONS="${INVOCATIONS:-120}"
 SEGMENT_LENGTH="${SEGMENT_LENGTH:-30}"
@@ -216,7 +216,7 @@ plot_comparison() {
   python3 "$PLOT_SCRIPT" \
     --csv "${csvs[@]}" \
     --labels "${labels[@]}" \
-    --out "$RESULT_ROOT/$(slugify "$workload")-baseline-vs-aot-real-openwhisk-raw.png" \
+    --out "$RESULT_ROOT/$(slugify "$workload")-baseline-vs-aot-openfaas-pod-churn-raw.png" \
     --title "Real OpenFaaS Julia $workload - baseline vs AOT profile cache"
 }
 
@@ -232,7 +232,7 @@ evaluate_comparison() {
   python3 "$PROTO_DIR/evaluate_warmup_shape.py" \
     --csv "${csvs[@]}" \
     --labels "${labels[@]}" \
-    --out "$RESULT_ROOT/$(slugify "$workload")-real-openwhisk-shape-eval.json"
+    --out "$RESULT_ROOT/$(slugify "$workload")-real-openfaas-shape-eval.json"
 }
 
 require_cmd docker
