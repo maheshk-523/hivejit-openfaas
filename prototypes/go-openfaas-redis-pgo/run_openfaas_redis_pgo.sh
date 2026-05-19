@@ -19,6 +19,12 @@ MEASURE_WARMUP="${MEASURE_WARMUP:-10}"
 MEASURE_CONCURRENCY="${MEASURE_CONCURRENCY:-1}"
 HANDLER_REQUESTS="${HANDLER_REQUESTS:-350000}"
 BENCHMARKS="${BENCHMARKS:-router}"
+RUN_POD_CHURN="${RUN_POD_CHURN:-0}"
+CHURN_INVOCATIONS="${CHURN_INVOCATIONS:-40}"
+CHURN_SEGMENT_LENGTH="${CHURN_SEGMENT_LENGTH:-8}"
+CHURN_AT="${CHURN_AT:-}"
+CHURN_POST_READY_DELAY="${CHURN_POST_READY_DELAY:-0}"
+CHURN_INVOKE_TIMEOUT="${CHURN_INVOKE_TIMEOUT:-120}"
 
 IMAGE_PREFIX="${IMAGE_PREFIX:-ttl.sh/${FUNCTION_NAME}-${USER:-user}}"
 PUSH_IMAGE="${PUSH_IMAGE:-1}"
@@ -36,6 +42,7 @@ GOMAXPROCS="${GOMAXPROCS:-1}"
 ARTIFACT_ROOT="$PROTO_DIR/.runs/$RUN_ID"
 PROFILE_ROOT_BASE="$ARTIFACT_ROOT/profiles"
 RESULT_ROOT_BASE="$ARTIFACT_ROOT/results"
+SYMBOL_BIN="$ARTIFACT_ROOT/handler.nopgo.symbols"
 URL="$OPENFAAS_GATEWAY/function/$FUNCTION_NAME"
 
 read -r -a BENCHMARK_LIST <<< "$BENCHMARKS"
@@ -101,14 +108,95 @@ build_push_deploy() {
   fi
 
   echo "== Deploy $FUNCTION_NAME with $label =="
-  export OPENFAAS_GATEWAY GO_PGO_IMAGE="$image" REDIS_ADDR REDIS_PASSWORD REDIS_DB REDIS_TIMEOUT PROFILE_KEY_PREFIX BUILD_LABEL="$label" BENCHMARK="$benchmark" GOMAXPROCS
-  faas-cli deploy -f "$PROTO_DIR/stack.yml" --gateway "$OPENFAAS_GATEWAY"
-  kubectl label "deployment/$FUNCTION_NAME" -n "$FUNCTION_NAMESPACE" \
-    com.openfaas.scale.min=1 \
-    com.openfaas.scale.max=1 \
-    com.openfaas.scale.zero=false \
-    --overwrite
-  kubectl scale "deployment/$FUNCTION_NAME" -n "$FUNCTION_NAMESPACE" --replicas=1
+  local manifest="$ARTIFACT_ROOT/${FUNCTION_NAME}-${label}.json"
+  cat > "$manifest" <<JSON
+{
+  "apiVersion": "v1",
+  "kind": "List",
+  "items": [
+    {
+      "apiVersion": "apps/v1",
+      "kind": "Deployment",
+      "metadata": {
+        "name": "$FUNCTION_NAME",
+        "namespace": "$FUNCTION_NAMESPACE",
+        "labels": {
+          "faas_function": "$FUNCTION_NAME",
+          "profile-cache-run": "$RUN_ID",
+          "profile-cache-build": "$label"
+        }
+      },
+      "spec": {
+        "replicas": 1,
+        "selector": {"matchLabels": {"faas_function": "$FUNCTION_NAME"}},
+        "template": {
+          "metadata": {
+            "labels": {
+              "faas_function": "$FUNCTION_NAME",
+              "profile-cache-run": "$RUN_ID",
+              "profile-cache-build": "$label"
+            }
+          },
+          "spec": {
+            "terminationGracePeriodSeconds": 20,
+            "containers": [
+              {
+                "name": "$FUNCTION_NAME",
+                "image": "$image",
+                "imagePullPolicy": "IfNotPresent",
+                "ports": [{"name": "http", "containerPort": 8080}],
+                "env": [
+                  {"name": "REDIS_ADDR", "value": "$REDIS_ADDR"},
+                  {"name": "REDIS_PASSWORD", "value": "$REDIS_PASSWORD"},
+                  {"name": "REDIS_DB", "value": "$REDIS_DB"},
+                  {"name": "REDIS_TIMEOUT", "value": "$REDIS_TIMEOUT"},
+                  {"name": "PROFILE_KEY_PREFIX", "value": "$PROFILE_KEY_PREFIX"},
+                  {"name": "BUILD_LABEL", "value": "$label"},
+                  {"name": "BENCHMARK", "value": "$benchmark"},
+                  {"name": "GOMAXPROCS", "value": "$GOMAXPROCS"},
+                  {"name": "read_timeout", "value": "300s"},
+                  {"name": "write_timeout", "value": "300s"},
+                  {"name": "exec_timeout", "value": "300s"}
+                ],
+                "readinessProbe": {
+                  "httpGet": {"path": "/healthz", "port": 8080},
+                  "initialDelaySeconds": 2,
+                  "periodSeconds": 3,
+                  "timeoutSeconds": 2
+                },
+                "livenessProbe": {
+                  "httpGet": {"path": "/healthz", "port": 8080},
+                  "initialDelaySeconds": 2,
+                  "periodSeconds": 5,
+                  "timeoutSeconds": 2
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "name": "$FUNCTION_NAME",
+        "namespace": "$FUNCTION_NAMESPACE",
+        "labels": {
+          "faas_function": "$FUNCTION_NAME",
+          "profile-cache-run": "$RUN_ID",
+          "profile-cache-build": "$label"
+        }
+      },
+      "spec": {
+        "selector": {"faas_function": "$FUNCTION_NAME"},
+        "ports": [{"name": "http", "port": 8080, "targetPort": "http"}]
+      }
+    }
+  ]
+}
+JSON
+  kubectl apply -f "$manifest"
   kubectl rollout status "deployment/$FUNCTION_NAME" -n "$FUNCTION_NAMESPACE" --timeout=240s
 }
 
@@ -131,6 +219,43 @@ measure() {
     --csv "$result_root/${out_prefix}.csv" \
     --summary "$result_root/${out_prefix}.json" \
     --svg "$result_root/${out_prefix}.svg"
+}
+
+run_pod_churn() {
+  local benchmark="$1"
+  local treatment="$2"
+  local profile_iters="$3"
+  local out_prefix="$4"
+  local result_root="$5"
+  local password="${OPENFAAS_PASSWORD:-}"
+  local username="${OPENFAAS_USERNAME:-admin}"
+  local auth_args=()
+
+  if [[ -z "$password" ]] && kubectl -n "$OPENFAAS_NAMESPACE" get secret basic-auth >/dev/null 2>&1; then
+    password="$(kubectl -n "$OPENFAAS_NAMESPACE" get secret basic-auth -o jsonpath='{.data.basic-auth-password}' | base64 --decode)"
+    username="admin"
+  fi
+  if [[ -n "$password" ]]; then
+    auth_args+=(--username "$username" --password "$password")
+  fi
+
+  echo "== Run pod-churn trace $treatment ($benchmark) =="
+  python3 "$PROTO_DIR/run_churn_bench.py" \
+    --function "$FUNCTION_NAME" \
+    --namespace "$FUNCTION_NAMESPACE" \
+    --gateway "$OPENFAAS_GATEWAY" \
+    --benchmark "$benchmark" \
+    --treatment "$treatment" \
+    --profile-iters "$profile_iters" \
+    --requests "$HANDLER_REQUESTS" \
+    --invocations "$CHURN_INVOCATIONS" \
+    --segment-length "$CHURN_SEGMENT_LENGTH" \
+    --churn-at "$CHURN_AT" \
+    --post-ready-delay "$CHURN_POST_READY_DELAY" \
+    --invoke-timeout "$CHURN_INVOKE_TIMEOUT" \
+    "${auth_args[@]}" \
+    --csv "$result_root/${out_prefix}-pod-churn.csv" \
+    --summary "$result_root/${out_prefix}-pod-churn.json"
 }
 
 capture_profile() {
@@ -183,6 +308,9 @@ fi
 
 mkdir -p "$PROFILE_ROOT_BASE" "$RESULT_ROOT_BASE"
 
+echo "== Build local no-PGO symbol binary for profile merges =="
+(cd "$PROTO_DIR" && go build -buildvcs=false -trimpath -pgo=off -o "$SYMBOL_BIN" .)
+
 if [[ "$INSTALL_REDIS" == "1" ]]; then
   echo "== Install Redis profile cache in namespace $FUNCTION_NAMESPACE =="
   kubectl apply -n "$FUNCTION_NAMESPACE" -f "$PROTO_DIR/k8s/redis.yaml"
@@ -216,6 +344,9 @@ for benchmark in "${BENCHMARK_LIST[@]}"; do
 
   echo "== Measure baseline ($benchmark) =="
   measure "$benchmark" "go-openfaas-nopgo" "go-openfaas-nopgo" "$result_root"
+  if [[ "$RUN_POD_CHURN" == "1" ]]; then
+    run_pod_churn "$benchmark" "nopgo" "0" "go-openfaas-nopgo" "$result_root"
+  fi
 
   echo "== Capture $max_iter warm profiles from baseline ($benchmark) =="
   for iter in $(seq 1 "$max_iter"); do
@@ -230,7 +361,10 @@ for benchmark in "${BENCHMARK_LIST[@]}"; do
     done
 
     echo "== Merge $iter_count Redis-backed profiles ($benchmark) =="
-    go tool pprof -proto "$profile_dir"/invoke-*.pprof > "$profile_dir/merged.pprof"
+    HOME="${PPROF_HOME:-/private/tmp/go-pprof-home}" \
+      PPROF_TMPDIR="${PPROF_TMPDIR:-/private/tmp/go-pprof-tmp}" \
+      go tool pprof -symbolize=none -proto -output="$profile_dir/merged.pprof" \
+        "$SYMBOL_BIN" "$profile_dir"/invoke-*.pprof
     merged_key="${PROFILE_KEY_PREFIX}:merged:${RUN_ID}:${benchmark_slug}:${iter_count}"
     store_merged_profile "$profile_dir/merged.pprof" "$merged_key"
 
@@ -239,6 +373,9 @@ for benchmark in "${BENCHMARK_LIST[@]}"; do
 
     echo "== Measure PGO build from $iter_count warm profiles ($benchmark) =="
     measure "$benchmark" "go-openfaas-pgo-${iter_count}" "go-openfaas-pgo-${iter_count}" "$result_root"
+    if [[ "$RUN_POD_CHURN" == "1" ]]; then
+      run_pod_churn "$benchmark" "pgo-${iter_count}" "$iter_count" "go-openfaas-pgo-${iter_count}" "$result_root"
+    fi
   done
 done
 

@@ -47,7 +47,7 @@ Useful knobs:
 
 ```bash
 PROFILE_ITERS="5 10 20" \
-BENCHMARKS="router dacapo-lusearch dacapo-eclipse dacapo-h2" \
+BENCHMARKS="router dacapo-lusearch dacapo-eclipse dacapo-h2 dacapo-jython dacapo-fop" \
 PROFILE_SECONDS=20 \
 PROFILE_LOAD_REQUESTS=120 \
 MEASURE_REQUESTS=80 \
@@ -56,10 +56,20 @@ HANDLER_REQUESTS=350000 \
 ```
 
 `BENCHMARKS` accepts `router` plus Go-native DaCapo-shaped aliases:
-`dacapo-lusearch`, `dacapo-eclipse`, and `dacapo-h2`. These are not the JVM
-DaCapo jar workloads; they keep CPU time inside the Go binary so `runtime/pprof`
-and `go build -pgo` measure the Go profile-cache mechanism instead of a Go
-wrapper waiting for a Java subprocess.
+`dacapo-lusearch`, `dacapo-eclipse`, `dacapo-h2`, `dacapo-jython`, and
+`dacapo-fop`. These are not the JVM DaCapo jar workloads; they keep CPU time
+inside the Go binary so `runtime/pprof` and `go build -pgo` measure the Go
+profile-cache mechanism instead of a Go wrapper waiting for a Java subprocess.
+
+The OpenFaaS/Redis loop applies the profile budgets independently to each
+selected benchmark:
+
+```text
+baseline function execution -> /profile/capture exports pprof to Redis
+-> controller fetches raw profiles -> go tool pprof merges 5 or 10 profiles
+-> merged profile is stored in Redis -> go build -pgo imports it into a new image
+-> OpenFaaS redeploys that image -> next executions run the PGO binary
+```
 
 ## What The Function Exposes
 
