@@ -4,27 +4,27 @@
     "display": "Generic",
     "benchmark": "dacapo-lusearch",
     "n": 16,
-    "mean_wall_ms": 205.317127625,
-    "p50_wall_ms": 207.40075,
-    "p95_wall_ms": 216.7925,
-    "mean_work_ms": 179.2682500625,
-    "p50_work_ms": 180.454958,
-    "p95_work_ms": 189.418834,
-    "min_wall_ms": 194.915417,
-    "max_wall_ms": 216.7925
+    "mean_wall_ms": 269.3570860625,
+    "p50_wall_ms": 266.795334,
+    "p95_wall_ms": 305.315167,
+    "mean_work_ms": 232.3855833125,
+    "p50_work_ms": 231.915542,
+    "p95_work_ms": 255.902084,
+    "min_wall_ms": 256.227167,
+    "max_wall_ms": 305.315167
   },
   {
     "label": "python-specialized-3",
     "display": "Specialized, 3 profiles",
     "benchmark": "dacapo-lusearch",
     "n": 16,
-    "mean_wall_ms": 184.2642058125,
-    "p50_wall_ms": 184.208542,
-    "p95_wall_ms": 189.9485,
-    "mean_work_ms": 159.92233325,
-    "p50_work_ms": 159.63275,
-    "p95_work_ms": 163.6045,
-    "min_wall_ms": 180.346875,
-    "max_wall_ms": 189.9485
+    "mean_wall_ms": 256.29474725,
+    "p50_wall_ms": 255.137791,
+    "p95_wall_ms": 275.672,
+    "mean_work_ms": 218.5365730625,
+    "p50_work_ms": 219.149334,
+    "p95_work_ms": 234.97625,
+    "min_wall_ms": 242.745916,
+    "max_wall_ms": 275.672
   }
 ]

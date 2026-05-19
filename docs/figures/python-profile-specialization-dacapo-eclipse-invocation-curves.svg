@@ -16,42 +16,42 @@
 <line x1="92.0" y1="76.0" x2="92.0" y2="552.0" stroke="#64748b" stroke-width="1.2" />
 <line x1="92.0" y1="552.0" x2="1074.0" y2="552.0" stroke="#64748b" stroke-width="1.2" />
 <text x="24.0" y="314.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" fill="#334155" font-weight="600" transform="rotate(-90 24.0 314.0)">Wall latency (ms)</text>
-<text x="560.0" y="32.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="22" fill="#0f172a" font-weight="700">Python Profile Specialization: dacapo-lusearch</text>
+<text x="560.0" y="32.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="22" fill="#0f172a" font-weight="700">Python Profile Specialization: dacapo-eclipse</text>
 <text x="560.0" y="56.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" fill="#475569">Each point is a fresh Python process importing either generic code or the generated profile artifact.</text>
-<polyline points="92.0,261.3 157.5,278.0 222.9,300.1 288.4,287.8 353.9,295.9 419.3,302.1 484.8,308.1 550.3,304.1 615.7,289.8 681.2,305.9 746.7,307.6 812.1,307.8 877.6,286.0 943.1,298.0 1008.5,300.0 1074.0,296.8" fill="none" stroke="#334155" stroke-width="2.5" />
-<circle cx="92.0" cy="261.3" r="3.0" fill="#334155" />
-<circle cx="157.5" cy="278.0" r="3.0" fill="#334155" />
-<circle cx="222.9" cy="300.1" r="3.0" fill="#334155" />
-<circle cx="288.4" cy="287.8" r="3.0" fill="#334155" />
-<circle cx="353.9" cy="295.9" r="3.0" fill="#334155" />
-<circle cx="419.3" cy="302.1" r="3.0" fill="#334155" />
-<circle cx="484.8" cy="308.1" r="3.0" fill="#334155" />
-<circle cx="550.3" cy="304.1" r="3.0" fill="#334155" />
-<circle cx="615.7" cy="289.8" r="3.0" fill="#334155" />
-<circle cx="681.2" cy="305.9" r="3.0" fill="#334155" />
-<circle cx="746.7" cy="307.6" r="3.0" fill="#334155" />
-<circle cx="812.1" cy="307.8" r="3.0" fill="#334155" />
-<circle cx="877.6" cy="286.0" r="3.0" fill="#334155" />
-<circle cx="943.1" cy="298.0" r="3.0" fill="#334155" />
-<circle cx="1008.5" cy="300.0" r="3.0" fill="#334155" />
-<circle cx="1074.0" cy="296.8" r="3.0" fill="#334155" />
-<polyline points="92.0,309.4 157.5,303.6 222.9,292.9 288.4,307.3 353.9,311.9 419.3,309.1 484.8,303.8 550.3,310.4 615.7,310.9 681.2,317.6 746.7,308.8 812.1,298.1 877.6,289.6 943.1,320.9 1008.5,315.8 1074.0,318.0" fill="none" stroke="#0f766e" stroke-width="2.5" />
-<circle cx="92.0" cy="309.4" r="3.0" fill="#0f766e" />
-<circle cx="157.5" cy="303.6" r="3.0" fill="#0f766e" />
-<circle cx="222.9" cy="292.9" r="3.0" fill="#0f766e" />
-<circle cx="288.4" cy="307.3" r="3.0" fill="#0f766e" />
-<circle cx="353.9" cy="311.9" r="3.0" fill="#0f766e" />
-<circle cx="419.3" cy="309.1" r="3.0" fill="#0f766e" />
-<circle cx="484.8" cy="303.8" r="3.0" fill="#0f766e" />
-<circle cx="550.3" cy="310.4" r="3.0" fill="#0f766e" />
-<circle cx="615.7" cy="310.9" r="3.0" fill="#0f766e" />
-<circle cx="681.2" cy="317.6" r="3.0" fill="#0f766e" />
-<circle cx="746.7" cy="308.8" r="3.0" fill="#0f766e" />
-<circle cx="812.1" cy="298.1" r="3.0" fill="#0f766e" />
-<circle cx="877.6" cy="289.6" r="3.0" fill="#0f766e" />
-<circle cx="943.1" cy="320.9" r="3.0" fill="#0f766e" />
-<circle cx="1008.5" cy="315.8" r="3.0" fill="#0f766e" />
-<circle cx="1074.0" cy="318.0" r="3.0" fill="#0f766e" />
+<polyline points="92.0,230.2 157.5,228.9 222.9,229.5 288.4,235.0 353.9,236.3 419.3,236.1 484.8,235.8 550.3,242.3 615.7,217.3 681.2,228.7 746.7,244.2 812.1,246.8 877.6,234.2 943.1,235.7 1008.5,239.1 1074.0,255.8" fill="none" stroke="#334155" stroke-width="2.5" />
+<circle cx="92.0" cy="230.2" r="3.0" fill="#334155" />
+<circle cx="157.5" cy="228.9" r="3.0" fill="#334155" />
+<circle cx="222.9" cy="229.5" r="3.0" fill="#334155" />
+<circle cx="288.4" cy="235.0" r="3.0" fill="#334155" />
+<circle cx="353.9" cy="236.3" r="3.0" fill="#334155" />
+<circle cx="419.3" cy="236.1" r="3.0" fill="#334155" />
+<circle cx="484.8" cy="235.8" r="3.0" fill="#334155" />
+<circle cx="550.3" cy="242.3" r="3.0" fill="#334155" />
+<circle cx="615.7" cy="217.3" r="3.0" fill="#334155" />
+<circle cx="681.2" cy="228.7" r="3.0" fill="#334155" />
+<circle cx="746.7" cy="244.2" r="3.0" fill="#334155" />
+<circle cx="812.1" cy="246.8" r="3.0" fill="#334155" />
+<circle cx="877.6" cy="234.2" r="3.0" fill="#334155" />
+<circle cx="943.1" cy="235.7" r="3.0" fill="#334155" />
+<circle cx="1008.5" cy="239.1" r="3.0" fill="#334155" />
+<circle cx="1074.0" cy="255.8" r="3.0" fill="#334155" />
+<polyline points="92.0,259.3 157.5,230.5 222.9,214.9 288.4,248.4 353.9,251.1 419.3,242.3 484.8,259.8 550.3,245.6 615.7,266.2 681.2,263.5 746.7,274.9 812.1,258.7 877.6,254.7 943.1,234.8 1008.5,257.3 1074.0,257.5" fill="none" stroke="#0f766e" stroke-width="2.5" />
+<circle cx="92.0" cy="259.3" r="3.0" fill="#0f766e" />
+<circle cx="157.5" cy="230.5" r="3.0" fill="#0f766e" />
+<circle cx="222.9" cy="214.9" r="3.0" fill="#0f766e" />
+<circle cx="288.4" cy="248.4" r="3.0" fill="#0f766e" />
+<circle cx="353.9" cy="251.1" r="3.0" fill="#0f766e" />
+<circle cx="419.3" cy="242.3" r="3.0" fill="#0f766e" />
+<circle cx="484.8" cy="259.8" r="3.0" fill="#0f766e" />
+<circle cx="550.3" cy="245.6" r="3.0" fill="#0f766e" />
+<circle cx="615.7" cy="266.2" r="3.0" fill="#0f766e" />
+<circle cx="681.2" cy="263.5" r="3.0" fill="#0f766e" />
+<circle cx="746.7" cy="274.9" r="3.0" fill="#0f766e" />
+<circle cx="812.1" cy="258.7" r="3.0" fill="#0f766e" />
+<circle cx="877.6" cy="254.7" r="3.0" fill="#0f766e" />
+<circle cx="943.1" cy="234.8" r="3.0" fill="#0f766e" />
+<circle cx="1008.5" cy="257.3" r="3.0" fill="#0f766e" />
+<circle cx="1074.0" cy="257.5" r="3.0" fill="#0f766e" />
 <line x1="92.0" y1="552.0" x2="92.0" y2="558.0" stroke="#64748b" stroke-width="1" />
 <text x="92.0" y="576.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#475569">1</text>
 <line x1="353.9" y1="552.0" x2="353.9" y2="558.0" stroke="#64748b" stroke-width="1" />
