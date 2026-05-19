@@ -245,7 +245,7 @@ def main() -> int:
     parser.add_argument("--function",       default="julia-precompile")
     parser.add_argument("--namespace",      default="openfaas-fn")
     parser.add_argument("--gateway",        default="http://127.0.0.1:8080")
-    parser.add_argument("--workload",       choices=["lusearch", "h2", "eclipse", "matrix", "regex", "sort"], default="lusearch")
+    parser.add_argument("--workload",       choices=["lusearch", "h2", "eclipse", "jython", "fop", "fopo", "matrix", "regex", "sort"], default="lusearch")
     parser.add_argument("--size",           type=int, default=1)
     parser.add_argument("--invocations",    type=int, default=60)
     parser.add_argument("--segment-length", type=int, default=20)

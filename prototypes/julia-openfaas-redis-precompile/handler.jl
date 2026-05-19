@@ -5,6 +5,8 @@ DaCapo-analog workloads (pure-Julia, no external data files required):
   lusearch  – inverted-index Boolean search over a generated string corpus
   h2        – in-memory key-value store with CRUD / scan operations
   eclipse   – Julia expression parsing and lightweight AST analysis
+  jython    – stack-machine bytecode interpretation over generated programs
+  fop       – XML-like document parse, layout, and render checksum
   matrix    – dense linear-algebra (multiply, det, eigen, svd) via LAPACK
   regex     – compile and match complex regex patterns over generated text
   sort      – sort large arrays with mixed types and custom comparators
@@ -229,6 +231,148 @@ function run_eclipse(size::Int)::Dict{String,Any}
 end
 
 # ============================================================
+# Workload: jython – bytecode parsing and interpreter dispatch
+# ============================================================
+
+struct _PyInstr
+    op::Symbol
+    arg::Int
+end
+
+mutable struct _PyFrame
+    stack::Vector{Int}
+    locals::Dict{Symbol,Int}
+    checksum::Int
+    _PyFrame() = new(Int[], Dict{Symbol,Int}(), 0)
+end
+
+function _build_py_program(n_ops::Int)::Vector{_PyInstr}
+    ops = Vector{_PyInstr}(undef, n_ops)
+    for i in 1:n_ops
+        slot = i % 17
+        ops[i] = if i % 11 == 0
+            _PyInstr(:store, slot)
+        elseif i % 7 == 0
+            _PyInstr(:load, slot)
+        elseif i % 5 == 0
+            _PyInstr(:mul, slot + 3)
+        elseif i % 3 == 0
+            _PyInstr(:add, slot + 5)
+        else
+            _PyInstr(:const, i * 13 % 997)
+        end
+    end
+    ops
+end
+
+function _exec_py_program!(frame::_PyFrame, program::Vector{_PyInstr}, loops::Int)::Int
+    for loop in 1:loops
+        empty!(frame.stack)
+        frame.locals[:seed] = loop
+        for instr in program
+            if instr.op === :const
+                push!(frame.stack, instr.arg)
+            elseif instr.op === :load
+                push!(frame.stack, get(frame.locals, Symbol("v", instr.arg), instr.arg))
+            elseif instr.op === :store
+                val = isempty(frame.stack) ? instr.arg : pop!(frame.stack)
+                frame.locals[Symbol("v", instr.arg)] = val ⊻ loop
+            elseif instr.op === :add
+                lhs = isempty(frame.stack) ? loop : pop!(frame.stack)
+                rhs = isempty(frame.stack) ? instr.arg : pop!(frame.stack)
+                push!(frame.stack, lhs + rhs + instr.arg)
+            elseif instr.op === :mul
+                lhs = isempty(frame.stack) ? 1 : pop!(frame.stack)
+                rhs = isempty(frame.stack) ? instr.arg : pop!(frame.stack)
+                push!(frame.stack, (lhs * rhs + loop) % 1_000_003)
+            end
+        end
+        frame.checksum ⊻= sum(frame.stack; init=0) + length(frame.locals)
+    end
+    frame.checksum
+end
+
+function run_jython(size::Int)::Dict{String,Any}
+    n_ops = size == 1 ? 700 : size == 2 ? 2400 : 7000
+    loops = size == 1 ? 12 : size == 2 ? 24 : 40
+    program = _build_py_program(n_ops)
+    frame = _PyFrame()
+    checksum = _exec_py_program!(frame, program, loops)
+    Dict{String,Any}(
+        "workload" => "jython", "n_ops" => n_ops, "loops" => loops,
+        "locals" => length(frame.locals), "checksum" => checksum,
+    )
+end
+
+# ============================================================
+# Workload: fop – XML-like parse, layout, and render checksum
+# ============================================================
+
+struct _FopBlock
+    kind::Symbol
+    width::Int
+    height::Int
+    text::String
+end
+
+function _generate_fop_doc(n_blocks::Int)::String
+    io = IOBuffer()
+    println(io, "<root>")
+    kinds = (:para, :title, :table, :list, :code)
+    for i in 1:n_blocks
+        kind = kinds[i % length(kinds) + 1]
+        width = 32 + (i * 7 % 96)
+        height = 8 + (i * 11 % 44)
+        text = "block $(i) $(kind) layout render profile cache $(i % 13)"
+        println(io, "<block kind=\"$(kind)\" width=\"$(width)\" height=\"$(height)\">$(text)</block>")
+    end
+    println(io, "</root>")
+    String(take!(io))
+end
+
+function _parse_fop_doc(doc::String)::Vector{_FopBlock}
+    pattern = Regex("<block kind=\"(\\w+)\" width=\"(\\d+)\" height=\"(\\d+)\">(.*?)</block>")
+    blocks = _FopBlock[]
+    for m in eachmatch(pattern, doc)
+        push!(blocks, _FopBlock(
+            Symbol(m.captures[1]),
+            parse(Int, m.captures[2]),
+            parse(Int, m.captures[3]),
+            m.captures[4],
+        ))
+    end
+    blocks
+end
+
+function _layout_fop(blocks::Vector{_FopBlock}, page_height::Int)::Tuple{Int,Int}
+    pages = 1
+    cursor = 0
+    checksum = 0
+    for (i, block) in enumerate(blocks)
+        text_lines = cld(length(block.text), max(1, block.width ÷ 8))
+        block_height = block.height + text_lines * 4
+        if cursor + block_height > page_height
+            pages += 1
+            cursor = 0
+        end
+        cursor += block_height
+        checksum ⊻= Int(hash((block.kind, pages, cursor, i, length(block.text))) & 0x7fffffff)
+    end
+    pages, checksum
+end
+
+function run_fop(size::Int)::Dict{String,Any}
+    n_blocks = size == 1 ? 450 : size == 2 ? 1600 : 4200
+    doc = _generate_fop_doc(n_blocks)
+    blocks = _parse_fop_doc(doc)
+    pages, checksum = _layout_fop(blocks, 720)
+    Dict{String,Any}(
+        "workload" => "fop", "n_blocks" => n_blocks, "parsed_blocks" => length(blocks),
+        "pages" => pages, "doc_bytes" => sizeof(doc), "checksum" => checksum,
+    )
+end
+
+# ============================================================
 # Workload: matrix – dense linear algebra (LAPACK JIT-heavy)
 # ============================================================
 
@@ -376,14 +520,18 @@ end
 # Dispatch
 # ============================================================
 
-function dispatch_workload(workload::String, size::Int)::Dict{String,Any}
+function dispatch_workload(workload::AbstractString, size::Int)::Dict{String,Any}
+    workload = lowercase(workload)
+    workload == "fopo"     && (workload = "fop")
     workload == "lusearch" && return run_lusearch(size)
     workload == "h2"       && return run_h2(size)
     workload == "eclipse"  && return run_eclipse(size)
+    workload == "jython"   && return run_jython(size)
+    workload == "fop"      && return run_fop(size)
     workload == "matrix"   && return run_matrix(size)
     workload == "regex"    && return run_regex(size)
     workload == "sort"     && return run_sort(size)
-    error("unknown workload: $workload (use lusearch|h2|eclipse|matrix|regex|sort)")
+    error("unknown workload: $workload (use lusearch|h2|eclipse|jython|fop|matrix|regex|sort)")
 end
 
 # ============================================================
