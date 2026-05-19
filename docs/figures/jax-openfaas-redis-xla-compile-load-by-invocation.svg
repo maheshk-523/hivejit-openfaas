@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="1084" viewBox="0 0 1120 1084">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24" y="36" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#202124">JAX compile/load latency vs invocation number</text>
+<text x="24" y="60" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#5f6368">Each point is a fresh OpenFaaS pod. Lower is better.</text>
+<text x="24" y="100" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#202124">dacapo-eclipse</text>
+<line x1="92" y1="338.0" x2="900" y2="338.0" stroke="#e5e7eb"/>
+<text x="82" y="342.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">0</text>
+<line x1="92" y1="293.6" x2="900" y2="293.6" stroke="#e5e7eb"/>
+<text x="82" y="297.6" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">100</text>
+<line x1="92" y1="249.2" x2="900" y2="249.2" stroke="#e5e7eb"/>
+<text x="82" y="253.2" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">200</text>
+<line x1="92" y1="204.8" x2="900" y2="204.8" stroke="#e5e7eb"/>
+<text x="82" y="208.8" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">300</text>
+<line x1="92" y1="160.4" x2="900" y2="160.4" stroke="#e5e7eb"/>
+<text x="82" y="164.4" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">400</text>
+<line x1="92" y1="116.0" x2="900" y2="116.0" stroke="#e5e7eb"/>
+<text x="82" y="120.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">500</text>
+<line x1="92.0" y1="116" x2="92.0" y2="338" stroke="#f1f5f9"/>
+<text x="92.0" y="360" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">1</text>
+<line x1="294.0" y1="116" x2="294.0" y2="338" stroke="#f1f5f9"/>
+<text x="294.0" y="360" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">2</text>
+<line x1="496.0" y1="116" x2="496.0" y2="338" stroke="#f1f5f9"/>
+<text x="496.0" y="360" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">3</text>
+<line x1="698.0" y1="116" x2="698.0" y2="338" stroke="#f1f5f9"/>
+<text x="698.0" y="360" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">4</text>
+<line x1="900.0" y1="116" x2="900.0" y2="338" stroke="#f1f5f9"/>
+<text x="900.0" y="360" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">5</text>
+<line x1="92" y1="338" x2="900" y2="338" stroke="#94a3b8"/>
+<line x1="92" y1="116" x2="92" y2="338" stroke="#94a3b8"/>
+<polyline points="92.0,255.8 294.0,264.4 496.0,255.3 698.0,255.6 900.0,236.2" fill="none" stroke="#b9413c" stroke-width="2.5"/>
+<circle cx="92.0" cy="255.8" r="3.2" fill="#b9413c"/>
+<circle cx="294.0" cy="264.4" r="3.2" fill="#b9413c"/>
+<circle cx="496.0" cy="255.3" r="3.2" fill="#b9413c"/>
+<circle cx="698.0" cy="255.6" r="3.2" fill="#b9413c"/>
+<circle cx="900.0" cy="236.2" r="3.2" fill="#b9413c"/>
+<polyline points="92.0,314.9 294.0,319.7 496.0,320.5 698.0,326.2 900.0,324.9" fill="none" stroke="#2f7d59" stroke-width="2.5"/>
+<circle cx="92.0" cy="314.9" r="3.2" fill="#2f7d59"/>
+<circle cx="294.0" cy="319.7" r="3.2" fill="#2f7d59"/>
+<circle cx="496.0" cy="320.5" r="3.2" fill="#2f7d59"/>
+<circle cx="698.0" cy="326.2" r="3.2" fill="#2f7d59"/>
+<circle cx="900.0" cy="324.9" r="3.2" fill="#2f7d59"/>
+<text x="24" y="426" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#202124">dacapo-h2</text>
+<line x1="92" y1="664.0" x2="900" y2="664.0" stroke="#e5e7eb"/>
+<text x="82" y="668.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">0</text>
+<line x1="92" y1="619.6" x2="900" y2="619.6" stroke="#e5e7eb"/>
+<text x="82" y="623.6" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">100</text>
+<line x1="92" y1="575.2" x2="900" y2="575.2" stroke="#e5e7eb"/>
+<text x="82" y="579.2" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">200</text>
+<line x1="92" y1="530.8" x2="900" y2="530.8" stroke="#e5e7eb"/>
+<text x="82" y="534.8" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">300</text>
+<line x1="92" y1="486.4" x2="900" y2="486.4" stroke="#e5e7eb"/>
+<text x="82" y="490.4" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">400</text>
+<line x1="92" y1="442.0" x2="900" y2="442.0" stroke="#e5e7eb"/>
+<text x="82" y="446.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">500</text>
+<line x1="92.0" y1="442" x2="92.0" y2="664" stroke="#f1f5f9"/>
+<text x="92.0" y="686" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">1</text>
+<line x1="294.0" y1="442" x2="294.0" y2="664" stroke="#f1f5f9"/>
+<text x="294.0" y="686" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">2</text>
+<line x1="496.0" y1="442" x2="496.0" y2="664" stroke="#f1f5f9"/>
+<text x="496.0" y="686" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">3</text>
+<line x1="698.0" y1="442" x2="698.0" y2="664" stroke="#f1f5f9"/>
+<text x="698.0" y="686" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">4</text>
+<line x1="900.0" y1="442" x2="900.0" y2="664" stroke="#f1f5f9"/>
+<text x="900.0" y="686" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">5</text>
+<line x1="92" y1="664" x2="900" y2="664" stroke="#94a3b8"/>
+<line x1="92" y1="442" x2="92" y2="664" stroke="#94a3b8"/>
+<polyline points="92.0,607.5 294.0,587.0 496.0,605.4 698.0,613.3 900.0,612.3" fill="none" stroke="#b9413c" stroke-width="2.5"/>
+<circle cx="92.0" cy="607.5" r="3.2" fill="#b9413c"/>
+<circle cx="294.0" cy="587.0" r="3.2" fill="#b9413c"/>
+<circle cx="496.0" cy="605.4" r="3.2" fill="#b9413c"/>
+<circle cx="698.0" cy="613.3" r="3.2" fill="#b9413c"/>
+<circle cx="900.0" cy="612.3" r="3.2" fill="#b9413c"/>
+<polyline points="92.0,649.4 294.0,649.4 496.0,576.7 698.0,644.1 900.0,649.2" fill="none" stroke="#2f7d59" stroke-width="2.5"/>
+<circle cx="92.0" cy="649.4" r="3.2" fill="#2f7d59"/>
+<circle cx="294.0" cy="649.4" r="3.2" fill="#2f7d59"/>
+<circle cx="496.0" cy="576.7" r="3.2" fill="#2f7d59"/>
+<circle cx="698.0" cy="644.1" r="3.2" fill="#2f7d59"/>
+<circle cx="900.0" cy="649.2" r="3.2" fill="#2f7d59"/>
+<text x="24" y="752" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#202124">dacapo-lusearch</text>
+<line x1="92" y1="990.0" x2="900" y2="990.0" stroke="#e5e7eb"/>
+<text x="82" y="994.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">0</text>
+<line x1="92" y1="945.6" x2="900" y2="945.6" stroke="#e5e7eb"/>
+<text x="82" y="949.6" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">100</text>
+<line x1="92" y1="901.2" x2="900" y2="901.2" stroke="#e5e7eb"/>
+<text x="82" y="905.2" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">200</text>
+<line x1="92" y1="856.8" x2="900" y2="856.8" stroke="#e5e7eb"/>
+<text x="82" y="860.8" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">300</text>
+<line x1="92" y1="812.4" x2="900" y2="812.4" stroke="#e5e7eb"/>
+<text x="82" y="816.4" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">400</text>
+<line x1="92" y1="768.0" x2="900" y2="768.0" stroke="#e5e7eb"/>
+<text x="82" y="772.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">500</text>
+<line x1="92.0" y1="768" x2="92.0" y2="990" stroke="#f1f5f9"/>
+<text x="92.0" y="1012" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">1</text>
+<line x1="294.0" y1="768" x2="294.0" y2="990" stroke="#f1f5f9"/>
+<text x="294.0" y="1012" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">2</text>
+<line x1="496.0" y1="768" x2="496.0" y2="990" stroke="#f1f5f9"/>
+<text x="496.0" y="1012" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">3</text>
+<line x1="698.0" y1="768" x2="698.0" y2="990" stroke="#f1f5f9"/>
+<text x="698.0" y="1012" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">4</text>
+<line x1="900.0" y1="768" x2="900.0" y2="990" stroke="#f1f5f9"/>
+<text x="900.0" y="1012" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#4b5563">5</text>
+<line x1="92" y1="990" x2="900" y2="990" stroke="#94a3b8"/>
+<line x1="92" y1="768" x2="92" y2="990" stroke="#94a3b8"/>
+<polyline points="92.0,931.8 294.0,935.8 496.0,929.9 698.0,935.2 900.0,936.6" fill="none" stroke="#b9413c" stroke-width="2.5"/>
+<circle cx="92.0" cy="931.8" r="3.2" fill="#b9413c"/>
+<circle cx="294.0" cy="935.8" r="3.2" fill="#b9413c"/>
+<circle cx="496.0" cy="929.9" r="3.2" fill="#b9413c"/>
+<circle cx="698.0" cy="935.2" r="3.2" fill="#b9413c"/>
+<circle cx="900.0" cy="936.6" r="3.2" fill="#b9413c"/>
+<polyline points="92.0,968.6 294.0,978.5 496.0,976.6 698.0,974.8 900.0,979.0" fill="none" stroke="#2f7d59" stroke-width="2.5"/>
+<circle cx="92.0" cy="968.6" r="3.2" fill="#2f7d59"/>
+<circle cx="294.0" cy="978.5" r="3.2" fill="#2f7d59"/>
+<circle cx="496.0" cy="976.6" r="3.2" fill="#2f7d59"/>
+<circle cx="698.0" cy="974.8" r="3.2" fill="#2f7d59"/>
+<circle cx="900.0" cy="979.0" r="3.2" fill="#2f7d59"/>
+<text x="496.0" y="1036" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#334155">Invocation number</text>
+<line x1="928" y1="124" x2="960" y2="124" stroke="#b9413c" stroke-width="3"/>
+<circle cx="944.0" cy="124.0" r="4.0" fill="#b9413c"/>
+<text x="972" y="128" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#334155">baseline</text>
+<line x1="928" y1="152" x2="960" y2="152" stroke="#2f7d59" stroke-width="3"/>
+<circle cx="944.0" cy="152.0" r="4.0" fill="#2f7d59"/>
+<text x="972" y="156" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#334155">redis-cache</text>
+</svg>
