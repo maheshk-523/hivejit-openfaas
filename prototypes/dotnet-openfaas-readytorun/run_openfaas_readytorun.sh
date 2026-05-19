@@ -167,6 +167,8 @@ metadata:
     com.openfaas.scale.zero: "false"
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       faas_function: $FUNCTION_NAME
@@ -192,6 +194,10 @@ spec:
               value: "$label"
             - name: DOTNET_SYSTEM_GLOBALIZATION_INVARIANT
               value: "1"
+            - name: DOTNET_hostBuilder__reloadConfigOnChange
+              value: "false"
+            - name: ASPNETCORE_hostBuilder__reloadConfigOnChange
+              value: "false"
             - name: read_timeout
               value: "120s"
             - name: write_timeout
