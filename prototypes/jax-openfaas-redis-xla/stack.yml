@@ -1,0 +1,35 @@
+version: "1.0"
+
+provider:
+  name: openfaas
+  gateway: ${OPENFAAS_GATEWAY}
+
+functions:
+  jax-xla-redis:
+    lang: dockerfile
+    handler: .
+    image: ${JAX_XLA_IMAGE}
+    labels:
+      com.openfaas.scale.min: "1"
+      com.openfaas.scale.max: "1"
+      com.openfaas.scale.zero: "false"
+    annotations:
+      com.openfaas.health.http.path: "/healthz"
+      com.openfaas.health.http.initialDelay: "2s"
+    environment:
+      BUILD_LABEL: ${BUILD_LABEL}
+      EXECUTIONS: ${EXECUTIONS}
+      JAX_CACHE_MODE: ${JAX_CACHE_MODE}
+      JAX_CACHE_KEY: ${JAX_CACHE_KEY}
+      JAX_CACHE_DIR: ${JAX_CACHE_DIR}
+      JAX_CACHE_IMPORT_META: ${JAX_CACHE_IMPORT_META}
+      JAX_CACHE_EXPORT_META: ${JAX_CACHE_EXPORT_META}
+      JAX_CACHE_REQUIRE_ARTIFACT: ${JAX_CACHE_REQUIRE_ARTIFACT}
+      REDIS_ADDR: ${REDIS_ADDR}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      REDIS_DB: ${REDIS_DB}
+      REDIS_TIMEOUT: ${REDIS_TIMEOUT}
+      SIGNATURE: ${SIGNATURE}
+      read_timeout: ${WATCHDOG_TIMEOUT}
+      write_timeout: ${WATCHDOG_TIMEOUT}
+      exec_timeout: ${WATCHDOG_TIMEOUT}
