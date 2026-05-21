@@ -1,0 +1,4 @@
+.gocache/
+/go-native-pgo-first-iterations
+/results/*/.gocache/
+/results/*/build/
