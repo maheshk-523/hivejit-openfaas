@@ -13,7 +13,6 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-import matplotlib.ticker as mticker
 
 
 def read_rows(path: Path, scenario: str) -> list[dict[str, Any]]:
@@ -33,8 +32,8 @@ def read_rows(path: Path, scenario: str) -> list[dict[str, Any]]:
 
 
 def warm_curve(rows: list[dict[str, Any]]) -> list[float]:
-    values = [rows[0]["startup_plus_first_request_ms"] / 1000.0]
-    values.extend(row["first_execute_ms"] / 1000.0 for row in rows[1:10])
+    values = [rows[0]["startup_plus_first_request_ms"]]
+    values.extend(row["first_execute_ms"] for row in rows[1:10])
     return values
 
 
@@ -92,16 +91,12 @@ def render(results_dir: Path, scenario: str, out: Path) -> None:
         linestyle="--",
         label="Persistent cache hit",
     )
-    ax.set_yscale("log")
     ax.set_xticks(x)
     ax.set_xlabel("Invocation")
-    ax.set_ylabel("Latency (seconds, log scale)")
+    ax.set_ylabel("Latency (milliseconds)")
     ax.set_title("Real Flax/MNIST Cold Start with JAX Persistent Cache", fontsize=15, pad=14)
-    ax.grid(True, which="both", linewidth=0.8)
+    ax.grid(True, linewidth=0.8)
     ax.legend(loc="upper right", frameon=True, facecolor="#0a2a50", edgecolor="#3b76ad", labelcolor="#edf6ff")
-    ax.yaxis.set_major_formatter(
-        mticker.FuncFormatter(lambda value, _pos: f"{value:.2f}s" if value >= 0.1 else f"{value * 1000:.0f}ms")
-    )
 
     ax.text(
         0.015,
@@ -150,7 +145,7 @@ def render(results_dir: Path, scenario: str, out: Path) -> None:
         0.5,
         0.02,
         "Real MNIST training images, Flax Linen CNN train_step, CPU backend. "
-        "Point 1 includes lower/compile/execute; later points are hot execution.",
+        "Point 1 includes lower/compile/execute; later points are hot execution. Linear y-axis.",
         ha="center",
         va="bottom",
         fontsize=9.3,
