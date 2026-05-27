@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="314" viewBox="0 0 1220 314">
+<rect width="100%" height="100%" fill="#111827"/>
+<text x="28" y="36" font-family="Helvetica, Arial, sans-serif" font-size="21" font-weight="700" fill="#f9fafb">JAX real-workload first-request phase breakdown</text>
+<text x="28" y="60" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#cbd5e1">Fresh process baseline vs restored persistent compilation cache. Lower is better.</text>
+<text x="28" y="116" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#f9fafb">flax-mnist-cnn-train-real</text>
+<text x="218" y="147" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#d1d5db">baseline</text>
+<rect x="230.00" y="124" width="95.44" height="36" rx="3" fill="#818cf8"/>
+<rect x="325.44" y="124" width="508.58" height="36" rx="3" fill="#ef4444"/>
+<rect x="834.02" y="124" width="155.98" height="36" rx="3" fill="#22c55e"/>
+<text x="1008" y="147" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#f9fafb">337.3 ms</text>
+<text x="218" y="195" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#d1d5db">persistent-cache-reuse</text>
+<rect x="230.00" y="172" width="21.00" height="36" rx="3" fill="#f59e0b"/>
+<rect x="251.00" y="172" width="91.18" height="36" rx="3" fill="#818cf8"/>
+<rect x="342.18" y="172" width="16.10" height="36" rx="3" fill="#ef4444"/>
+<rect x="358.28" y="172" width="150.29" height="36" rx="3" fill="#22c55e"/>
+<text x="1008" y="195" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#f9fafb">123.6 ms</text>
+<rect x="28" y="264" width="16" height="16" rx="3" fill="#f59e0b"/>
+<text x="50" y="277" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#d1d5db">artifact import</text>
+<rect x="166" y="264" width="16" height="16" rx="3" fill="#38bdf8"/>
+<text x="188" y="277" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#d1d5db">trace</text>
+<rect x="304" y="264" width="16" height="16" rx="3" fill="#818cf8"/>
+<text x="326" y="277" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#d1d5db">lower</text>
+<rect x="442" y="264" width="16" height="16" rx="3" fill="#ef4444"/>
+<text x="464" y="277" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#d1d5db">compile/load</text>
+<rect x="580" y="264" width="16" height="16" rx="3" fill="#22c55e"/>
+<text x="602" y="277" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#d1d5db">execute</text>
+</svg>

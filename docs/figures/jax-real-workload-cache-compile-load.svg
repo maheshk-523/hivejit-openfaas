@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="476" viewBox="0 0 1180 476">
+<rect width="100%" height="100%" fill="#111827"/>
+<text x="28" y="36" font-family="Helvetica, Arial, sans-serif" font-size="21" font-weight="700" fill="#f9fafb">JAX/XLA persistent-cache compile-or-load time</text>
+<text x="28" y="60" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#cbd5e1">The reuse rows are fresh Python processes reading a restored cache artifact.</text>
+<text x="28" y="114" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#f9fafb">flax-mnist-cnn-train-real</text>
+<text x="223" y="140" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#d1d5db">baseline</text>
+<rect x="235" y="122" width="730.00" height="26" rx="3" fill="#ef4444"/>
+<text x="975.00" y="140" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#f9fafb">225.7 ms</text>
+<text x="223" y="174" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#d1d5db">persistent-cache-populate</text>
+<rect x="235" y="156" width="637.86" height="26" rx="3" fill="#94a3b8"/>
+<text x="882.86" y="174" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#f9fafb">197.2 ms</text>
+<text x="223" y="208" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#d1d5db">persistent-cache-reuse</text>
+<rect x="235" y="190" width="23.11" height="26" rx="3" fill="#22c55e"/>
+<text x="268.11" y="208" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#f9fafb">7.1 ms</text>
+<text x="28" y="276" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#f9fafb">flax-mnist-cnn-train-real-mismatch</text>
+<text x="223" y="302" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#d1d5db">mismatch-control</text>
+<rect x="235" y="284" width="697.72" height="26" rx="3" fill="#f59e0b"/>
+<text x="942.72" y="302" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#f9fafb">215.7 ms</text>
+</svg>
