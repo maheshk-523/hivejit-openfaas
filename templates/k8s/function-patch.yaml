@@ -1,0 +1,12 @@
+spec:
+  template:
+    spec:
+      terminationGracePeriodSeconds: 20
+      containers:
+        - name: profile-fn
+          volumeMounts:
+            - name: profiles
+              mountPath: /profiles
+      volumes:
+        - name: profiles
+          emptyDir: {}

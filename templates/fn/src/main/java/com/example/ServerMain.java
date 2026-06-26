@@ -1,0 +1,79 @@
+package com.example;
+
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpServer;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.InetSocketAddress;
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicLong;
+
+public class ServerMain {
+    private static final AtomicLong REQ = new AtomicLong(0);
+
+    public static void main(String[] args) throws Exception {
+        int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "8080"));
+        HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
+        server.createContext("/", ServerMain::handle);
+        server.setExecutor(Executors.newFixedThreadPool(1));
+        server.start();
+        System.out.println("SERVER_READY port=" + port);
+    }
+
+    private static void handle(HttpExchange exchange) throws IOException {
+        long n = REQ.incrementAndGet();
+        long t0 = System.nanoTime();
+
+        String status = "ok";
+        String error = "";
+
+        try {
+            runLusearch();
+        } catch (Throwable t) {
+            status = "error";
+            error = t.toString().replace("\"", "'");
+        }
+
+        long t1 = System.nanoTime();
+        double latencyMs = (t1 - t0) / 1_000_000.0;
+
+        String body = "{"
+                + "\"status\":\"" + status + "\","
+                + "\"request_in_pod\":" + n + ","
+                + "\"latency_ms\":" + latencyMs + ","
+                + "\"error\":\"" + error + "\""
+                + "}";
+
+        exchange.getResponseHeaders().add("Content-Type", "application/json");
+        byte[] bytes = body.getBytes(StandardCharsets.UTF_8);
+        exchange.sendResponseHeaders(status.equals("ok") ? 200 : 500, bytes.length);
+        try (OutputStream os = exchange.getResponseBody()) {
+            os.write(bytes);
+        }
+    }
+
+    private static void runLusearch() throws Exception {
+        ProcessBuilder pb = new ProcessBuilder(
+                "java",
+                "-jar", "/app/lib/dacapo.jar",
+                "lusearch",
+                "-n", "1"
+        );
+        pb.environment().put("JAVA_HOME", "/opt/george-jdk");
+        pb.redirectErrorStream(true);
+
+        Process p = pb.start();
+
+        try (InputStream is = p.getInputStream()) {
+            is.transferTo(OutputStream.nullOutputStream());
+        }
+
+        int rc = p.waitFor();
+        if (rc != 0) {
+            throw new RuntimeException("lusearch failed with exit code " + rc);
+        }
+    }
+}
