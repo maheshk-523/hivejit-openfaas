@@ -7,6 +7,7 @@ import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class S {
   static byte[] slurp(InputStream in) throws Exception {
@@ -39,15 +40,35 @@ public class S {
     s.createContext("/", e -> {
       try {
         long t0 = System.nanoTime();
+        Map<String, String> env = System.getenv();
+        String javaBin = env.getOrDefault("DACAPO_JAVA", "/opt/george-jdk/bin/java");
+        String jar = env.getOrDefault("DACAPO_JAR", "/app/lib/dacapo.jar");
+        String benchmark = env.getOrDefault("DACAPO_BENCHMARK", "lusearch");
+        String iterations = env.getOrDefault("DACAPO_ITERATIONS", "1");
+        String threads = env.getOrDefault("DACAPO_THREADS", "");
+        String size = env.getOrDefault("DACAPO_SIZE", "");
+        String scratch = env.getOrDefault("DACAPO_SCRATCH", "/tmp/dacapo-scratch");
+        String logDir = env.getOrDefault("DACAPO_LOG_DIR", "/tmp/dacapo-log");
+
         List<String> cmd = new ArrayList<>();
-        cmd.add("/opt/george-jdk/bin/java");
+        cmd.add(javaBin);
         cmd.add("-jar");
-        cmd.add("/app/lib/dacapo.jar");
-        cmd.add("--data-set-location");
-        cmd.add("/app/lib/dacapo");
-        cmd.add("lusearch");
+        cmd.add(jar);
+        cmd.add("--scratch-directory");
+        cmd.add(scratch + "-" + System.nanoTime());
+        cmd.add("--log-directory");
+        cmd.add(logDir);
+        if (!threads.isBlank()) {
+          cmd.add("-t");
+          cmd.add(threads);
+        }
+        if (!size.isBlank()) {
+          cmd.add("-s");
+          cmd.add(size);
+        }
+        cmd.add(benchmark);
         cmd.add("-n");
-        cmd.add("1");
+        cmd.add(iterations);
         ProcessBuilder pb = new ProcessBuilder(cmd);
         pb.redirectErrorStream(true);
         Process p = pb.start();

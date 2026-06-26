@@ -3,8 +3,9 @@
 work/jdk25u/
 work/george-jdk/
 generated/fn/george-jdk/
-generated/fn/lib/dacapo/
+generated/fn/lib/
 build/
+measurements/
 *.class
 *.log
 *.iso
