@@ -4,6 +4,8 @@ work/jdk25u/
 work/george-jdk/
 generated/fn/george-jdk/
 generated/fn/lib/
+generated/fn/data/
+generated/fn/Dockerfile.bak
 build/
 measurements/
 *.class
@@ -23,3 +25,4 @@ prototypes/**/.venv/
 prototypes/**/profiles/
 prototypes/**/results/
 generated/profile-cache-matrix/
+README.md.untracked-before-rebase
